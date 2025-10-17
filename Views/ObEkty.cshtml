@@ -1,0 +1,1174 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ObEkty>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<!-- Objects Grid -->
+<section class=" container mx-auto md:mt-10 mobile-section-divider">
+    <!-- ===== РЯД 1 (2 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
+    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-0 md:mt-14 mb-14 md:mb-20">
+        <!-- o1 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
+                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- o2 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Переделкино Ближнее</h4>
+                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РЯД 2 (3 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
+    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
+        <!-- o3 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o4 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o5 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-квартал LOFT POST у метро «Бауманская»</h4>
+                        <div class="body1 text-regular-primary">г. Москва</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РЯД 3 (2 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
+    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-10 md:mt-14 mb-14 md:mb-20">
+        <!-- o1 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
+                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- o2 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Переделкино Ближнее</h4>
+                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РЯД 4 (3 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
+    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
+        <!-- o3 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o4 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o5 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">
+                            Апарт-квартал LOFT POST у
+                            метро «Бауманская»
+                        </h4>
+                        <div class="body1 text-regular-primary">г. Москва</div>
+                    </div>
+                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- YANDEX MAPS WIDGET -->
+<section data-reveal-stagge class=" relative mt-10 md:mt-20 pb-20 mobile-section-divider">
+    <div class="container md:overflow-hidden">
+        <div class="relative">
+            <h2 class="text-center mb-6 md:mb-10">На карте</h2>
+
+            <!-- Map Container -->
+            <div class="relative">
+                <div id="map" class="w-full h-[400px] md:h-[600px] shadow-lg rounded-2xl md:rounded-4xl overflow-hidden"></div>
+
+                <!-- Mobile Controls - Stacked Layout -->
+                <div class="absolute top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 z-10 space-y-2 md:space-y-0 md:flex md:justify-between md:gap-4">
+                    <!-- Country Filter Bar -->
+                    <div class="flex flex-wrap gap-1 md:gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all text-xs md:text-sm"
+                                data-country="russia">
+                            РОССИЯ
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="belarus">
+                            БЕЛАРУСЬ
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="kazakhstan">
+                            КАЗАХСТАН
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="armenia">
+                            АРМЕНИЯ
+                        </button>
+                    </div>
+
+                    <!-- Filters Button -->
+                    <button id="filters-btn"
+                            class="bg-white px-3 py-2 md:px-4 md:py-2 rounded-lg border border-accent shadow-md hover:shadow-lg transition-shadow text-sm md:text-base">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 inline text-accent" fill="none" stroke="currentColor"
+                             viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z">
+                            </path>
+                        </svg>
+                        <span class="hidden sm:inline">Фильтры</span>
+                        <span id="filter-count" class="ml-2 bg-accent text-white text-xs rounded-full px-2 py-1">0</span>
+                    </button>
+                </div>
+
+                <!-- Side Card - Mobile Responsive -->
+                <div id="side-card"
+                     class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-2rem)] md:w-80 bg-white rounded-lg shadow-lg p-4 md:p-6 z-20 max-w-sm md:max-w-none">
+                    <button id="close-card"
+                            class="absolute top-2 md:top-4 right-2 md:right-4 text-neutral-400 hover:text-neutral-600">
+                        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div id="card-content" class="text-sm md:text-base">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Filters Modal - Mobile Responsive -->
+                <div id="filters-modal"
+                     class="fixed  md:absolute inset-0 bg-black bg-opacity-50 hidden z-30 rounded-2xl md:rounded-4xl overflow-hidden">
+                    <div class="flex items-center justify-center h-full p-2 md:p-4">
+                        <div class="bg-white shadow-xl w-full h-full md:max-w-3xl md:max-h-[500px] flex flex-col rounded-2xl md:rounded-4xl overflow-hidden">
+                            <div class="flex justify-between items-center p-4 md:p-6 bg-white sticky top-0 z-10 shadow">
+                                <div class="flex items-center gap-2">
+                                    <img src="/assets/icons/filterIcon.svg" alt="logo" class="w-4 h-4 md:w-5 md:h-5">
+                                    <h3 class="text-lg md:text-xl">Фильтры</h3>
+                                </div>
+                                <button id="close-modal" class="text-accent hover:text-accent-dark">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="overflow-y-auto systems-scrollbar flex-1">
+
+                                <div class="p-4 md:p-6 space-y-4 md:space-y-6">
+                                    <!-- Облицовка Section -->
+                                    <div class="facades-section" data-filter="facades">
+                                        <!-- Title and master checkbox -->
+                                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-4">
+                                            <h4 class="font-medium text-base md:text-lg">Облицовка</h4>
+                                            <div class="flex items-center gap-2">
+                                                <input type="checkbox" class="master-checkbox" id="facades-master">
+                                                <label for="facades-master" class="text-xs md:text-sm cursor-pointer">Выбрать все</label>
+                                                <span class="facades-count text-xs bg-accent text-white rounded-full px-2 py-1">0</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Facade categories grid - Mobile Responsive -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                                            <!-- Крупноформатные облицовки -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                           data-category="Крупноформатные облицовки" data-value="Крупноформатные облицовки">
+                                                    <span class="text-xs md:text-sm font-medium">КРУПНОФОРМАТНЫЕ ОБЛИЦОВКИ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Стеклофибробетон -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Стеклофибробетон">
+                                                    <span class="text-xs md:text-sm font-medium">СТЕКЛОФИБРОБЕТОН</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Стеклофибробетон"
+                                                               data-value="Крупноформатные панели из СФБ">
+                                                        <span class="text-xs md:text-sm">Крупноформатные панели из СФБ</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Стеклофибробетон"
+                                                               data-value="Декоративные элементы из СФБ">
+                                                        <span class="text-xs md:text-sm">Декоративные элементы из СФБ</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кирпич -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Кирпич">
+                                                    <span class="text-xs md:text-sm font-medium">КИРПИЧ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич"
+                                                               data-value="Кирпич стандартного размера">
+                                                        <span class="text-xs md:text-sm">Кирпич стандартного размера</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич"
+                                                               data-value="Кирпич РОКСОН">
+                                                        <span class="text-xs md:text-sm">Кирпич РОКСОН</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич"
+                                                               data-value="Кирпич White Hills">
+                                                        <span class="text-xs md:text-sm">Кирпич White Hills</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Керамогранит -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Керамогранит">
+                                                    <span class="text-xs md:text-sm font-medium">КЕРАМОГРАНИТ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Керамогранит"
+                                                               data-value="Керамогранит (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (скрытый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Керамогранит"
+                                                               data-value="Керамогранит (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (видимый способ крепления)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кассеты -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Кассеты">
+                                                    <span class="text-xs md:text-sm font-medium">КАССЕТЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кассеты"
+                                                               data-value="Кассеты из алюмокомпозита">
+                                                        <span class="text-xs md:text-sm">Кассеты из алюмокомпозита</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кассеты"
+                                                               data-value="Металлокассеты">
+                                                        <span class="text-xs md:text-sm">Металлокассеты</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Натуральный камень -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Натуральный камень"
+                                                           data-value="Натуральный камень">
+                                                    <span class="text-xs md:text-sm font-medium">НАТУРАЛЬНЫЙ КАМЕНЬ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Плитка -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Плитка">
+                                                    <span class="text-xs md:text-sm font-medium">ПЛИТКА</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Плитка"
+                                                               data-value="Плитка – механический способ крепления">
+                                                        <span class="text-xs md:text-sm">Плитка – механический способ крепления</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Плитка"
+                                                               data-value="Плитка на затирке">
+                                                        <span class="text-xs md:text-sm">Плитка на затирке</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Терракота -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Терракота"
+                                                           data-value="Терракота (объемная керамика)">
+                                                    <span class="text-xs md:text-sm font-medium">ТЕРРАКОТА (ОБЪЕМНАЯ КЕРАМИКА)</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Листовые материалы -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Листовые материалы">
+                                                    <span class="text-xs md:text-sm font-medium">ЛИСТОВЫЕ МАТЕРИАЛЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Листовой композит">
+                                                        <span class="text-xs md:text-sm">Листовой композит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Листовой стальной композит">
+                                                        <span class="text-xs md:text-sm">Листовой стальной композит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Листовой алюмокомпозит">
+                                                        <span class="text-xs md:text-sm">Листовой алюмокомпозит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Фиброцемент">
+                                                        <span class="text-xs md:text-sm">Фиброцемент</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Фиброцемент (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (скрытый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Фиброцемент (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (видимый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="HPL">
+                                                        <span class="text-xs md:text-sm">HPL</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Kmew">
+                                                        <span class="text-xs md:text-sm">Kmew</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы"
+                                                               data-value="Рокпанель и Аква панель">
+                                                        <span class="text-xs md:text-sm">Рокпанель и Аква панель</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Назначение -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Назначение</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="ЖК">
+                                                ЖК
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Медицинские учреждения">
+                                                Медицинские учреждения
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Офисные здания">
+                                                Офисные здания
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Торговые центры">
+                                                Торговые центры
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Образовательные учреждения">
+                                                Образовательные учреждения
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Промышленные здания">
+                                                Промышленные здания
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Склады">
+                                                Склады
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Инфраструктурные здания">
+                                                Инфраструктурные здания
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Система -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Система</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-100">
+                                                Ронсон-100
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-200">
+                                                Ронсон-200
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-300">
+                                                Ронсон-300
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-400">
+                                                Ронсон-400
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-500">
+                                                Ронсон-500
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-600">
+                                                Ронсон-600
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-740">
+                                                Ронсон-740
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 p-2 md:p-6 border-t border-gray bg-white sticky bottom-0">
+                                <button id="apply-filters" class="btn-primary btn-sm">
+                                    Применить фильтры
+                                </button>
+                                <button id="clear-filters" class="btn-stroke btn-sm">
+                                    Очистить фильтры
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY_HERE&lang=ru_RU"></script>
+<script>
+    // Global variable to store projects data
+    let PROJECTS = null;
+
+    // Country centers and zoom levels
+    const COUNTRY_CENTERS = {
+        russia: { center: [37.6173, 55.7558], zoom: 4 },
+        belarus: { center: [27.5615, 53.9045], zoom: 7 },
+        kazakhstan: { center: [71.4306, 51.1801], zoom: 6 },
+        armenia: { center: [44.5035, 40.1872], zoom: 8 }
+    };
+
+    // Global variables
+    let map, objectManager;
+    let activeMarkerId = null; // Track active marker
+    let filtersState = {
+        country: 'russia',
+        facades: new Set(),
+        systems: new Set(),
+        types: new Set(),
+        year: ''
+    };
+
+    // Fetch projects data
+    async function fetchProjects() {
+        try {
+            const response = await fetch('/assets/data/projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            PROJECTS = await response.json();
+            console.log('Projects data loaded successfully');
+            return PROJECTS;
+        } catch (error) {
+            console.error('Failed to fetch projects data:', error);
+            // Fallback to empty data structure
+            PROJECTS = { type: "FeatureCollection", features: [] };
+            return PROJECTS;
+        }
+    }
+
+    // Initialize the map
+    async function initMap() {
+        try {
+            // First fetch the projects data
+            await fetchProjects();
+
+            ymaps.ready(() => {
+                // Create map instance
+                map = new ymaps.Map('map', {
+                    center: COUNTRY_CENTERS.russia.center,
+                    zoom: COUNTRY_CENTERS.russia.zoom,
+                    controls: ['zoomControl', 'fullscreenControl']
+                });
+
+                // Create ObjectManager for clustering with custom styling
+                objectManager = new ymaps.ObjectManager({
+                    clusterize: true,
+                    gridSize: 50,
+                    clusterDisableClickZoom: false,
+                    clusterIcons: [
+                        {
+                            href: 'data:image/svg+xml;base64,' + btoa(`
+              <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20" fill="white" stroke="#bd1a1a" stroke-width="3"/>
+              </svg>
+            `),
+                            size: [44, 44],
+                            offset: [-22, -22]
+                        }
+                    ],
+                    clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
+                        '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                        'font-size:14px;font-weight:700;color:#bd1a1a;user-select:none;">' +
+                        '$[properties.geoObjects.length]' +
+                        '</div>'
+                    )
+                });
+
+                // Set custom marker styling - use default layout but override with CSS
+                objectManager.objects.options.set('iconLayout', 'default#image');
+                objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+        </svg>
+      `));
+                objectManager.objects.options.set('iconImageSize', [24, 24]);
+                objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+
+                // Add objects to ObjectManager
+                objectManager.add(PROJECTS);
+
+                // Add ObjectManager to map
+                map.geoObjects.add(objectManager);
+
+                // Disable default balloons
+                objectManager.objects.options.set('balloonContentLayout', null);
+                objectManager.clusters.options.set('balloonContentLayout', null);
+
+                // Handle object clicks
+                objectManager.objects.events.add('click', (e) => {
+                    const objectId = e.get('objectId');
+                    const feature = PROJECTS.features.find(f => f.id === objectId);
+                    if (feature) {
+                        setActiveMarker(objectId);
+                        openCard(feature);
+                    }
+                });
+
+                // Handle cluster clicks (default zoom behavior)
+                objectManager.clusters.events.add('click', (e) => {
+                    const clusterId = e.get('objectId');
+                    const cluster = objectManager.clusters.getById(clusterId);
+                    if (cluster) {
+                        map.setBounds(cluster.geometry.getBounds(), { checkZoomRange: true });
+                    }
+                });
+
+                console.log('Map initialized successfully');
+            });
+        } catch (error) {
+            console.error('Failed to initialize map:', error);
+        }
+    }
+
+    // Setup UI event listeners
+    function setupUI() {
+        // Country buttons
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const country = btn.dataset.country;
+                setActiveCountry(country);
+            });
+        });
+
+        // Filters button
+        document.getElementById('filters-btn').addEventListener('click', openFiltersModal);
+
+        // Modal close button
+        document.getElementById('close-modal').addEventListener('click', closeFiltersModal);
+
+        // Apply filters button
+        document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
+        // Clear filters button
+        document.getElementById('clear-filters').addEventListener('click', clearFilters);
+
+        // Close card button
+        document.getElementById('close-card').addEventListener('click', closeCard);
+
+
+
+        // Filter chips - using event delegation on the modal
+        const filtersModal = document.getElementById('filters-modal');
+        console.log('Setting up filter chips, modal found:', !!filtersModal);
+        console.log('Filter chips found:', document.querySelectorAll('.filter-chip').length);
+
+        filtersModal.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Filter chip clicked:', e.target.dataset.filter, e.target.dataset.value);
+                const filter = e.target.dataset.filter;
+                const value = e.target.dataset.value;
+                toggleFilterChip(e.target, filter, value);
+            }
+        });
+
+        // Dropdown checkbox functionality
+        setupDropdownCheckboxes();
+
+        // Filter checkboxes (for other sections)
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const filter = checkbox.dataset.filter;
+                const value = checkbox.value;
+                if (checkbox.checked) {
+                    filtersState[filter].add(value);
+                } else {
+                    filtersState[filter].delete(value);
+                }
+            });
+        });
+
+        // Close modal on backdrop click
+        document.getElementById('filters-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'filters-modal') {
+                closeFiltersModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFiltersModal();
+                closeCard();
+            }
+        });
+    }
+
+    // Set active country
+    function setActiveCountry(country) {
+        // Update button states
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.country === country) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update filters state
+        filtersState.country = country;
+
+        // Move map to country center
+        const center = COUNTRY_CENTERS[country];
+        map.setCenter(center.center, center.zoom);
+
+        // Apply filters
+        applyFilters();
+
+        // Clear active marker when country changes
+        clearActiveMarker();
+    }
+
+    // Open filters modal
+    function openFiltersModal() {
+        const modal = document.getElementById('filters-modal');
+        modal.classList.remove('hidden');
+        document.getElementById('filters-btn').focus();
+        console.log('Filters modal opened, filter chips found:', document.querySelectorAll('.filter-chip').length);
+    }
+
+    // Close filters modal
+    function closeFiltersModal() {
+        document.getElementById('filters-modal').classList.add('hidden');
+    }
+
+    // Toggle filter chip
+    function toggleFilterChip(chip, filter, value) {
+        console.log('toggleFilterChip called:', filter, value, 'chip:', chip);
+        chip.classList.toggle('active');
+        if (chip.classList.contains('active')) {
+            filtersState[filter].add(value);
+            console.log('Added to filtersState:', filter, value);
+        } else {
+            filtersState[filter].delete(value);
+            console.log('Removed from filtersState:', filter, value);
+        }
+    }
+
+    // Apply filters
+    function applyFilters() {
+        objectManager.setFilter((obj) => {
+            const feature = PROJECTS.features.find(f => f.id === obj.id);
+            if (!feature) return false;
+
+            // Country filter
+            if (feature.properties.country !== filtersState.country) return false;
+
+            // Facade filter
+            if (filtersState.facades.size > 0 && !filtersState.facades.has(feature.properties.facade)) return false;
+
+            // Type filter
+            if (filtersState.types.size > 0 && !filtersState.types.has(feature.properties.type)) return false;
+
+            // System filter
+            if (filtersState.systems.size > 0) {
+                const hasMatchingSystem = feature.properties.system.some(sys => filtersState.systems.has(sys));
+                if (!hasMatchingSystem) return false;
+            }
+
+            // Year filter
+            if (filtersState.year && feature.properties.year !== parseInt(filtersState.year)) return false;
+
+            return true;
+        });
+
+        updateFilterCount();
+        closeFiltersModal();
+    }
+
+    // Update filter count
+    function updateFilterCount() {
+        const totalFilters = filtersState.facades.size + filtersState.types.size + filtersState.systems.size + (filtersState.year ? 1 : 0);
+        const countElement = document.getElementById('filter-count');
+        countElement.textContent = totalFilters;
+        countElement.style.display = totalFilters > 0 ? 'inline' : 'none';
+    }
+
+    // Clear filters
+    function clearFilters() {
+        // Reset filter state (except country)
+        filtersState.facades.clear();
+        filtersState.systems.clear();
+        filtersState.types.clear();
+        filtersState.year = '';
+
+        // Reset UI
+        resetFiltersUI();
+
+        // Apply filters
+        applyFilters();
+
+        // Clear active marker when filters change
+        clearActiveMarker();
+
+        // Update filter count
+        updateFilterCount();
+    }
+
+    // Reset filters UI
+    function resetFiltersUI() {
+        // Reset facades section checkboxes
+        const facadesSection = document.querySelector('.facades-section');
+        if (facadesSection) {
+            const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.indeterminate = false;
+            });
+
+            // Close all subcategories
+            facadesSection.querySelectorAll('.facade-category').forEach(category => {
+                category.classList.remove('open');
+                const subcategoryItems = category.querySelector('.subcategory-items');
+                if (subcategoryItems) {
+                    subcategoryItems.classList.add('hidden');
+                }
+            });
+
+            // Update facades count
+            updateFacadesCount();
+        }
+
+        // Reset other checkboxes
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        // Reset chips
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.classList.remove('active');
+        });
+
+        // Reset year select
+        document.getElementById('year-filter').value = '';
+    }
+
+    // Open side card
+    function openCard(feature) {
+        const card = document.getElementById('side-card');
+        const content = document.getElementById('card-content');
+
+        content.innerHTML = `
+      <h3 class="text-xl font-semibold mb-4">${feature.properties.title}</h3>
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-neutral-600">${feature.properties.address}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-medium">${feature.properties.year}</span>
+          <span class="text-neutral-600">Окончание монтажа</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4">
+          ${feature.properties.system.map(sys => `<span class="px-3 py-1 bg-white border border-accent text-accent text-xs rounded-lg">${sys}</span>`).join('')}
+        </div>
+      </div>
+    `;
+
+        card.classList.remove('hidden');
+    }
+
+    // Close side card
+    function closeCard() {
+        document.getElementById('side-card').classList.add('hidden');
+        clearActiveMarker(); // Clear active marker when card is closed
+    }
+
+    // Set active marker
+    function setActiveMarker(markerId) {
+        // Clear previous active marker
+        clearActiveMarker();
+
+        // Set new active marker
+        activeMarkerId = markerId;
+
+        // Update the marker icon to active state
+        const object = objectManager.objects.getById(markerId);
+        if (object) {
+            objectManager.objects.setObjectOptions(markerId, {
+                iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+              </filter>
+            </defs>
+            <circle cx="15" cy="15" r="12" fill="#BD1A1A" filter="url(#shadow)"/>
+          </svg>
+        `),
+                iconImageSize: [30, 30],
+                iconImageOffset: [-15, -15]
+            });
+
+            // Add CSS class for active styling
+            setTimeout(() => {
+                const placemarkElement = document.querySelector(`[data-object-id="${markerId}"]`);
+                if (placemarkElement) {
+                    placemarkElement.classList.add('active');
+                }
+            }, 100); // Small delay to ensure the marker is rendered
+        }
+    }
+
+    // Clear active marker
+    function clearActiveMarker() {
+        if (activeMarkerId) {
+            // Remove CSS class for active styling
+            const placemarkElement = document.querySelector(`[data-object-id="${activeMarkerId}"]`);
+            if (placemarkElement) {
+                placemarkElement.classList.remove('active');
+            }
+
+            // Reset the marker icon to normal state
+            const object = objectManager.objects.getById(activeMarkerId);
+            if (object) {
+                objectManager.objects.setObjectOptions(activeMarkerId, {
+                    iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+            </svg>
+          `),
+                    iconImageSize: [24, 24],
+                    iconImageOffset: [-12, -12]
+                });
+            }
+            activeMarkerId = null;
+        }
+    }
+
+    // Setup facades section functionality
+    function setupDropdownCheckboxes() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+
+        // Master checkbox functionality
+        masterCheckbox.addEventListener('change', () => {
+            const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = masterCheckbox.checked;
+                if (masterCheckbox.checked) {
+                    // Only add to filters if the checkbox has a data-value
+                    if (checkbox.dataset.value) {
+                        filtersState.facades.add(checkbox.dataset.value);
+                    }
+                } else {
+                    // Only remove from filters if the checkbox has a data-value
+                    if (checkbox.dataset.value) {
+                        filtersState.facades.delete(checkbox.dataset.value);
+                    }
+                }
+            });
+            updateFacadesCount();
+        });
+
+        // Category checkbox functionality
+        facadesSection.querySelectorAll('.category-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const category = checkbox.dataset.category;
+                const subcategoryItems = checkbox.closest('.facade-category').querySelector('.subcategory-items');
+                const subcategoryCheckboxes = subcategoryItems ? subcategoryItems.querySelectorAll('.subcategory-checkbox') : [];
+
+                if (subcategoryCheckboxes.length > 0) {
+                    // Handle subcategory checkboxes - only select/deselect, don't toggle visibility
+                    subcategoryCheckboxes.forEach(subCheckbox => {
+                        subCheckbox.checked = checkbox.checked;
+                        if (checkbox.checked) {
+                            filtersState.facades.add(subCheckbox.dataset.value);
+                        } else {
+                            filtersState.facades.delete(subCheckbox.dataset.value);
+                        }
+                    });
+                } else {
+                    // Direct category checkbox - only if it has a data-value
+                    if (checkbox.dataset.value) {
+                        if (checkbox.checked) {
+                            filtersState.facades.add(checkbox.dataset.value);
+                        } else {
+                            filtersState.facades.delete(checkbox.dataset.value);
+                        }
+                    }
+                }
+
+                updateMasterCheckbox();
+                updateFacadesCount();
+            });
+        });
+
+        // Subcategory checkbox functionality
+        facadesSection.querySelectorAll('.subcategory-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    filtersState.facades.add(checkbox.dataset.value);
+                } else {
+                    filtersState.facades.delete(checkbox.dataset.value);
+                }
+
+                updateCategoryCheckbox(checkbox);
+                updateMasterCheckbox();
+                updateFacadesCount();
+            });
+        });
+
+        // Subcategory toggle functionality
+        facadesSection.querySelectorAll('[data-toggle="subcategory"]').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                // Don't toggle if clicking on checkbox or its label
+                if (e.target.type === 'checkbox' || e.target.tagName === 'LABEL' || e.target.closest('label')) {
+                    return;
+                }
+
+                const facadeCategory = toggle.closest('.facade-category');
+                const subcategoryItems = facadeCategory.querySelector('.subcategory-items');
+                facadeCategory.classList.toggle('open');
+                subcategoryItems.classList.toggle('hidden');
+            });
+        });
+    }
+
+    // Update master checkbox state
+    function updateMasterCheckbox() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        masterCheckbox.checked = checkedCheckboxes.length > 0;
+        masterCheckbox.indeterminate = checkedCheckboxes.length > 0 && checkedCheckboxes.length < allCheckboxes.length;
+    }
+
+    // Update category checkbox state
+    function updateCategoryCheckbox(subCheckbox) {
+        const category = subCheckbox.dataset.category;
+        const categoryCheckbox = document.querySelector(`.category-checkbox[data-category="${category}"]`);
+        const subcategoryCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox');
+        const checkedSubCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox:checked');
+
+        categoryCheckbox.checked = checkedSubCheckboxes.length > 0;
+        categoryCheckbox.indeterminate = checkedSubCheckboxes.length > 0 && checkedSubCheckboxes.length < subcategoryCheckboxes.length;
+    }
+
+    // Update facades count
+    function updateFacadesCount() {
+        const facadesSection = document.querySelector('.facades-section');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        facadesCount.textContent = checkedCheckboxes.length;
+        facadesCount.style.display = checkedCheckboxes.length > 0 ? 'inline' : 'none';
+    }
+
+    // Get country name
+    function getCountryName(countryCode) {
+        const names = {
+            russia: 'Россия',
+            belarus: 'Беларусь',
+            kazakhstan: 'Казахстан',
+            armenia: 'Армения'
+        };
+        return names[countryCode] || countryCode;
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+        await initMap();
+        setupUI();
+        updateFilterCount(); // Initialize filter count
+    });
+</script>

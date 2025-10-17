@@ -1,0 +1,146 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Dokumentatsiya>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<div class="container mx-auto px-4 md:px-0">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4 md:gap-0">
+        <h2 class="h2 text-center md:text-left text-2xl md:text-3xl lg:text-4xl">Наши патенты</h2>
+
+        <!-- Кнопки -->
+        <div class="flex gap-2 justify-center md:justify-start">
+            <button id="slider-prev" class="border border-accent text-accent rounded-lg w-12 h-12 md:w-10 md:h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed" disabled="">
+                <svg width="24" height="24" class="md:w-5 md:h-5" fill="none" viewBox="0 0 24 24">
+                    <path d="M15 18l-6-6 6-6" stroke="#DB0007" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+            <button id="slider-next" class="border border-accent text-accent rounded-lg w-12 h-12 md:w-10 md:h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+                <svg width="24" height="24" class="md:w-5 md:h-5" fill="none" viewBox="0 0 24 24">
+                    <path d="M9 6l6 6-6 6" stroke="#DB0007" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Слайдер -->
+    <div class="relative">
+        <div class="overflow-x-visible">
+            <div id="work-slider" class="flex gap-4 md:gap-20 overflow-x-auto md:overflow-hidden scroll-smooth snap-x snap-mandatory hide-scrollbar" style="width: 100%;">
+
+                <!-- Item 1 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan1.png" alt="Решение 1" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №69114</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Кляммер для крепления облицовочных плит фасадов зданий
+                        (полезная модель)
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan2.png" alt="Решение 2" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №76939</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Система крепления фасадных панелей различного типа
+                        (изобретение)
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan3.png" alt="Решение 3" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2365718</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">Кронштейн для вентилируемого фасада (полезная модель)</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan4.png" alt="Решение 4" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2381341</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">Зажим для крепления керамической плитки (изобретение)</p>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan5.png" alt="Решение 5" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2456789</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Система скрытого крепления для создания бесшовных фасадов
+                        (полезная модель)
+                    </p>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan6.png" alt="Решение 6" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2567890</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Крепление для гранитных облицовочных панелей (изобретение)
+                    </p>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan7.png" alt="Решение 7" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2678901</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Система компенсации температурных и усадочных деформаций
+                        (полезная модель)
+                    </p>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan8.png" alt="Решение 8" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2789012</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Крепление для светопрозрачных фасадных систем
+                        (изобретение)
+                    </p>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan9.png" alt="Решение 9" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2890123</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Система быстрого монтажа фасадных систем (полезная модель)
+                    </p>
+                </div>
+
+                <!-- Item 10 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan10.png" alt="Решение 10" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2901234</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">Крепление для композитных панелей (изобретение)</p>
+                </div>
+
+                <!-- Item 11 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan11.png" alt="Решение 11" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №3012345</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Система энергосбережения для повышения энергоэффективности
+                        зданий (полезная модель)
+                    </p>
+                </div>
+
+                <!-- Item 12 -->
+                <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                    <img src="/assets/img/pan12.png" alt="Решение 12" class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                    <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №3123456</h5>
+                    <p class="body3 text-regular-primary text-xs md:text-sm">
+                        Универсальная система крепления для различных типов
+                        фасадов (изобретение)
+                    </p>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

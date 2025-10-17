@@ -1,0 +1,247 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Proizvodstvo>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+<!-- Production Workshops Section -->
+<section class="container mx-auto mb-10 lg:mb-36">
+    <div class="mx-auto">
+       
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 mb-8">
+            <!-- First row: 50% 50% - Bigger images -->
+            <!-- Цех штамповки -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4">
+                    <img src="/assets/img/p1.jpg" alt="Цех штамповки" class="w-full h-48 sm:h-64 md:h-80 object-cover">
+                </div>
+                <h3 class="h4 mb-3">Цех штамповки</h3>
+                <p class="body2 text-regular-primary">Высокоточное штамповочная оснастка, производство со скоростью 1 кронштейн в секунду</p>
+            </div>
+
+            <!-- Цех прокатки -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4">
+                    <img src="/assets/img/p2.jpg" alt="Цех прокатки" class="w-full h-48 sm:h-64 md:h-80 object-cover">
+                </div>
+                <h3 class="h4 mb-3">Цех прокатки</h3>
+                <p class="body2 text-regular-primary">Количество выпускаемых профилей в сутки — не менее 30 000 м²</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8">
+            <!-- Second row: 25% 25% 25% 25% - Square images -->
+            <!-- Цех покраски -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4 aspect-square">
+                    <img src="/assets/img/p3.jpg" alt="Цех покраски" class="w-full h-full object-cover">
+                </div>
+                <h3 class="h4 mb-3">Цех покраски</h3>
+                <p class="body2 text-regular-primary">Полимерное покрытие не менее 45 мкм</p>
+            </div>
+
+            <!-- Цех гибки -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4 aspect-square">
+                    <img src="/assets/img/p4.jpg" alt="Цех гибки" class="w-full h-full object-cover">
+                </div>
+                <h3 class="h4 mb-3">Цех гибки</h3>
+                <p class="body2 text-regular-primary">Цех гибки обеспечивает точность до 0,1 мм</p>
+            </div>
+
+            <!-- ОТК, Лаборатория -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4 aspect-square">
+                    <img src="/assets/img/p5.jpg" alt="ОТК, Лаборатория" class="w-full h-full object-cover">
+                </div>
+                <h3 class="h4 mb-3">ОТК, Лаборатория</h3>
+                <p class="body2 text-regular-primary">Пооперационный контроль качества продукции на каждом этапе производства</p>
+            </div>
+
+            <!-- Цех упаковки -->
+            <div>
+                <div class="rounded-4xl overflow-hidden mb-4 aspect-square">
+                    <img src="/assets/img/p6.jpg" alt="Цех упаковки" class="w-full h-full object-cover">
+                </div>
+                <h3 class="h4 mb-3">Цех упаковки</h3>
+                <p class="body2 text-regular-primary">Детали упаковываются по правилам для удобства транспортировки и монтажа</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- CIRCULAR ABOUT SECTION -->
+<section data-reveal-stagger class="reveal relative overflow-hidden mb-10 lg:mb-36">
+    <div class="container mx-auto">
+    <!-- ===== Mobile / Tablet / Laptop (grid) ===== -->
+    <div class="block xl:hidden">
+        <div class="mx-auto px-4">
+            <!-- Heading -->
+            <div class="text-center">
+                <h2 class="h2 sm:h1 mt-10">
+                    Склад<br> с готовой продукцией<br>
+                    <span class="text-regular-tertiary">более 200 000 м²</span>
+                </h2>
+            </div>
+    
+            <!-- Description -->
+            <div class="mt-6 max-w-[680px] mx-auto">
+                <p class="body2 mb-3">
+                    Наш склад всегда обеспечен полным ассортиментом фасадных систем. Мы поддерживаем оптимальный запас
+                    материалов,
+                    чтобы ваши проекты не зависели от производственных циклов и сезонных колебаний спроса.
+                </p>
+                <p class="body2 mb-6 text-regular-tertiary">
+                    Все системы хранятся в строгом соответствии с техническими нормативами и готовы к отгрузке в любой
+                    момент.
+                </p>
+            </div>
+    
+            <!-- Image grid (no absolute positioning) -->
+            <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                <img src="/assets/img/p111.png" alt="Image 1"
+                    class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                <img src="/assets/img/p111.png" alt="Image 2"
+                    class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                <img src="/assets/img/p22.png" alt="Image 3"
+                    class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                <img src="/assets/img/p33.png" alt="Image 4"
+                    class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+            </div>
+        </div>
+    </div>
+
+        <!-- ===== Desktop (original, untouched) ===== -->
+        <div class="hidden xl:block">
+            <div class="relative mx-auto">
+                <!-- Circular container -->
+                <div class="relative w-full aspect-square mx-auto rounded-full overflow-hidden shadow-custom-drop">
+
+                    <!-- Second background pattern -->
+                    <div class="absolute inset-0 top-0 rounded-full"
+                        style="background: url('/assets/bg/lines3.svg') center center no-repeat #fff; background-size: cover;">
+                    </div>
+
+                    <!-- Central content -->
+                    <div class="relative z-10 text-center h-full flex flex-col">
+                        <div class="flex flex-col gap-4">
+                            <!-- Main heading -->
+                            <h2 class="h1 mt-[200px]">Склад<br> с готовой продукцией<br>
+                                <span class="text-regular-tertiary"> более 200 000 м2</span>
+                            </h2>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="max-w-[465px] body2 text-left absolute bottom-[40%] right-10">
+                            <p class="body2 mb-3">Мы сами проектируем, сами производим подсистемы и некоторые виды
+                            Наш склад всегда обеспечен полным ассортиментом фасадных систем. Мы поддерживаем оптимальный запас материалов,
+                            чтобы ваши проекты не зависели от производственных циклов и сезонных колебаний спроса.
+                            </p>
+                            <p class="body2 mb-5 text-regular-tertiary">
+                                Все системы хранятся в строгом соответствии с техническими нормативами и готовы к отгрузке в любой момент.
+                            </p>
+                           
+                        </div>
+
+           
+                    </div>
+
+                    <!-- Building images positioned absolutely around the circle -->
+                    <img src="/assets/img/p111.png" alt="Building 1"
+                        class="absolute top-[44%] left-[-8%] w-16 h-16 md:w-[167px] md:h-[167px] rounded-4xl object-cover">
+                    <img src="/assets/img/p111.png" alt="Building 2"
+                        class="absolute top-[70%] left-[10%] transform -translate-y-1/2 w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
+                    <img src="/assets/img/p22.png" alt="Building 3"
+                        class="absolute top-[37%] left-[19%] w-16 h-16 md:w-[346px] md:h-[346px] rounded-xl object-cover">
+                    <img src="/assets/img/p33.png" alt="Building 4"
+                        class="absolute top-[81%] left-[50%] transform -translate-x-1/2 w-16 h-16 md:w-[142px] md:h-[142px] rounded-xl object-cover">
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Video Section -->
+<section class="container mx-auto py-16 px-4">
+    <div class="mx-auto">
+        <div class="relative rounded-4xl overflow-hidden shadow-lg">
+            <!-- Video Container -->
+            <video class="w-full h-auto md:h-[564px] object-cover" autoplay muted loop playsinline
+                poster="/assets/img/p1.jpg">
+                <source src="/assets/video/v2.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+
+            <!-- Expand Button -->
+            <button
+                onclick="toggleFullscreen()"
+                class="absolute top-8 right-8 cursor-pointer">
+                <img src="/assets/icons/expand.svg" alt="Развернуть на весь экран" class="w-10 h-10">
+            </button>
+
+            <!-- Fullscreen Video Container (hidden by default) -->
+            <div id="fullscreenVideo" class="fixed inset-0 bg-black z-50 hidden">
+                <video 
+                    id="fullscreenVideoElement"
+                    class="w-full h-full object-contain" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    controls>
+                    <source src="/assets/video/v2.mp4" type="video/mp4">
+                    Ваш браузер не поддерживает видео.
+                </video>
+                
+                <!-- Close Button -->
+                <button 
+                    onclick="closeFullscreen()"
+                    class="absolute top-4 right-4 bg-white/90 hover:bg-white transition-all duration-200 rounded-full p-3 shadow-lg backdrop-blur-sm cursor-pointer">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <script>
+                function toggleFullscreen() {
+                    const fullscreenContainer = document.getElementById('fullscreenVideo');
+                    const fullscreenVideo = document.getElementById('fullscreenVideoElement');
+                    
+                    if (fullscreenContainer.classList.contains('hidden')) {
+                        // Open fullscreen
+                        fullscreenContainer.classList.remove('hidden');
+                        fullscreenVideo.play();
+                        document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    } else {
+                        // Close fullscreen
+                        closeFullscreen();
+                    }
+                }
+
+                function closeFullscreen() {
+                    const fullscreenContainer = document.getElementById('fullscreenVideo');
+                    const fullscreenVideo = document.getElementById('fullscreenVideoElement');
+                    
+                    fullscreenContainer.classList.add('hidden');
+                    fullscreenVideo.pause();
+                    document.body.style.overflow = 'auto'; // Restore scrolling
+                }
+
+                // Close fullscreen on Escape key
+                document.addEventListener('keydown', function(event) {
+                    if (event.key === 'Escape') {
+                        closeFullscreen();
+                    }
+                });
+            </script>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,2135 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.OKompanii>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+  
+@*<section class="hero-section max-w-[1440px] mx-auto relative overflow-hidden xl:pb-40 pt-10 flex flex-col pb-40 ">
+    <!-- SVG ARCS BACKGROUND -->
+    <div class="container relative z-10 mb-10 md:mb-36">
+        <div class="text-center max-w-[1270px] mx-auto">
+            <!-- Breadcrumb -->
+            <nav class="text-center" aria-label="Breadcrumb">
+                <ol
+                    class="list-reset inline-flex flex-wrap justify-center text-regular-secondary font-medium bg-white rounded-lg p-2 md:p-3 text-sm md:body2">
+                    <li>
+                        <a href="/" class="text-regular-secondary hover:text-accent">Главная</a>
+                        <span class="mx-1 md:mx-2">/</span>
+                    </li>
+                    <li class="text-bold">О нас</li>
+                </ol>
+            </nav>
+
+            <h1 class="mt-5">30+ лет создаём фасады, <br> которыми гордятся</h1>
+
+        </div>
+    </div>
+</section>*@
+
+
+ 
+<section class="overflow-hidden mb-10 xl:mb-36">
+    <div class="w-full overflow-hidden relative">
+        <div id="marquee-track" class="flex w-max items-end">
+            <!-- First set of images with specific dimensions -->
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 1"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 2"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 3"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 4"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 5"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 6"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 7"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 8"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 9"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+
+            <!-- Duplicate images for seamless loop with same alternating pattern -->
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 1"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 2"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 3"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 4"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 5"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 6"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about1.png" alt="Team member 7"
+                    class="w-[548px] h-[410px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about2.png" alt="Team member 8"
+                    class="w-[321px] h-[280px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+            <div class="flex-shrink-0 mx-2 flex items-end justify-center">
+                <img src="/assets/img/about3.png" alt="Team member 9"
+                    class="w-[435px] h-[340px] object-cover rounded-4xl transition-transform duration-300">
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Initialize team marquee in the middle section
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.MarqueeController) {
+        // Team marquee in the middle section
+        const teamMarquee = new window.MarqueeController('#marquee-track', {
+            speed: 50,        // 50 pixels per second
+            pauseOnHover: true,
+            direction: 'left'
+        });
+        
+        // Expose to global scope for external control
+        window.marqueeController = teamMarquee;
+    }
+});
+</script>
+
+
+<!-- YANDEX MAPS WIDGET -->
+<section data-reveal-stagge class=" relative mt-10 md:mt-20 pb-20 mobile-section-divider">
+    <div class="container md:overflow-hidden">
+        <div class="relative">
+            <h2 class="text-center mb-6 md:mb-10">5 000 000 м2 уже построено</h2>
+
+            <!-- Map Container -->
+            <div class="relative">
+                <div id="map"
+                    class="w-full h-[400px] md:h-[600px] shadow-lg rounded-2xl md:rounded-4xl overflow-hidden"></div>
+
+                <!-- Mobile Controls - Stacked Layout -->
+                <div
+                    class="absolute top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 z-10 space-y-2 md:space-y-0 md:flex md:justify-between md:gap-4">
+                    <!-- Country Filter Bar -->
+                    <div class="flex flex-wrap gap-1 md:gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+                        <button
+                            class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all text-xs md:text-sm"
+                            data-country="russia">
+                            РОССИЯ
+                        </button>
+                        <button
+                            class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                            data-country="belarus">
+                            БЕЛАРУСЬ
+                        </button>
+                        <button
+                            class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                            data-country="kazakhstan">
+                            КАЗАХСТАН
+                        </button>
+                        <button
+                            class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                            data-country="armenia">
+                            АРМЕНИЯ
+                        </button>
+                    </div>
+
+                    <!-- Filters Button -->
+                    <button id="filters-btn"
+                        class="bg-white px-3 py-2 md:px-4 md:py-2 rounded-lg border border-accent shadow-md hover:shadow-lg transition-shadow text-sm md:text-base">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 inline text-accent" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z">
+                            </path>
+                        </svg>
+                        <span class="hidden sm:inline">Фильтры</span>
+                        <span id="filter-count"
+                            class="ml-2 bg-accent text-white text-xs rounded-full px-2 py-1">0</span>
+                    </button>
+                </div>
+
+                <!-- Side Card - Mobile Responsive -->
+                <div id="side-card"
+                    class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-2rem)] md:w-80 bg-white rounded-lg shadow-lg p-4 md:p-6 z-20 max-w-sm md:max-w-none">
+                    <button id="close-card"
+                        class="absolute top-2 md:top-4 right-2 md:right-4 text-neutral-400 hover:text-neutral-600">
+                        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div id="card-content" class="text-sm md:text-base">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Filters Modal - Mobile Responsive -->
+                <div id="filters-modal"
+                    class="fixed  md:absolute inset-0 bg-black bg-opacity-50 hidden z-30 rounded-2xl md:rounded-4xl overflow-hidden">
+                    <div class="flex items-center justify-center h-full p-2 md:p-4">
+                        <div
+                            class="bg-white shadow-xl w-full h-full md:max-w-3xl md:max-h-[500px] flex flex-col rounded-2xl md:rounded-4xl overflow-hidden">
+                            <div class="flex justify-between items-center p-4 md:p-6 bg-white sticky top-0 z-10 shadow">
+                                <div class="flex items-center gap-2">
+                                    <img src="/assets/icons/filterIcon.svg" alt="logo" class="w-4 h-4 md:w-5 md:h-5">
+                                    <h3 class="text-lg md:text-xl">Фильтры</h3>
+                                </div>
+                                <button id="close-modal" class="text-accent hover:text-accent-dark">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="overflow-y-auto systems-scrollbar flex-1">
+
+                                <div class="p-4 md:p-6 space-y-4 md:space-y-6">
+                                    <!-- Облицовка Section -->
+                                    <div class="facades-section" data-filter="facades">
+                                        <!-- Title and master checkbox -->
+                                        <div
+                                            class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-4">
+                                            <h4 class="font-medium text-base md:text-lg">Облицовка</h4>
+                                            <div class="flex items-center gap-2">
+                                                <input type="checkbox" class="master-checkbox" id="facades-master">
+                                                <label for="facades-master"
+                                                    class="text-xs md:text-sm cursor-pointer">Выбрать все</label>
+                                                <span
+                                                    class="facades-count text-xs bg-accent text-white rounded-full px-2 py-1">0</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Facade categories grid - Mobile Responsive -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                                            <!-- Крупноформатные облицовки -->
+                                            <div class="facade-category">
+                                                <label
+                                                    class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Крупноформатные облицовки"
+                                                        data-value="Крупноформатные облицовки">
+                                                    <span class="text-xs md:text-sm font-medium">КРУПНОФОРМАТНЫЕ
+                                                        ОБЛИЦОВКИ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Стеклофибробетон -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Стеклофибробетон">
+                                                    <span class="text-xs md:text-sm font-medium">СТЕКЛОФИБРОБЕТОН</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Стеклофибробетон"
+                                                            data-value="Крупноформатные панели из СФБ">
+                                                        <span class="text-xs md:text-sm">Крупноформатные панели из
+                                                            СФБ</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Стеклофибробетон"
+                                                            data-value="Декоративные элементы из СФБ">
+                                                        <span class="text-xs md:text-sm">Декоративные элементы из
+                                                            СФБ</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кирпич -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Кирпич">
+                                                    <span class="text-xs md:text-sm font-medium">КИРПИЧ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Кирпич"
+                                                            data-value="Кирпич стандартного размера">
+                                                        <span class="text-xs md:text-sm">Кирпич стандартного
+                                                            размера</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Кирпич" data-value="Кирпич РОКСОН">
+                                                        <span class="text-xs md:text-sm">Кирпич РОКСОН</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Кирпич" data-value="Кирпич White Hills">
+                                                        <span class="text-xs md:text-sm">Кирпич White Hills</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Керамогранит -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Керамогранит">
+                                                    <span class="text-xs md:text-sm font-medium">КЕРАМОГРАНИТ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Керамогранит"
+                                                            data-value="Керамогранит (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (скрытый способ
+                                                            крепления)</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Керамогранит"
+                                                            data-value="Керамогранит (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (видимый способ
+                                                            крепления)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кассеты -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Кассеты">
+                                                    <span class="text-xs md:text-sm font-medium">КАССЕТЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Кассеты"
+                                                            data-value="Кассеты из алюмокомпозита">
+                                                        <span class="text-xs md:text-sm">Кассеты из
+                                                            алюмокомпозита</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Кассеты" data-value="Металлокассеты">
+                                                        <span class="text-xs md:text-sm">Металлокассеты</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Натуральный камень -->
+                                            <div class="facade-category">
+                                                <label
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Натуральный камень"
+                                                        data-value="Натуральный камень">
+                                                    <span class="text-xs md:text-sm font-medium">НАТУРАЛЬНЫЙ
+                                                        КАМЕНЬ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Плитка -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Плитка">
+                                                    <span class="text-xs md:text-sm font-medium">ПЛИТКА</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Плитка"
+                                                            data-value="Плитка – механический способ крепления">
+                                                        <span class="text-xs md:text-sm">Плитка – механический способ
+                                                            крепления</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Плитка" data-value="Плитка на затирке">
+                                                        <span class="text-xs md:text-sm">Плитка на затирке</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Терракота -->
+                                            <div class="facade-category">
+                                                <label
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Терракота"
+                                                        data-value="Терракота (объемная керамика)">
+                                                    <span class="text-xs md:text-sm font-medium">ТЕРРАКОТА (ОБЪЕМНАЯ
+                                                        КЕРАМИКА)</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Листовые материалы -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div
+                                                    class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2"
+                                                        data-category="Листовые материалы">
+                                                    <span class="text-xs md:text-sm font-medium">ЛИСТОВЫЕ
+                                                        МАТЕРИАЛЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Листовой композит">
+                                                        <span class="text-xs md:text-sm">Листовой композит</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Листовой стальной композит">
+                                                        <span class="text-xs md:text-sm">Листовой стальной
+                                                            композит</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Листовой алюмокомпозит">
+                                                        <span class="text-xs md:text-sm">Листовой алюмокомпозит</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы" data-value="Фиброцемент">
+                                                        <span class="text-xs md:text-sm">Фиброцемент</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Фиброцемент (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (скрытый способ
+                                                            крепления)</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Фиброцемент (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (видимый способ
+                                                            крепления)</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы" data-value="HPL">
+                                                        <span class="text-xs md:text-sm">HPL</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы" data-value="Kmew">
+                                                        <span class="text-xs md:text-sm">Kmew</span>
+                                                    </label>
+                                                    <label
+                                                        class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2"
+                                                            data-category="Листовые материалы"
+                                                            data-value="Рокпанель и Аква панель">
+                                                        <span class="text-xs md:text-sm">Рокпанель и Аква панель</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Назначение -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Назначение</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="ЖК">
+                                                ЖК
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Медицинские учреждения">
+                                                Медицинские учреждения
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Офисные здания">
+                                                Офисные здания
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Торговые центры">
+                                                Торговые центры
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Образовательные учреждения">
+                                                Образовательные учреждения
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Промышленные здания">
+                                                Промышленные здания
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Склады">
+                                                Склады
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="types" data-value="Инфраструктурные здания">
+                                                Инфраструктурные здания
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Система -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Система</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-100">
+                                                Ронсон-100
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-200">
+                                                Ронсон-200
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-300">
+                                                Ронсон-300
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-400">
+                                                Ронсон-400
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-500">
+                                                Ронсон-500
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-600">
+                                                Ронсон-600
+                                            </button>
+                                            <button
+                                                class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                data-filter="systems" data-value="Ронсон-740">
+                                                Ронсон-740
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 p-2 md:p-6 border-t border-gray bg-white sticky bottom-0">
+                                <button id="apply-filters" class="btn-primary btn-sm">
+                                    Применить фильтры
+                                </button>
+                                <button id="clear-filters" class="btn-stroke btn-sm">
+                                    Очистить фильтры
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY_HERE&lang=ru_RU"></script>
+<script>
+    // Global variable to store projects data
+    let PROJECTS = null;
+
+    // Country centers and zoom levels
+    const COUNTRY_CENTERS = {
+        russia: { center: [37.6173, 55.7558], zoom: 4 },
+        belarus: { center: [27.5615, 53.9045], zoom: 7 },
+        kazakhstan: { center: [71.4306, 51.1801], zoom: 6 },
+        armenia: { center: [44.5035, 40.1872], zoom: 8 }
+    };
+
+    // Global variables
+    let map, objectManager;
+    let activeMarkerId = null; // Track active marker
+    let filtersState = {
+        country: 'russia',
+        facades: new Set(),
+        systems: new Set(),
+        types: new Set(),
+        year: ''
+    };
+
+    // Fetch projects data
+    async function fetchProjects() {
+        try {
+            const response = await fetch('/assets/data/projects.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            PROJECTS = await response.json();
+            console.log('Projects data loaded successfully');
+            return PROJECTS;
+        } catch (error) {
+            console.error('Failed to fetch projects data:', error);
+            // Fallback to empty data structure
+            PROJECTS = { type: "FeatureCollection", features: [] };
+            return PROJECTS;
+        }
+    }
+
+    // Initialize the map
+    async function initMap() {
+        try {
+            // First fetch the projects data
+            await fetchProjects();
+
+            ymaps.ready(() => {
+                // Create map instance
+                map = new ymaps.Map('map', {
+                    center: COUNTRY_CENTERS.russia.center,
+                    zoom: COUNTRY_CENTERS.russia.zoom,
+                    controls: ['zoomControl', 'fullscreenControl']
+                });
+
+                // Create ObjectManager for clustering with custom styling
+                objectManager = new ymaps.ObjectManager({
+                    clusterize: true,
+                    gridSize: 50,
+                    clusterDisableClickZoom: false,
+                    clusterIcons: [
+                        {
+                            href: 'data:image/svg+xml;base64,' + btoa(`
+              <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20" fill="white" stroke="#bd1a1a" stroke-width="3"/>
+              </svg>
+            `),
+                            size: [44, 44],
+                            offset: [-22, -22]
+                        }
+                    ],
+                    clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
+                        '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                        'font-size:14px;font-weight:700;color:#bd1a1a;user-select:none;">' +
+                        '$[properties.geoObjects.length]' +
+                        '</div>'
+                    )
+                });
+
+                // Set custom marker styling - use default layout but override with CSS
+                objectManager.objects.options.set('iconLayout', 'default#image');
+                objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+        </svg>
+      `));
+                objectManager.objects.options.set('iconImageSize', [24, 24]);
+                objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+
+                // Add objects to ObjectManager
+                objectManager.add(PROJECTS);
+
+                // Add ObjectManager to map
+                map.geoObjects.add(objectManager);
+
+                // Disable default balloons
+                objectManager.objects.options.set('balloonContentLayout', null);
+                objectManager.clusters.options.set('balloonContentLayout', null);
+
+                // Handle object clicks
+                objectManager.objects.events.add('click', (e) => {
+                    const objectId = e.get('objectId');
+                    const feature = PROJECTS.features.find(f => f.id === objectId);
+                    if (feature) {
+                        setActiveMarker(objectId);
+                        openCard(feature);
+                    }
+                });
+
+                // Handle cluster clicks (default zoom behavior)
+                objectManager.clusters.events.add('click', (e) => {
+                    const clusterId = e.get('objectId');
+                    const cluster = objectManager.clusters.getById(clusterId);
+                    if (cluster) {
+                        map.setBounds(cluster.geometry.getBounds(), { checkZoomRange: true });
+                    }
+                });
+
+                console.log('Map initialized successfully');
+            });
+        } catch (error) {
+            console.error('Failed to initialize map:', error);
+        }
+    }
+
+    // Setup UI event listeners
+    function setupUI() {
+        // Country buttons
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const country = btn.dataset.country;
+                setActiveCountry(country);
+            });
+        });
+
+        // Filters button
+        document.getElementById('filters-btn').addEventListener('click', openFiltersModal);
+
+        // Modal close button
+        document.getElementById('close-modal').addEventListener('click', closeFiltersModal);
+
+        // Apply filters button
+        document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
+        // Clear filters button
+        document.getElementById('clear-filters').addEventListener('click', clearFilters);
+
+        // Close card button
+        document.getElementById('close-card').addEventListener('click', closeCard);
+
+
+
+        // Filter chips - using event delegation on the modal
+        const filtersModal = document.getElementById('filters-modal');
+        console.log('Setting up filter chips, modal found:', !!filtersModal);
+        console.log('Filter chips found:', document.querySelectorAll('.filter-chip').length);
+
+        filtersModal.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-chip')) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Filter chip clicked:', e.target.dataset.filter, e.target.dataset.value);
+                const filter = e.target.dataset.filter;
+                const value = e.target.dataset.value;
+                toggleFilterChip(e.target, filter, value);
+            }
+        });
+
+        // Dropdown checkbox functionality
+        setupDropdownCheckboxes();
+
+        // Filter checkboxes (for other sections)
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const filter = checkbox.dataset.filter;
+                const value = checkbox.value;
+                if (checkbox.checked) {
+                    filtersState[filter].add(value);
+                } else {
+                    filtersState[filter].delete(value);
+                }
+            });
+        });
+
+        // Close modal on backdrop click
+        document.getElementById('filters-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'filters-modal') {
+                closeFiltersModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFiltersModal();
+                closeCard();
+            }
+        });
+    }
+
+    // Set active country
+    function setActiveCountry(country) {
+        // Update button states
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.country === country) {
+                btn.classList.add('active');
+            }
+        });
+
+        // Update filters state
+        filtersState.country = country;
+
+        // Move map to country center
+        const center = COUNTRY_CENTERS[country];
+        map.setCenter(center.center, center.zoom);
+
+        // Apply filters
+        applyFilters();
+
+        // Clear active marker when country changes
+        clearActiveMarker();
+    }
+
+    // Open filters modal
+    function openFiltersModal() {
+        const modal = document.getElementById('filters-modal');
+        modal.classList.remove('hidden');
+        document.getElementById('filters-btn').focus();
+        console.log('Filters modal opened, filter chips found:', document.querySelectorAll('.filter-chip').length);
+    }
+
+    // Close filters modal
+    function closeFiltersModal() {
+        document.getElementById('filters-modal').classList.add('hidden');
+    }
+
+    // Toggle filter chip
+    function toggleFilterChip(chip, filter, value) {
+        console.log('toggleFilterChip called:', filter, value, 'chip:', chip);
+        chip.classList.toggle('active');
+        if (chip.classList.contains('active')) {
+            filtersState[filter].add(value);
+            console.log('Added to filtersState:', filter, value);
+        } else {
+            filtersState[filter].delete(value);
+            console.log('Removed from filtersState:', filter, value);
+        }
+    }
+
+    // Apply filters
+    function applyFilters() {
+        objectManager.setFilter((obj) => {
+            const feature = PROJECTS.features.find(f => f.id === obj.id);
+            if (!feature) return false;
+
+            // Country filter
+            if (feature.properties.country !== filtersState.country) return false;
+
+            // Facade filter
+            if (filtersState.facades.size > 0 && !filtersState.facades.has(feature.properties.facade)) return false;
+
+            // Type filter
+            if (filtersState.types.size > 0 && !filtersState.types.has(feature.properties.type)) return false;
+
+            // System filter
+            if (filtersState.systems.size > 0) {
+                const hasMatchingSystem = feature.properties.system.some(sys => filtersState.systems.has(sys));
+                if (!hasMatchingSystem) return false;
+            }
+
+            // Year filter
+            if (filtersState.year && feature.properties.year !== parseInt(filtersState.year)) return false;
+
+            return true;
+        });
+
+        updateFilterCount();
+        closeFiltersModal();
+    }
+
+    // Update filter count
+    function updateFilterCount() {
+        const totalFilters = filtersState.facades.size + filtersState.types.size + filtersState.systems.size + (filtersState.year ? 1 : 0);
+        const countElement = document.getElementById('filter-count');
+        countElement.textContent = totalFilters;
+        countElement.style.display = totalFilters > 0 ? 'inline' : 'none';
+    }
+
+    // Clear filters
+    function clearFilters() {
+        // Reset filter state (except country)
+        filtersState.facades.clear();
+        filtersState.systems.clear();
+        filtersState.types.clear();
+        filtersState.year = '';
+
+        // Reset UI
+        resetFiltersUI();
+
+        // Apply filters
+        applyFilters();
+
+        // Clear active marker when filters change
+        clearActiveMarker();
+
+        // Update filter count
+        updateFilterCount();
+    }
+
+    // Reset filters UI
+    function resetFiltersUI() {
+        // Reset facades section checkboxes
+        const facadesSection = document.querySelector('.facades-section');
+        if (facadesSection) {
+            const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.indeterminate = false;
+            });
+
+            // Close all subcategories
+            facadesSection.querySelectorAll('.facade-category').forEach(category => {
+                category.classList.remove('open');
+                const subcategoryItems = category.querySelector('.subcategory-items');
+                if (subcategoryItems) {
+                    subcategoryItems.classList.add('hidden');
+                }
+            });
+
+            // Update facades count
+            updateFacadesCount();
+        }
+
+        // Reset other checkboxes
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+
+        // Reset chips
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.classList.remove('active');
+        });
+
+        // Reset year select
+        document.getElementById('year-filter').value = '';
+    }
+
+    // Open side card
+    function openCard(feature) {
+        const card = document.getElementById('side-card');
+        const content = document.getElementById('card-content');
+
+        content.innerHTML = `
+      <h3 class="text-xl font-semibold mb-4">${feature.properties.title}</h3>
+      <div class="space-y-3 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-neutral-600">${feature.properties.address}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-medium">${feature.properties.year}</span>
+          <span class="text-neutral-600">Окончание монтажа</span>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-4">
+          ${feature.properties.system.map(sys => `<span class="px-3 py-1 bg-white border border-accent text-accent text-xs rounded-lg">${sys}</span>`).join('')}
+        </div>
+      </div>
+    `;
+
+        card.classList.remove('hidden');
+    }
+
+    // Close side card
+    function closeCard() {
+        document.getElementById('side-card').classList.add('hidden');
+        clearActiveMarker(); // Clear active marker when card is closed
+    }
+
+    // Set active marker
+    function setActiveMarker(markerId) {
+        // Clear previous active marker
+        clearActiveMarker();
+
+        // Set new active marker
+        activeMarkerId = markerId;
+
+        // Update the marker icon to active state
+        const object = objectManager.objects.getById(markerId);
+        if (object) {
+            objectManager.objects.setObjectOptions(markerId, {
+                iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+          <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+              </filter>
+            </defs>
+            <circle cx="15" cy="15" r="12" fill="#BD1A1A" filter="url(#shadow)"/>
+          </svg>
+        `),
+                iconImageSize: [30, 30],
+                iconImageOffset: [-15, -15]
+            });
+
+            // Add CSS class for active styling
+            setTimeout(() => {
+                const placemarkElement = document.querySelector(`[data-object-id="${markerId}"]`);
+                if (placemarkElement) {
+                    placemarkElement.classList.add('active');
+                }
+            }, 100); // Small delay to ensure the marker is rendered
+        }
+    }
+
+    // Clear active marker
+    function clearActiveMarker() {
+        if (activeMarkerId) {
+            // Remove CSS class for active styling
+            const placemarkElement = document.querySelector(`[data-object-id="${activeMarkerId}"]`);
+            if (placemarkElement) {
+                placemarkElement.classList.remove('active');
+            }
+
+            // Reset the marker icon to normal state
+            const object = objectManager.objects.getById(activeMarkerId);
+            if (object) {
+                objectManager.objects.setObjectOptions(activeMarkerId, {
+                    iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+            </svg>
+          `),
+                    iconImageSize: [24, 24],
+                    iconImageOffset: [-12, -12]
+                });
+            }
+            activeMarkerId = null;
+        }
+    }
+
+    // Setup facades section functionality
+    function setupDropdownCheckboxes() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+
+        // Master checkbox functionality
+        masterCheckbox.addEventListener('change', () => {
+            const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = masterCheckbox.checked;
+                if (masterCheckbox.checked) {
+                    // Only add to filters if the checkbox has a data-value
+                    if (checkbox.dataset.value) {
+                        filtersState.facades.add(checkbox.dataset.value);
+                    }
+                } else {
+                    // Only remove from filters if the checkbox has a data-value
+                    if (checkbox.dataset.value) {
+                        filtersState.facades.delete(checkbox.dataset.value);
+                    }
+                }
+            });
+            updateFacadesCount();
+        });
+
+        // Category checkbox functionality
+        facadesSection.querySelectorAll('.category-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const category = checkbox.dataset.category;
+                const subcategoryItems = checkbox.closest('.facade-category').querySelector('.subcategory-items');
+                const subcategoryCheckboxes = subcategoryItems ? subcategoryItems.querySelectorAll('.subcategory-checkbox') : [];
+
+                if (subcategoryCheckboxes.length > 0) {
+                    // Handle subcategory checkboxes - only select/deselect, don't toggle visibility
+                    subcategoryCheckboxes.forEach(subCheckbox => {
+                        subCheckbox.checked = checkbox.checked;
+                        if (checkbox.checked) {
+                            filtersState.facades.add(subCheckbox.dataset.value);
+                        } else {
+                            filtersState.facades.delete(subCheckbox.dataset.value);
+                        }
+                    });
+                } else {
+                    // Direct category checkbox - only if it has a data-value
+                    if (checkbox.dataset.value) {
+                        if (checkbox.checked) {
+                            filtersState.facades.add(checkbox.dataset.value);
+                        } else {
+                            filtersState.facades.delete(checkbox.dataset.value);
+                        }
+                    }
+                }
+
+                updateMasterCheckbox();
+                updateFacadesCount();
+            });
+        });
+
+        // Subcategory checkbox functionality
+        facadesSection.querySelectorAll('.subcategory-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    filtersState.facades.add(checkbox.dataset.value);
+                } else {
+                    filtersState.facades.delete(checkbox.dataset.value);
+                }
+
+                updateCategoryCheckbox(checkbox);
+                updateMasterCheckbox();
+                updateFacadesCount();
+            });
+        });
+
+        // Subcategory toggle functionality
+        facadesSection.querySelectorAll('[data-toggle="subcategory"]').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                // Don't toggle if clicking on checkbox or its label
+                if (e.target.type === 'checkbox' || e.target.tagName === 'LABEL' || e.target.closest('label')) {
+                    return;
+                }
+
+                const facadeCategory = toggle.closest('.facade-category');
+                const subcategoryItems = facadeCategory.querySelector('.subcategory-items');
+                facadeCategory.classList.toggle('open');
+                subcategoryItems.classList.toggle('hidden');
+            });
+        });
+    }
+
+    // Update master checkbox state
+    function updateMasterCheckbox() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        masterCheckbox.checked = checkedCheckboxes.length > 0;
+        masterCheckbox.indeterminate = checkedCheckboxes.length > 0 && checkedCheckboxes.length < allCheckboxes.length;
+    }
+
+    // Update category checkbox state
+    function updateCategoryCheckbox(subCheckbox) {
+        const category = subCheckbox.dataset.category;
+        const categoryCheckbox = document.querySelector(`.category-checkbox[data-category="${category}"]`);
+        const subcategoryCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox');
+        const checkedSubCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox:checked');
+
+        categoryCheckbox.checked = checkedSubCheckboxes.length > 0;
+        categoryCheckbox.indeterminate = checkedSubCheckboxes.length > 0 && checkedSubCheckboxes.length < subcategoryCheckboxes.length;
+    }
+
+    // Update facades count
+    function updateFacadesCount() {
+        const facadesSection = document.querySelector('.facades-section');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        facadesCount.textContent = checkedCheckboxes.length;
+        facadesCount.style.display = checkedCheckboxes.length > 0 ? 'inline' : 'none';
+    }
+
+    // Get country name
+    function getCountryName(countryCode) {
+        const names = {
+            russia: 'Россия',
+            belarus: 'Беларусь',
+            kazakhstan: 'Казахстан',
+            armenia: 'Армения'
+        };
+        return names[countryCode] || countryCode;
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+        await initMap();
+        setupUI();
+        updateFilterCount(); // Initialize filter count
+    });
+</script>
+
+
+
+<!-- Client Logos Marquee Section -->
+<section class="overflow-hidden my-10 xl:my-40 xl:mb-36">
+    <div class="">
+        <h2 class="text-center mb-10">Доверие клиентов</h2>
+        <div class="w-full overflow-hidden relative">
+            <div class="flex client-marquee-track w-max items-center">
+                <!-- Client logos - will be duplicated by JavaScript for seamless loop -->
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client1.png" alt="Client 1" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client2.png" alt="Client 2" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client3.png" alt="Client 3" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client4.png" alt="Client 4" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client5.png" alt="Client 5" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client6.png" alt="Client 6" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client7.png" alt="Client 7" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client8.png" alt="Client 8" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client9.png" alt="Client 9" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client10.png" alt="Client 10" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client11.png" alt="Client 11" class="h-24 w-auto object-contain">
+                </div>
+                <div class="flex-shrink-0 mx-2 flex items-center justify-center bg-white p-2 rounded-3xl">
+                    <img src="/assets/img/client12.png" alt="Client 12" class="h-24 w-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Initialize Client Logos Marquee -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize client logos marquee
+    window.clientMarquee = new MarqueeController('.client-marquee-track', {
+        speed: 50, // pixels per second
+        pauseOnHover: true,
+        direction: 'left'
+    });
+});
+</script>
+
+<!-- TEAM SECTION -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary   mb-10 xl:mb-36 mobile-section-divider">
+    <h2 class="text-center mb-10">Команда профессионалов</h2>
+    <div class="container mx-auto">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Card 1 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                            loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</hs4>
+                        <span
+                            class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший
+                            инженер</span>
+                </div>
+                <!-- Card 2 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m2.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                            loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span
+                        class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший
+                        инженер</span>
+                </div>
+                <!-- Card 3 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                            loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span
+                        class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший
+                        инженер</span>
+                </div>
+                <!-- Card 4 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m2.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                            loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span
+                        class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший
+                        инженер</span>
+                </div>
+                <!-- Card 5 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                            loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span
+                        class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший
+                        инженер</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS/RECRUITMENT WIDGET -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary   mb-10 xl:mb-36 mobile-section-divider">
+    <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center gap-5 md:gap-0">
+        <!-- Left Video -->
+        <div class="w-full flex items-center justify-center ">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <video src="/assets/video/v1.mp4" autoplay muted loop playsinline
+                    class="w-full h-full object-cover"></video>
+            </div>
+        </div>
+        <!-- Center Text -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full p-[1px]"
+                style="background:linear-gradient(180deg,#DBDBDB 0%,#DB0007 100%)">
+                <div
+                    class="bg-white rounded-full w-full h-full flex flex-col items-center justify-center text-center px-6">
+                    <div class="md:text-[96px] text-[40px] font-semibold leading-nonemy-4">300+</div>
+                    <h4>специалистов в штате<br>РОНСОН ГРУПП</h4>
+                    <a href="#" class="btn-primary btn-stroke mt-8">ПОСМОТРЕТЬ ВАКАНСИИ</a>
+                </div>
+            </div>
+        </div>
+        <!-- Right Video -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <video src="/assets/video/v2.mp4" autoplay muted loop playsinline
+                    class="w-full h-full object-cover"></video>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Timeline: Horizontal Accordion (Tailwind + JS only) -->
+<section class="reveal w-full bg-background-primary  mb-10 xl:mb-36 mobile-section-divider reveal-init reveal-in">
+    <div class="container mx-auto px-4">
+        <h2 class="text-center mb-8">
+            РОНСОН сквозь года
+        </h2>
+
+        <!-- Horizontal accordion rail -->
+        <div id="accRail"
+            class="flex overflow-x-auto px-0 pt-2 pb-6 gap-0 snap-x snap-mandatory systems-scrollbar systems-scrollbar-x">
+        
+        <style>
+            /* Ensure all timeline items have consistent height */
+            [data-acc-item] {
+                height: 400px !important;
+            }
+            @@media (min-width: 768px) {
+                [data-acc-item] {
+                    height: 570px !important;
+                }
+            }
+        </style>
+
+            <!-- 2006 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2006">
+                <!-- Trigger column -->
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2006">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2006</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <!-- Content -->
+                <div id="panel-2006" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2006"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Предыстория</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Подготовка к созданию компании РОНСОН ГРУПП и разработка
+                        первых концепций фасадных систем.</p>
+                </div>
+            </div>
+
+            <!-- 2007 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2007">
+                <!-- Trigger column -->
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2007">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2007</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <!-- Content -->
+                <div id="panel-2007" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2007"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Основание компании</h4>
+                    <p class="text-sm md:text-base text-regular-primary">РОНСОН ГРУПП была основана как инновационная компания в
+                        области фасадных систем.</p>
+                </div>
+            </div>
+
+            <!-- 2008 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2008">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2008">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2008</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2008" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2008"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Первые проекты</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Реализованы первые крупные проекты с использованием
+                        собственных фасадных систем.</p>
+                </div>
+            </div>
+
+            <!-- 2009 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2009">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2009">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2009</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2009" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2009"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Расширение ассортимента</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Запущена новая линейка фасадных материалов и систем
+                        крепления.</p>
+                </div>
+            </div>
+
+            <!-- 2010 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2010">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2010">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2010</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2010" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2010"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Развитие технологий</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Внедрение новых технологий производства и улучшение качества
+                        фасадных систем.</p>
+                </div>
+            </div>
+
+            <!-- 2012 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2012">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2012">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2012</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2012" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2012"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-2xl font-bold mb-2 md:mb-4">Международное признание</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Получены международные сертификаты качества и начат
+                        экспорт.</p>
+                </div>
+            </div>
+
+            <!-- 2013 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2013">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2013">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2013</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2013" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2013"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Технологический прорыв</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Разработаны инновационные решения для энергоэффективных
+                        фасадов.</p>
+                </div>
+            </div>
+
+            <!-- 2014 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[80px] md:w-[100px] h-[400px] md:h-[570px] snap-start max-w-[280px] md:max-w-[400px]"
+                data-acc-item data-year="2014">
+                <button
+                    class="absolute inset-y-0 left-0 w-[80px] md:w-[100px] flex flex-col items-center justify-between outline-none p-2 md:p-4"
+                    data-acc-trigger aria-controls="panel-2014">
+                    <span class="-rotate-90 text-lg md:text-2xl font-bold text-slate-900 select-none mt-3 md:mt-5">2014</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-5 h-5 md:w-6 md:h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2014" class="hidden acc-body p-3 md:p-4 lg:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2014"
+                        class="w-full h-40 sm:h-56 md:h-64 lg:h-80 object-cover rounded-xl mb-3 md:mb-4" />
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Экспансия</h4>
+                    <p class="text-sm md:text-base text-regular-primary">Расширение производственных мощностей и увеличение объемов
+                        выпуска продукции.</p>
+                </div>
+            </div>
+
+            <!-- 2016 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[100px] h-[570px] snap-start max-w-[400px]"
+                data-acc-item data-year="2016">
+                <button
+                    class="absolute inset-y-0 left-0 w-[100px] flex flex-col items-center justify-between outline-none p-4"
+                    data-acc-trigger aria-controls="panel-2016">
+                    <span class="-rotate-90 text-2xl font-bold text-slate-900 select-none mt-5">2016</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-6 h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2016" class="hidden acc-body p-4 sm:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2016"
+                        class="w-full h-56 sm:h-64 lg:h-80 object-cover rounded-xl mb-4" />
+                    <h4 class="text-2xl font-boldmy-4">Инновации</h4>
+                    <p class="body3 text-regular-primary">Запуск новых экологически чистых материалов и систем для
+                        современных зданий.</p>
+                </div>
+            </div>
+
+            <!-- 2017 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[100px] h-[570px] snap-start max-w-[400px]"
+                data-acc-item data-year="2017">
+                <button
+                    class="absolute inset-y-0 left-0 w-[100px] flex flex-col items-center justify-between outline-none p-4"
+                    data-acc-trigger aria-controls="panel-2017">
+                    <span class="-rotate-90 text-2xl font-bold text-slate-900 select-none mt-5">2017</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-6 h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2017" class="hidden acc-body p-4 sm:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2017"
+                        class="w-full h-56 sm:h-64 lg:h-80 object-cover rounded-xl mb-4" />
+                    <h4 class="text-2xl font-boldmy-4">Юбилей компании</h4>
+                    <p class="body3 text-regular-primary">Отпраздновали 10-летие компании с достижением
+                        значительных результатов.</p>
+                </div>
+            </div>
+
+            <!-- 2018 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[100px] h-[570px] snap-start max-w-[400px]"
+                data-acc-item data-year="2018">
+                <button
+                    class="absolute inset-y-0 left-0 w-[100px] flex flex-col items-center justify-between outline-none p-4"
+                    data-acc-trigger aria-controls="panel-2018">
+                    <span class="-rotate-90 text-2xl font-bold text-slate-900 select-none mt-5">2018</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-6 h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2018" class="hidden acc-body p-4 sm:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2018"
+                        class="w-full h-56 sm:h-64 lg:h-80 object-cover rounded-xl mb-4" />
+                    <h4 class="text-2xl font-boldmy-4">Новые рынки</h4>
+                    <p class="body3 text-regular-primary">Расширение присутствия на рынках СНГ и Европы.</p>
+                </div>
+            </div>
+
+            <!-- 2019 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[100px] h-[570px] snap-start max-w-[400px]"
+                data-acc-item data-year="2019">
+                <button
+                    class="absolute inset-y-0 left-0 w-[100px] flex flex-col items-center justify-between outline-none p-4"
+                    data-acc-trigger aria-controls="panel-2019">
+                    <span class="-rotate-90 text-2xl font-bold text-slate-900 select-none mt-5">2019</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-6 h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2019" class="hidden acc-body p-4 sm:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2019"
+                        class="w-full h-56 sm:h-64 lg:h-80 object-cover rounded-xl mb-4" />
+                    <h4 class="text-2xl font-boldmy-4">Инновации</h4>
+                    <p class="body3 text-regular-primary">Запуск новых экологически чистых фасадных материалов.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2020 -->
+            <div class="relative bg-white rounded-2xl mr-[-1px] overflow-hidden flex-none border border-gray w-[100px] h-[570px] snap-start max-w-[400px]"
+                data-acc-item data-year="2020">
+                <button
+                    class="absolute inset-y-0 left-0 w-[100px] flex flex-col items-center justify-between outline-none p-4"
+                    data-acc-trigger aria-controls="panel-2020">
+                    <span class="-rotate-90 text-2xl font-bold text-slate-900 select-none mt-5">2020</span>
+                    <img src="/assets/icons/plusadd.svg" alt="" class="w-6 h-6 opacity-90" data-plus />
+                </button>
+                <div id="panel-2020" class="hidden acc-body p-4 sm:p-6">
+                    <img src="/assets/img/history.jpg" alt="История 2020"
+                        class="w-full h-56 sm:h-64 lg:h-80 object-cover rounded-xl mb-4" />
+                    <h4 class="text-2xl font-boldmy-4">Новые решения</h4>
+                    <p class="body3 text-regular-primary">Первыми разработали особую форму плитки и специальную
+                        систему механического крепления без применения затирки.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const rail = document.getElementById('accRail');
+    const items = Array.from(rail.querySelectorAll('[data-acc-item]'));
+
+    function setActive(year) {
+        items.forEach((item) => {
+            const active = item.dataset.year === String(year);
+            const body = item.querySelector('.acc-body');
+            const plus = item.querySelector('[data-plus]');
+            const yearText = item.querySelector('span'); // Get the year text span
+
+            if (active) {
+                // expand this item
+                item.classList.remove('w-[80px]', 'w-[100px]');
+                item.classList.add('flex-1', 'min-w-[320px]', 'md:min-w-[320px]', 'transition-all', 'duration-300');
+                body.classList.remove('hidden');
+                if (plus) plus.classList.add('hidden');   // hide plus on active
+                if (yearText) yearText.classList.add('hidden'); // hide year text on active
+                item.classList.add('acc-active');        // marker class (no styles)
+            } else {
+                // collapse others
+                item.classList.add('w-[80px]', 'md:w-[100px]');
+                item.classList.remove('flex-1', 'min-w-[320px]', 'md:min-w-[320px]');
+                body.classList.add('hidden');
+                if (plus) plus.classList.remove('hidden'); // show plus when collapsed
+                if (yearText) yearText.classList.remove('hidden'); // show year text when collapsed
+                item.classList.remove('acc-active');
+            }
+        });
+
+        // center active item
+        const target = items.find(i => i.dataset.year === String(year));
+        if (target) {
+            const offset = target.offsetLeft - (rail.clientWidth - target.clientWidth) / 2;
+            rail.scrollTo({ left: Math.max(0, offset), behavior: 'smooth' });
+        }
+    }
+
+    // Click / keyboard handlers
+    items.forEach(item => {
+        const trigger = item.querySelector('[data-acc-trigger]');
+        trigger.addEventListener('click', () => setActive(item.dataset.year));
+        trigger.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(item.dataset.year); }
+        });
+        trigger.tabIndex = 0;
+    });
+
+    // Swipe left/right to change active
+    let startX = null;
+    rail.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    rail.addEventListener('touchend', e => {
+        if (startX === null) return;
+        const dx = e.changedTouches[0].clientX - startX; startX = null;
+        const activeIdx = items.findIndex(i => i.classList.contains('acc-active'));
+        if (Math.abs(dx) > 40) {
+            const next = dx < 0 ? Math.min(items.length - 1, activeIdx + 1)
+                : Math.max(0, activeIdx - 1);
+            setActive(items[next].dataset.year);
+        }
+    }, { passive: true });
+
+    // Init with the latest year open
+    setActive(2020);
+
+    // Re-center on resize
+    window.addEventListener('resize', () => {
+        const active = items.find(i => i.classList.contains('acc-active'));
+        if (active) setActive(active.dataset.year);
+    });
+</script>
+
+<!-- HOW WE WORK SLIDER -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary mb-10 xl:mb-36 mobile-section-divider">
+    <div class="container mx-auto px-4 md:px-0">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 gap-4 md:gap-0">
+            <h2 class="h2 text-center md:text-left text-2xl md:text-3xl lg:text-4xl">Наши патенты</h2>
+
+            <!-- Кнопки -->
+            <div class="flex gap-2 justify-center md:justify-start">
+                <button id="slider-prev"
+                    class="border border-accent text-accent rounded-lg w-12 h-12 md:w-10 md:h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg width="24" height="24" class="md:w-5 md:h-5" fill="none" viewBox="0 0 24 24">
+                        <path d="M15 18l-6-6 6-6" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button id="slider-next"
+                    class="border border-accent text-accent rounded-lg w-12 h-12 md:w-10 md:h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg width="24" height="24" class="md:w-5 md:h-5" fill="none" viewBox="0 0 24 24">
+                        <path d="M9 6l6 6-6 6" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Слайдер -->
+        <div class="relative">
+            <div class="overflow-x-visible">
+                <div id="work-slider"
+                    class="flex gap-4 md:gap-20 overflow-x-auto md:overflow-hidden scroll-smooth snap-x snap-mandatory hide-scrollbar"
+                    style="width: 100%;">
+
+                    <!-- Item 1 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan1.png" alt="Решение 1"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №69114</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Кляммер для крепления облицовочных плит фасадов зданий
+                            (полезная модель)</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan2.png" alt="Решение 2"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №76939</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Система крепления фасадных панелей различного типа
+                            (изобретение)</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan3.png" alt="Решение 3"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2365718</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Кронштейн для вентилируемого фасада (полезная модель)</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan4.png" alt="Решение 4"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2381341</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Зажим для крепления керамической плитки (изобретение)</p>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan5.png" alt="Решение 5"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2456789</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Система скрытого крепления для создания бесшовных фасадов
+                            (полезная модель)</p>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan6.png" alt="Решение 6"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2567890</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Крепление для гранитных облицовочных панелей (изобретение)
+                        </p>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan7.png" alt="Решение 7"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2678901</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Система компенсации температурных и усадочных деформаций
+                            (полезная модель)</p>
+                    </div>
+
+                    <!-- Item 8 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan8.png" alt="Решение 8"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2789012</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Крепление для светопрозрачных фасадных систем
+                            (изобретение)</p>
+                    </div>
+
+                    <!-- Item 9 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan9.png" alt="Решение 9"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2890123</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Система быстрого монтажа фасадных систем (полезная модель)
+                        </p>
+                    </div>
+
+                    <!-- Item 10 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan10.png" alt="Решение 10"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №2901234</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Крепление для композитных панелей (изобретение)</p>
+                    </div>
+
+                    <!-- Item 11 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan11.png" alt="Решение 11"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №3012345</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Система энергосбережения для повышения энергоэффективности
+                            зданий (полезная модель)</p>
+                    </div>
+
+                    <!-- Item 12 -->
+                    <div class="w-[280px] md:w-[calc(20%-65px)] flex-shrink-0 flex flex-col snap-start text-center">
+                        <img src="/assets/img/pan12.png" alt="Решение 12"
+                            class="h-48 md:h-64 object-contain mb-3 md:mb-4 py-3 md:py-5 px-2 md:px-3 rounded-2xl md:rounded-4xl bg-white">
+                        <h5 class="my-2 md:my-4 text-sm md:text-base font-medium">Патент №3123456</h5>
+                        <p class="body3 text-regular-primary text-xs md:text-sm">Универсальная система крепления для различных типов
+                            фасадов (изобретение)</p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Конструкторское бюро Section -->
+<section class="reveal mb-10 xl:mb-36 mobile-section-divider">
+    <div class="container mx-auto px-4">
+        <h2 class="text-center mb-8 md:mb-16 text-2xl md:text-3xl lg:text-4xl">
+            Конструкторское бюро
+        </h2>
+
+        <!-- Three Cards Container -->
+        <div class="grid grid-cols-1 gap-5 md:flex md:gap-0">
+            <!-- Card 1 -->
+            <div class="flex-1 bg-white rounded-xl text-left border border-gray p-4 md:p-8 mr-0 md:mr-[-1px]">
+                <div class="mb-4 md:mb-6 flex justify-center md:justify-start">
+                    <img src="/assets/icons/const3.svg" alt="Проектирование" class="w-16 h-16 md:w-20 md:h-20">
+                </div>
+                <h3 class="h4 text-center md:text-left text-lg md:text-xl lg:text-2xl mb-3 md:mb-0">Проектируем фасады любой сложности</h3>
+                <p class="body2 text-regular-primary mt-3 md:mt-5 text-sm md:text-base text-center md:text-left">Не боимся сложных задач и с удовольствием проектируем
+                    уникальные объекты для наших заказчиков.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex-1 bg-white rounded-xl text-left border border-gray p-4 md:p-8 mr-0 md:mr-[-1px]">
+                <div class="mb-4 md:mb-6 flex justify-center md:justify-start">
+                    <img src="/assets/icons/const3.svg" alt="Оптимизация" class="w-16 h-16 md:w-20 md:h-20">
+                </div>
+                <h3 class="h4 text-center md:text-left text-lg md:text-xl lg:text-2xl mb-3 md:mb-0">Снижаем ваши затраты</h3>
+                <p class="body2 text-regular-primary mt-3 md:mt-5 text-sm md:text-base text-center md:text-left">В этап проектирования включаем оптимизацию металоемкости и
+                    сложности монтажа фасадов.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flex-1 bg-white rounded-xl text-left border border-gray p-4 md:p-8 mr-0 md:mr-[-1px]">
+                <div class="mb-4 md:mb-6 flex justify-center md:justify-start">
+                    <img src="/assets/icons/const2.svg" alt="Инновации" class="w-16 h-16 md:w-20 md:h-20">
+                </div>
+                <h3 class="h4 text-center md:text-left text-lg md:text-xl lg:text-2xl mb-3 md:mb-0">Используем инновационные решения</h3>
+                <p class="body2 text-regular-primary mt-3 md:mt-5 text-sm md:text-base text-center md:text-left">У нас проводится постоянная работа над новыми техническими
+                    решениями.</p>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center mt-8 md:mt-12">
+            <a class="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4">
+                ОБСУДИТЬ ПРОЕКТ
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Team Images Marquee Section (Top-Aligned) -->
+<section class="reveal w-full  mb-10 xl:mb-36 mobile-section-divider reveal-init reveal-in overflow-hidden">
+    <div class=" mx-auto px-4">
+        <h2 class="text-center mb-16">Жизнь в стиле РОНСОН</h2>
+
+        <!-- Marquee Container -->
+        <div class="relative">
+            <div class="marquee-track-top flex gap-4">
+                <!-- Team Image 1 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team1.jpg" alt="Команда 1"
+                        class="w-[548px] h-[410px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 2 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team2.jpg" alt="Команда 2"
+                        class="w-[321px] h-[280px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 3 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team3.jpg" alt="Команда 3"
+                        class="w-[435px] h-[340px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 4 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team4.jpg" alt="Команда 4"
+                        class="w-[548px] h-[410px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 5 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team5.jpg" alt="Команда 5"
+                        class="w-[321px] h-[280px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 6 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team6.jpg" alt="Команда 6"
+                        class="w-[435px] h-[340px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 7 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team7.jpg" alt="Команда 7"
+                        class="w-[548px] h-[410px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 8 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team8.jpg" alt="Команда 8"
+                        class="w-[321px] h-[280px] object-cover rounded-xl">
+                </div>
+
+                <!-- Team Image 9 -->
+                <div class="flex-shrink-0">
+                    <img src="/assets/img/team9.jpg" alt="Команда 9"
+                        class="w-[435px] h-[340px] object-cover rounded-xl">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto px-4 text-center ">
+        <p class="body1 text-regular-primary mt-16 mb-10">
+            Мы открыты для талантливых специалистов и приглашаем <br> вас стать частью команды РОНСОН ГРУПП
+        </p>
+        <a class="btn-primary">Смотреть вакансии</a>
+    </div>
+
+    <!-- Initialize Team Images Marquee -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MarqueeController) {
+                // Team marquee at the top (Жизнь в стиле РОНСОН section)
+                const teamMarqueeTop = new window.MarqueeController('.marquee-track-top', {
+                    speed: 50,        // 50 pixels per second
+                    pauseOnHover: true,
+                    direction: 'left'
+                });
+                
+                // Expose to global scope for external control
+                window.teamMarqueeTop = teamMarqueeTop;
+            }
+        });
+    </script>
+
+</section>
+
+<script>
+    const slider = document.getElementById('work-slider');
+    const prevBtn = document.getElementById('slider-prev');
+    const nextBtn = document.getElementById('slider-next');
+
+    // --- Grab to scroll logic ---
+    let isDown = false;
+    let startXPos;
+    let scrollLeft;
+    slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        slider.classList.add('cursor-grabbing');
+        startXPos = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+        isDown = false;
+        slider.classList.remove('cursor-grabbing');
+    });
+    slider.addEventListener('mouseup', () => {
+        isDown = false;
+        slider.classList.remove('cursor-grabbing');
+    });
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startXPos) * 1.2; // 1.2 = scroll speed
+        slider.scrollLeft = scrollLeft - walk;
+    });
+
+    /** Получаем все карточки */
+    function getCards() {
+        return slider.querySelectorAll('div.snap-start');
+    }
+
+    /** Проверяем, полностью ли видна последняя карточка */
+    function isLastCardFullyVisible() {
+        const cards = getCards();
+        if (cards.length === 0) return true;
+
+        const lastCard = cards[cards.length - 1];
+        const sliderRect = slider.getBoundingClientRect();
+        const lastCardRect = lastCard.getBoundingClientRect();
+
+        // Проверяем, что правая граница последней карточки находится внутри видимой области слайдера
+        return lastCardRect.right <= sliderRect.right + 1;
+    }
+
+    /** Получаем максимальную позицию прокрутки, где последняя карточка полностью видна */
+    function getMaxScrollPosition() {
+        const cards = getCards();
+        if (cards.length === 0) return 0;
+
+        const lastCard = cards[cards.length - 1];
+        const sliderRect = slider.getBoundingClientRect();
+        const lastCardRect = lastCard.getBoundingClientRect();
+
+        // Если последняя карточка уже полностью видна, возвращаем текущую позицию
+        if (lastCardRect.right <= sliderRect.right) {
+            return slider.scrollLeft;
+        }
+
+        // Иначе вычисляем позицию, где последняя карточка будет полностью видна
+        const scrollAmount = lastCardRect.right - sliderRect.right + slider.scrollLeft;
+        return scrollAmount;
+    }
+
+    /** Ограничиваем scrollLeft в допустимых пределах */
+    function clamp(value) {
+        const max = getMaxScrollPosition();
+        return Math.max(0, Math.min(value, max));
+    }
+
+    /** Обновляем состояние кнопок */
+    function updateBtns() {
+        prevBtn.disabled = slider.scrollLeft <= 0;
+        nextBtn.disabled = isLastCardFullyVisible();
+    }
+
+    /** Прокрутка к предыдущей карточке */
+    prevBtn.addEventListener('click', () => {
+        const cards = getCards();
+        if (cards.length === 0) return;
+
+        const currentScroll = slider.scrollLeft;
+        let targetScroll = currentScroll;
+
+        // Находим карточку, которая должна быть видна после прокрутки
+        for (let i = cards.length - 1; i >= 0; i--) {
+            const card = cards[i];
+            const cardLeft = card.offsetLeft;
+
+            if (cardLeft < currentScroll) {
+                targetScroll = cardLeft;
+                break;
+            }
+        }
+
+        slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    });
+
+    /** Прокрутка к следующей карточке */
+    nextBtn.addEventListener('click', () => {
+        const cards = getCards();
+        if (cards.length === 0) return;
+
+        const currentScroll = slider.scrollLeft;
+        let targetScroll = currentScroll;
+
+        // Находим следующую карточку, которая должна быть видна
+        for (let i = 0; i < cards.length; i++) {
+            const card = cards[i];
+            const cardLeft = card.offsetLeft;
+
+            if (cardLeft > currentScroll) {
+                targetScroll = cardLeft;
+                break;
+            }
+        }
+
+        // Если не нашли следующую карточку, прокручиваем к последней
+        if (targetScroll === currentScroll) {
+            const lastCard = cards[cards.length - 1];
+            const sliderRect = slider.getBoundingClientRect();
+            const lastCardRect = lastCard.getBoundingClientRect();
+
+            if (lastCardRect.right > sliderRect.right) {
+                targetScroll = lastCardRect.right - sliderRect.right + slider.scrollLeft;
+            }
+        }
+
+        slider.scrollTo({ left: clamp(targetScroll), behavior: 'smooth' });
+    });
+
+    slider.addEventListener('scroll', updateBtns);
+    window.addEventListener('resize', updateBtns);
+    updateBtns();
+</script>

@@ -1,0 +1,364 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.UchebnyiFentr>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+ 
+<!-- STATS/RECRUITMENT WIDGET -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary mobile-section-divider">
+    <h2 class="text-center h2 mb-10 md:mb-20 mt-10 md:mt-0">Центр фасадных систем
+    им. Барышева В.В.</h2>
+    <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center gap-5 md:gap-0">
+        <!-- Left Video -->
+        <div class="w-full flex items-center justify-center ">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <img src="/assets/img/u1.jpg"  
+                    class="w-full h-full object-cover rounded-3xl"></video>
+            </div>
+        </div>
+        <!-- Center Text -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full p-[1px]"
+                style="background:linear-gradient(180deg,#DBDBDB 0%,#DB0007 100%)">
+                <div
+                    class="bg-white rounded-full w-full h-full flex flex-col items-center justify-center text-center px-6">
+                     
+                    <p class="text-regular-secondary max-w-[640px] mx-auto body1">
+                        Образован в 2023 году. Назван именем Владимира Васильевича Барышева — Кандидата технических наук, создателя навесных
+                        вентилируемых фасадов РОНСОН.
+                    </p>
+ 
+                </div>
+            </div>
+        </div>
+        <!-- Right Video -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <img src="/assets/img/u2.jpg" class="w-full h-full object-cover rounded-3xl"></video>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section class="container mx-auto mb-10 lg:mb-36 mt-10 lg:mt-20 mobile-section-divider">
+ 
+     <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-5">
+         <!-- Course Card 1 -->
+         <div class="card shadow-lg">
+             <div class="flex items-center mb-10">
+                 <img src="/assets/icons/u1.svg" alt="Education" class="w-20 h-20">
+             </div>
+             <h3 class="h3 mb-4">Испытательная лаборатория</h3>
+             <p class="body2 text-regular-secondary mb-6">
+                Собственная сертифицированная испытательная лаборатория на практике испытывает все новые разработки, а так же
+                конструктивные решения для объектов с нестандартной архитектурой.
+             </p>
+             
+         </div>
+         
+         <!-- Course Card 2 -->
+         <div class="card shadow-lg">
+             <div class="flex items-center mb-10">
+                 <img src="/assets/icons/u2.svg" alt="Construction" class="w-20 h-20">
+             </div>
+             <h3 class="h3  mb-4">Учебный центр</h3>
+             <p class="body2 text-regular-secondary mb-6">
+                Деятельность нашего Учебного центра направлена на повышение квалификации специалистов в сфере навесных вентилируемых
+                фасадов.
+             </p>
+          
+         </div>
+         
+ 
+     </div>
+ 
+ </section>
+
+<!-- Who We Train Section -->
+<section class="container mx-auto mb-10 lg:mb-36 mt-10 lg:mt-20 mobile-section-divider">
+    <div class="text-center mb-12">
+        <h2 class="h2 text-neutral-900">Кого мы обучаем</h2>
+        <p class="body1 text-regular-secondary mt-4">Наполнение программ отличается в зависимости от аудитории группы</p>
+    </div>
+    
+                   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 mb-12">
+                   <!-- Audience Circle 1 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">1</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Строительный контроль Заказчика</p>
+           </div>
+           
+           <!-- Audience Circle 2 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">2</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Монтажные организации</p>
+           </div>
+           
+           <!-- Audience Circle 3 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">3</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Технический надзор</p>
+           </div>
+           
+           <!-- Audience Circle 4 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">4</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Проектные организации</p>
+           </div>
+           
+           <!-- Audience Circle 5 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">5</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Менеджеры</p>
+           </div>
+           
+           <!-- Audience Circle 6 -->
+           <div class="w-full aspect-square bg-white border border-gray rounded-full p-4 text-center relative">
+               <div class="w-8 h-8 border border-accent rounded-full flex items-center justify-center absolute top-8 left-1/2 transform -translate-x-1/2">
+                   <span class="text-accent font-bold">6</span>
+               </div>
+               <p class="text-regular-primary leading-tight px-2 mt-16 Body1">Поставщики материалов для НВФ</p>
+           </div>
+      </div>
+    
+    <div class="text-center">
+        <button class="btn-primary btn-filled" onclick="scrollToFooterForm()">ЗАКАЗАТЬ ОБУЧЕНИЕ</button>
+    </div>
+ </section>
+
+<!-- Where We Teach Section -->
+<section class="container mx-auto mb-10 lg:mb-36 mt-10 lg:mt-20 mobile-section-divider">
+    <div class="text-center mb-12">
+        <h2 class="h2 text-neutral-900">Где мы обучаем</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-5">
+        <!-- Center Base Card -->
+        <div class="card shadow-lg">
+            <div class="flex items-center mb-6">
+                <div class="w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+                    <img src="/assets/icons/i11.svg" alt="Center Base" class="w-16 h-16 rounded-full">
+                </div>
+                <div>
+                    <h3 class="h5 mb-2 pt-1">На базе центра</h3>
+                    <div class="flex items-start gap-3 mb-4 bg-[#F7F7F7] p-1 rounded">
+                        <img src="/assets/icons/Icon-location-20.svg" alt="Location" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5">
+                        <p class="text-sm text-regular-secondary">д. Чёрное, ул. Агрогородок, 78A</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <p class="body2 text-regular-secondary">
+                Занятия проходят в учебных аудиториях и специальном зале, оснащенном оборудованием.
+            </p>
+        </div>
+        
+        <!-- On-site Training Card -->
+        <div class="card shadow-lg">
+            <div class="flex items-center mb-6">
+                <div class="w-16 h-16 rounded-full flex items-center justify-center mr-4">
+                    <img src="/assets/icons/i22.svg" alt="On-site Training" class="w-16 h-16 rounded-full">
+                </div>
+                <div>
+                    <h3 class="h5 mb-2 pt-1">Выездное</h3>
+                    <div class="flex items-start gap-3 mb-4 bg-[#F7F7F7] p-1 rounded">
+                        <img src="/assets/icons/Icon-location-20.svg" alt="Location" class="w-5 h-5 text-accent flex-shrink-0 mt-0.5">
+                        <p class="text-sm text-regular-secondary">По договоренности</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <p class="body2 text-regular-secondary">
+                Возможен выездной формат обучения по договоренности с компанией.
+            </p>
+        </div>
+    </div>
+ </section>
+
+<!-- Training Format Section -->
+<section class="container mx-auto mb-10 lg:mb-36 mt-10 lg:mt-20 mobile-section-divider">
+    <div class="text-center mb-12">
+        <h2 class="h2 text-neutral-900">Формат обучения</h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-5">
+        <!-- Theory Panel -->
+        <div>
+            <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+                <img src="/assets/img/o11.jpg" alt="Теория - Учебный класс" class="w-full h-full object-cover rounded-3xl">
+            </div>
+            <h4 class="h4 mb-4">Теория</h4>
+            <p class="body1 text-regular-secondary">
+                Теоретическая часть проходит в учебном классе. В занятиях принимает участие вся группа из 12 человек.
+            </p>
+        </div>
+        
+        <!-- Practice Panel -->
+        <div>
+            <div class="w-full aspect-video rounded-lg overflow-hidden mb-4">
+                <img src="/assets/img/o22.jpg" alt="Практика - Специальный зал" class="w-full h-full object-cover rounded-3xl">
+            </div>
+            <h4 class="h4 mb-4">Практика</h4>
+            <p class="body1 text-regular-secondary">
+                Для практики предусмотрен специальный зал, оснащенный всем необходимым оборудованием. Участники делятся на группы по 3 человека. Группы одновременно осваивают практические навыки на отдельных стендах под руководством специалистов.
+            </p>
+        </div>
+    </div>
+</section>
+
+ 
+
+<!-- Contact Sections -->
+<section class="container mx-auto mb-16 mobile-section-divider">
+    <!-- Central Office -->
+    <div class="grid lg:grid-cols-2 gap-8 mb-16">
+        <div class="card flex flex-col h-full">
+            <div class="flex-1">
+                <h3 class="h3">Наш адрес</h3>
+                <div
+                    class="body1 text-regular-primary  border border-[#DADADA] inline-block px-4 py-1 rounded-lg body2 mt-4 mb-4">
+                Центр фасадных систем им. Барышева В.В.</div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3">
+                        <img src="/assets/icons/Icon-location-24.svg" alt="Location"
+                            class="w-6 h-6 text-accent flex-shrink-0">
+                        <div>
+                            <div class="body1">д. Чёрное, ул. Агрогородок, 78А
+                            </div>
+                            <div class="body2 text-regular-secondary mt-1">15 км от МКАД по Носовихинскому шоссе</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-inline btn-sm" onclick="openDirectionsModal()">
+                СХЕМА ПРОЕЗДА
+            </button>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-md">
+            <div id="map-central" class="w-full h-full min-h-[400px]"></div>
+        </div>
+    </div>
+
+    
+</section>
+
+
+<!-- Directions Modal -->
+<div id="directionsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden mobile-section-divider">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b bg-white sticky top-0 z-10">
+                <div class="flex items-center gap-4">
+                    <div class="bg-accent text-white px-4 py-2 rounded-lg">
+                    Наш адрес
+                    </div>
+                </div>
+                <button onclick="closeDirectionsModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 20 20">
+                        <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
+                <div id="modalContent">
+                    <!-- Content will be set by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Yandex Maps API -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+
+<script>
+    // Function to scroll to footer form
+    function scrollToFooterForm() {
+        const footerForm = document.getElementById('footerForm');
+        if (footerForm) {
+            footerForm.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    // Initialize Yandex Maps
+    function initMaps() {
+        // Training Center Map
+        ymaps.ready(function () {
+            var trainingCenterMap = new ymaps.Map('map-central', {
+                center: [55.746005, 37.860378], // Training center coordinates
+                zoom: 15,
+                controls: ['zoomControl']
+            });
+            
+            var trainingCenterPlacemark = new ymaps.Placemark([55.746005, 37.860378], {
+                balloonContent: 'Центр фасадных систем им. Барышева В.В.<br>д. Чёрное, ул. Агрогородок, 78А'
+            }, {
+                preset: 'islands#redDotIcon'
+            });
+            
+            trainingCenterMap.geoObjects.add(trainingCenterPlacemark);
+        });
+    }
+
+    // Modal functions
+    function openDirectionsModal() {
+        document.getElementById('directionsModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        
+        const modalContent = document.getElementById('modalContent');
+        
+        // Show directions image for training center
+        modalContent.innerHTML = `
+            <div class="flex justify-center">
+                Need to add map screnshot here
+            </div>
+        `;
+    }
+
+    function closeDirectionsModal() {
+        document.getElementById('directionsModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('directionsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeDirectionsModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDirectionsModal();
+        }
+    });
+
+    // Initialize maps when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initMaps();
+    });
+</script>

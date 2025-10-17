@@ -1,0 +1,798 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.PartnerskayaSet>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<!-- Central Office Section -->
+<section class="container mx-auto mb-20">
+    <div class="grid lg:grid-cols-2 gap-8 mb-16">
+        <div class="card">
+            <h3 class="h3">Центральный офис</h3>
+            <div class="body1 text-regular-primary  border border-[#DADADA] inline-block px-4 py-1 rounded-lg body2 mt-4 mb-4">ООО «АРТ ФАСАД»</div>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <img src="/assets/icons/Icon-location-24.svg" alt="Location" class="w-6 h-6 text-accent flex-shrink-0">
+                    <div>
+                        <div class="body1">Московская область, г. Реутов, Носовихинское шоссе д. 9А, корпус А, 143969</div>
+                        <div class="body2 text-regular-secondary mt-1">55.746005, 37.860378</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (905) 570-30-90 (отдел продаж)</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (495) 730-35-88</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-email-24.svg" alt="Email" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">info@ronson-group.ru</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-clock-24.svg" alt="Clock" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">ПН-ПТ 9:00-18:00 (МСК)</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-filled btn-sm mt-4 flex items-center gap-2" onclick="openDirectionsModal()">
+                СХЕМА ПРОЕЗДА
+            </button>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden ">
+            <div id="map-central" class="w-full h-full min-h-[400px]"></div>
+        </div>
+    </div>
+</section>
+<!-- Directions Modal -->
+<div id="directionsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b bg-white sticky top-0 z-10 shadow">
+                <div class="flex items-center gap-2">
+                    <img src="/assets/icons/filterIcon.svg" alt="logo" class="w-5 h-5">
+                    <h3 class="text-xl">Схема проезда</h3>
+                </div>
+                <button id="close-modal" class="text-accent hover:text-accent-dark">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
+                <div id="modalContent">
+                    <!-- Content will be set by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Partners Network Interface -->
+<section class="container mx-auto mb-20 lg:mt-36">
+    <div class="text-center mb-12">
+        <h2 class="h2 text-neutral-900">Представители и дилеры</h2>
+    </div>
+    <!-- Filter Tabs and View Switcher -->
+    <div class="lg:flex justify-between items-center mb-8">
+        <!-- Filter Tabs -->
+        <div class="flex gap-4">
+            <button id="representatives-tab" class="filter-tab active px-6 py-2 rounded-lg font-medium transition-all"
+                    data-filter="representatives">
+                ПРЕДСТАВИТЕЛИ
+            </button>
+            <button id="dealers-tab" class="filter-tab px-6 py-2 rounded-lg font-medium transition-all"
+                    data-filter="dealers">
+                ДИЛЕРЫ
+            </button>
+        </div>
+
+        <!-- View Toggle Buttons -->
+        <div class="flex bg-white rounded-lg p-1 border border-gray mt-2 lg:mt-0">
+            <button id="map-view-btn"
+                    class="view-toggle-btn active px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2"
+                    data-view="map">
+                На карте
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
+                    </path>
+                </svg>
+            </button>
+            <button id="list-view-btn"
+                    class="view-toggle-btn px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2"
+                    data-view="list">
+                Списком
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- Map View -->
+    <div id="map-view" class="view-content overflow-hidden">
+        <div class="relative">
+            <!-- Map Container -->
+            <div id="partners-map" class="w-full h-[600px] shadow-lg rounded-4xl overflow-hidden"></div>
+
+            <!-- Country Filter Bar -->
+            <div class="md:absolute top-4 left-4 z-10 overflow-auto">
+                <div class="flex gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+                    <button class="country-btn active px-4 py-2 rounded-lg border border-accent bg-accent text-white font-medium transition-all text-sm"
+                            data-country="russia">
+                        РОССИЯ
+                    </button>
+                    <button class="country-btn px-4 py-2 rounded-lg border border-accent bg-white text-accent font-medium transition-all hover:bg-accent hover:text-white text-sm"
+                            data-country="belarus">
+                        БЕЛАРУСЬ
+                    </button>
+                    <button class="country-btn px-4 py-2 rounded-lg border border-accent bg-white text-accent font-medium transition-all hover:bg-accent hover:text-white text-sm"
+                            data-country="kazakhstan">
+                        КАЗАХСТАН
+                    </button>
+                    <button class="country-btn px-4 py-2 rounded-lg border border-accent bg-white text-accent font-medium transition-all hover:bg-accent hover:text-white text-sm"
+                            data-country="armenia">
+                        АРМЕНИЯ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Partner Info Card -->
+            <div id="partner-card"
+                 class="absolute top-4 right-4 xl:w-[500px] bg-white rounded-lg shadow-lg p-6 z-20">
+                <button id="close-card" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+                <div id="card-content">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List View -->
+    <div id="list-view" class="view-content hidden">
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Partner cards will be populated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Yandex Maps API -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+
+<script>
+    // Partners data structure
+    const PARTNERS_DATA = {
+        representatives: [
+            {
+                id: 1,
+                name: "ООО 'ТехноСеть'",
+                type: "representative",
+                address: "Московская область, г. Реутов, Носовихинское шоссе, д. 9А, корпус А",
+                coordinates: [55.746005, 37.860378],
+                phone: "+7 (495) 987-65-43",
+                email: "info@technoset.ru",
+                country: "russia"
+            },
+            {
+                id: 2,
+                name: "ООО 'ТехноГрупп'",
+                type: "representative",
+                address: "Московская область, г. Реутов, Носовихинское шоссе, д. 9А, корпус Б",
+                coordinates: [55.746005, 37.860378],
+                phone: "+7 (495) 123-45-67",
+                email: "contact@technogroup.ru",
+                country: "russia"
+            },
+            {
+                id: 3,
+                name: "ИП 'Петров'",
+                type: "representative",
+                address: "Санкт-Петербург, ул. Невский проспект, д. 12",
+                coordinates: [30.315785, 59.931058],
+                phone: "+7 (812) 123-45-67",
+                email: "info@petrov-group.ru",
+                country: "russia"
+            },
+            {
+                id: 4,
+                name: "ЗАО 'Глобус'",
+                type: "representative",
+                address: "Калуга, ул. Гагарина, д. 34",
+                coordinates: [36.2611, 54.5293],
+                phone: "+7 (4842) 99-88-77",
+                email: "contact@globus.ru",
+                country: "russia"
+            },
+            {
+                id: 5,
+                name: "ООО 'ТехноСеть'",
+                type: "representative",
+                address: "Новосибирск, ул. Ленина, д. 5",
+                coordinates: [82.9204, 55.0084],
+                phone: "+7 (383) 555-44-33",
+                email: "support@technoset.ru",
+                country: "russia"
+            },
+            {
+                id: 6,
+                name: "ИП 'Сидоров'",
+                type: "representative",
+                address: "Казань, ул. Баумана, д. 8",
+                coordinates: [49.1088, 55.7887],
+                phone: "+7 (843) 777-66-55",
+                email: "order@sidorov.kzn",
+                country: "russia"
+            },
+            {
+                id: 7,
+                name: "ОАО 'Свет'",
+                type: "representative",
+                address: "Екатеринбург, ул. Чапаева, д. 10",
+                coordinates: [60.5975, 56.8519],
+                phone: "+7 (343) 123-67-89",
+                email: "sales@svet.com",
+                country: "russia"
+            },
+            {
+                id: 8,
+                name: "ЗАО 'Инновации'",
+                type: "representative",
+                address: "Владивосток, ул. Светланская, д. 20",
+                coordinates: [131.8855, 43.1198],
+                phone: "+7 (423) 201-23-45",
+                email: "hello@innovations.ru",
+                country: "russia"
+            }
+        ],
+        dealers: [
+            {
+                id: 9,
+                name: "ООО 'ДилерСтрой'",
+                type: "dealer",
+                address: "Минск, ул. Ленина, д. 15",
+                coordinates: [27.5615, 53.9045],
+                phone: "+375 (17) 123-45-67",
+                email: "info@dilerstroy.by",
+                country: "belarus"
+            },
+            {
+                id: 10,
+                name: "ИП 'Ковалев'",
+                type: "dealer",
+                address: "Алматы, ул. Абая, д. 25",
+                coordinates: [76.9126, 43.2220],
+                phone: "+7 (727) 987-65-43",
+                email: "contact@kovalev.kz",
+                country: "kazakhstan"
+            },
+            {
+                id: 11,
+                name: "ООО 'АрмСтрой'",
+                type: "dealer",
+                address: "Ереван, ул. Маштоца, д. 30",
+                coordinates: [44.5035, 40.1872],
+                phone: "+374 (10) 555-44-33",
+                email: "sales@armstroy.am",
+                country: "armenia"
+            }
+        ]
+    };
+
+    // Global variables
+    let map, objectManager;
+    let currentFilter = 'representatives';
+    let currentView = 'map';
+    let activeMarkerId = null;
+
+    // Country centers and zoom levels
+    const COUNTRY_CENTERS = {
+        russia: { center: [37.6173, 55.7558], zoom: 4 },
+        belarus: { center: [27.5615, 53.9045], zoom: 7 },
+        kazakhstan: { center: [71.4306, 51.1801], zoom: 6 },
+        armenia: { center: [44.5035, 40.1872], zoom: 8 }
+    };
+
+    // Initialize the map
+    function initMap() {
+        ymaps.ready(() => {
+            // Create map instance
+            map = new ymaps.Map('partners-map', {
+                center: COUNTRY_CENTERS.russia.center,
+                zoom: COUNTRY_CENTERS.russia.zoom,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+
+            // Create ObjectManager for clustering
+            objectManager = new ymaps.ObjectManager({
+                clusterize: true,
+                gridSize: 50,
+                clusterDisableClickZoom: false,
+                clusterIcons: [
+                    {
+                        href: 'data:image/svg+xml;base64,' + btoa(`
+                        <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="22" cy="22" r="20" fill="white" stroke="#bd1a1a" stroke-width="3"/>
+                        </svg>
+                    `),
+                        size: [44, 44],
+                        offset: [-22, -22]
+                    }
+                ],
+                clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
+                    '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' +
+                    'font-size:14px;font-weight:700;color:#bd1a1a;user-select:none;">' +
+                    '$[properties.geoObjects.length]' +
+                    '</div>'
+                )
+            });
+
+            // Set custom marker styling
+            objectManager.objects.options.set('iconLayout', 'default#image');
+            objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+            </svg>
+        `));
+            objectManager.objects.options.set('iconImageSize', [24, 24]);
+            objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+
+            // Add ObjectManager to map
+            map.geoObjects.add(objectManager);
+
+            // Handle marker clicks
+            objectManager.objects.events.add('click', function (e) {
+                const objectId = e.get('objectId');
+                showPartnerCard(objectId);
+            });
+
+            // Update map with current data
+            updateMapData();
+        });
+
+        // Initialize Central Office map
+        ymaps.ready(() => {
+            const centralMap = new ymaps.Map('map-central', {
+                center: [55.746005, 37.860378], // Central Office coordinates
+                zoom: 15,
+                controls: ['zoomControl']
+            });
+
+            // Add Central Office marker
+            const centralPlacemark = new ymaps.Placemark([55.746005, 37.860378], {
+                balloonContent: 'Центральный офис РОНСОН ГРУПП<br>Носовихинское шоссе д. 9А, корпус А'
+            }, {
+                preset: 'islands#redDotIcon'
+            });
+
+            centralMap.geoObjects.add(centralPlacemark);
+        });
+    }
+
+    // Update map data based on current filter
+    function updateMapData() {
+        if (!objectManager) return;
+
+        objectManager.removeAll();
+
+        const currentData = PARTNERS_DATA[currentFilter];
+        if (currentData && currentData.length > 0) {
+            // Set different marker styles based on the current filter
+            if (currentFilter === 'representatives') {
+                // Representatives: red markers
+                objectManager.objects.options.set('iconLayout', 'default#image');
+                objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" fill="#bd1a1a"/>
+                    </svg>
+                `));
+                objectManager.objects.options.set('iconImageSize', [24, 24]);
+                objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+            } else if (currentFilter === 'dealers') {
+                // Dealers: blue markers
+                objectManager.objects.options.set('iconLayout', 'default#image');
+                objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="white" stroke="#2563eb" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" fill="#2563eb"/>
+                    </svg>
+                `));
+                objectManager.objects.options.set('iconImageSize', [24, 24]);
+                objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+            }
+
+            const geoJsonData = {
+                type: "FeatureCollection",
+                features: currentData.map(partner => ({
+                    type: "Feature",
+                    id: partner.id,
+                    geometry: {
+                        type: "Point",
+                        coordinates: partner.coordinates
+                    },
+                    properties: {
+                        name: partner.name,
+                        address: partner.address,
+                        phone: partner.phone,
+                        email: partner.email,
+                        type: partner.type,
+                        country: partner.country
+                    }
+                }))
+            };
+
+            objectManager.add(geoJsonData);
+        }
+    }
+
+    // Show partner info card
+    function showPartnerCard(partnerId) {
+        const partner = [...PARTNERS_DATA.representatives, ...PARTNERS_DATA.dealers].find(p => p.id == partnerId);
+        if (!partner) return;
+
+        const card = document.getElementById('partner-card');
+        const content = document.getElementById('card-content');
+
+        content.innerHTML = `
+            <h4 class="h4 mb-2">${partner.name}</h4>
+            <div class="space-y-4">
+                <h4 class="flex items-start gap-3">
+                    <img src="/assets/icons/Icon-location-24.svg" alt="map-pin" class="w-5 h-5">
+                    <div class="flex flex-col">
+                        <div class="body2 text-regular-primary">${partner.address}</div>
+
+                    </div>
+                </h4>
+
+                <div class="flex flex-wrap gap-2">
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <svg class="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        <div class="text-sm text-regular-primary">${partner.phone}</div>
+                    </div>
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <svg class="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        <div class="text-sm text-regular-primary">${partner.email}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Show the card using CSS class
+        card.classList.add('show');
+    }
+
+    // Update list view
+    function updateListView() {
+        const listContainer = document.querySelector('#list-view .grid');
+        const currentData = PARTNERS_DATA[currentFilter];
+
+        if (!currentData) return;
+
+        listContainer.innerHTML = currentData.map(partner => `
+            <div class="partner-card bg-white rounded-lg p-6">
+                <h4 class="mb-1">${partner.name}</h4>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3 mt-3 mb-3">
+                       <img src="/assets/icons/Icon-location-24.svg" alt="Location" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="body2 text-regular-primary">
+                            <div class="text-regular-primary body2">${partner.address}</div>
+                                      <div class="body3 text-accent  cursor-pointer hover:underline" onclick="showPartnerOnMap(${partner.id})">
+                                        Посмотреть на карте
+                                    </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2">
+                        <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                            <svg class="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <div class="text-sm text-regular-primary">${partner.phone}</div>
+                        </div>
+                        <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                            <svg class="w-5 h-5 text-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <div class="text-sm text-regular-primary">${partner.email}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        // Filter tab functionality
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function () {
+                // Remove active class from all tabs
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                currentFilter = this.dataset.filter;
+                updateMapData();
+                updateListView();
+            });
+        });
+
+        // View toggle functionality
+        document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all buttons
+                document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                currentView = this.dataset.view;
+
+                // Hide all views
+                document.querySelectorAll('.view-content').forEach(view => view.classList.add('hidden'));
+                // Show selected view
+                document.getElementById(currentView + '-view').classList.remove('hidden');
+
+                if (currentView === 'map') {
+                    updateMapData();
+                    // Ensure map is visible and properly sized
+                    if (map) {
+                        map.container.fitToViewport();
+                    }
+                } else {
+                    updateListView();
+                }
+            });
+        });
+
+        // Country filter functionality
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Remove active class from all country buttons
+                document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active', 'bg-accent', 'text-white'));
+                document.querySelectorAll('.country-btn').forEach(b => b.classList.add('bg-white', 'text-accent'));
+
+                // Add active class to clicked button
+                this.classList.add('active', 'bg-accent', 'text-white');
+                this.classList.remove('bg-white', 'text-accent');
+
+                const country = this.dataset.country;
+                if (map && COUNTRY_CENTERS[country]) {
+                    map.setCenter(COUNTRY_CENTERS[country].center, COUNTRY_CENTERS[country].zoom);
+                }
+            });
+        });
+
+        // Close partner card
+        document.getElementById('close-card').addEventListener('click', function () {
+            document.getElementById('partner-card').classList.remove('show');
+        });
+
+        // Initialize map
+        initMap();
+        updateListView();
+
+        // Ensure initial view state is correct
+        currentView = 'map';
+    });
+
+    // Modal functions for Central Office directions
+    function openDirectionsModal() {
+        document.getElementById('directionsModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        const modalContent = document.getElementById('modalContent');
+
+        // Show Central Office directions
+        modalContent.innerHTML = `
+            <div class="flex justify-center">
+                <img src="/assets/img/map2.jpg" alt="Схема проезда" class="w-full max-w-4xl h-auto object-contain">
+            </div>
+        `;
+    }
+
+    function closeDirectionsModal() {
+        document.getElementById('directionsModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+
+        // Also hide the partner card
+        document.getElementById('partner-card').classList.remove('show');
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('directionsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeDirectionsModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDirectionsModal();
+        }
+    });
+
+    // Close modal with close button
+    document.getElementById('close-modal').addEventListener('click', function() {
+        closeDirectionsModal();
+    });
+
+    // Function to show a specific partner on the map
+    function showPartnerOnMap(partnerId) {
+        console.log('showPartnerOnMap called with ID:', partnerId);
+
+        const partner = [...PARTNERS_DATA.representatives, ...PARTNERS_DATA.dealers].find(p => p.id == partnerId);
+        if (!partner) {
+            console.log('Partner not found');
+            return;
+        }
+
+        console.log('Found partner:', partner.name);
+
+        // Switch to map view
+        currentView = 'map';
+
+        // Hide list view and show map view
+        document.getElementById('list-view').classList.add('hidden');
+        document.getElementById('map-view').classList.remove('hidden');
+
+        // Update view toggle buttons
+        document.getElementById('map-view-btn').classList.add('active');
+        document.getElementById('list-view-btn').classList.remove('active');
+
+        // Center map on partner location
+        if (map) {
+            console.log('Map is available, centering on partner');
+
+            // Set map center and zoom
+            map.setCenter(partner.coordinates, 15);
+
+            // Clear existing markers and show only this partner
+            objectManager.removeAll();
+
+            const geoJsonData = {
+                type: "FeatureCollection",
+                features: [{
+                    type: "Feature",
+                    id: partner.id,
+                    geometry: {
+                        type: "Point",
+                        coordinates: partner.coordinates
+                    },
+                    properties: {
+                        name: partner.name,
+                        address: partner.address,
+                        phone: partner.phone,
+                        email: partner.email,
+                        type: partner.type,
+                        country: partner.country
+                    }
+                }]
+            };
+
+            objectManager.add(geoJsonData);
+
+            // Show partner info card
+            showPartnerCard(partner.id);
+            console.log('Partner card should be shown');
+        } else {
+            console.log('Map is not available');
+        }
+    }
+
+    // Function to scroll to footer form
+    function scrollToFooterForm() {
+        const footerForm = document.getElementById('footerForm');
+        if (footerForm) {
+            footerForm.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+</script>
+
+<!-- Partners Section -->
+<section class="container mx-auto mb-20 mt-16 lg:mt-0 mobile-section-divider">
+    <div class="text-center mb-12">
+        <h2 class="h2 text-neutral-900">Партнеры</h2>
+    </div>
+
+    <!-- Flex wrap: centers the last line -->
+    <div class="grid grid-cols-2 md:flex flex-wrap justify-center gap-6 md:gap-5">
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p1.png" alt="RAWLPLUG" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p2.png" alt="TD LTM" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p3.png" alt="SIBALUX" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p4.png" alt="White Hills" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p5.png" alt="ströher" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p6.png" alt="ABC KLINKERGRUPPE" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p7.png" alt="ДИАМАНТ" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p8.png" alt="Ceramic Group" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p9.png" alt="ПАРТНЕР" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p10.png" alt="ROCKWOOL" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+        <div class="md:w-1/3 lg:w-[320px]">
+            <div class="partner-logo-card bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <img src="/assets/img/p11.png" alt="ALCOTEK" class="max-w-full h-auto max-h-16">
+            </div>
+        </div>
+
+    </div>
+</section>

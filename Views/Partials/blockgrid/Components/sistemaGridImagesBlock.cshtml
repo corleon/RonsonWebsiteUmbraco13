@@ -1,0 +1,8 @@
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+<div class="space-y-6 mt-10 mb-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    </div>
+</div>

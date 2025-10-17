@@ -1,0 +1,18 @@
+<div style="margin: 10px 0;" ng-click="block.edit()">
+    <div ng-if="block.data.image">
+        {{mediaItem = (block.data.image[0].mediaKey | mediaItemResolver); ""}}
+        
+        <div style="margin: 40px 0; text-align: {{block.data.imageAlign || 'left'}};">
+            <img ng-src="{{mediaItem.mediaLink}}" 
+                 alt="Изображение системы" 
+                 ng-style="{'width': block.data.imageSize || '100%', 'height': 'auto', 'border-radius': '16px', 'display': 'inline-block'}">
+            <div style="font-size: 11px; color: #666; margin-top: 4px;">
+                Размер: {{block.data.imageSize || '100%'}} | Выравнивание: {{block.data.imageAlign || 'left'}}
+            </div>
+        </div>
+    </div>
+    
+    <div ng-if="!block.data.image" style="padding: 20px; text-align: center; color: #999; border: 2px dashed #ddd; border-radius: 16px;">
+        Изображение не выбрано
+    </div>
+</div>

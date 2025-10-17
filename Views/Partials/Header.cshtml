@@ -1,0 +1,311 @@
+﻿@using Umbraco.Cms.Core.Models.PublishedContent;
+@using Umbraco.Extensions;
+@{
+    var currentPage = Umbraco.AssignedContentItem;
+    var rootPage = currentPage.Root();
+
+    var phoneMain = ViewData["PhoneMain"] as string;
+    var phoneSales = ViewData["PhoneSales"] as string;
+    var email = ViewData["Email"] as string;
+    var socialWhatsapp = ViewData["SocialWhatsapp"] as string;
+    var socialTelegram = ViewData["SocialTelegram"] as string;
+    var socialVk = ViewData["SocialVk"] as string;
+    var socialYoutube = ViewData["SocialYoutube"] as string;
+    var socialRutube = ViewData["SocialRutube"] as string;
+
+    var menuFolders = rootPage.Children.Where(x => x.IsVisible() && (x.ContentType.Alias == "papka" || x.ContentType.Alias == "sistemy")).OrderBy(x => x.SortOrder);
+}
+
+<header class="bg-white relative z-50">
+    <div class="max-w-[1440px] mx-auto px-4">
+        <div class="flex items-center justify-between h-16 gap-8">
+
+            <!-- БЛОК 1: Логотип -->
+            <div class="flex-shrink-0">
+                <a href="@rootPage.Url()">
+                    <img src="/assets/icons/logo.svg" alt="РОНСОН ГРУПП" class="h-[28px] w-auto">
+                </a>
+            </div>
+
+            <!-- БЛОК 2: Навигация (flex-grow для заполнения пространства) -->
+            <nav class="hidden lg:flex items-center gap-6 flex-grow">
+                @*<a href="@rootPage.Url()" class="font-medium hover:text-accent transition-colors text-sm xl:text-base whitespace-nowrap @(currentPage.Id == rootPage.Id ? "text-accent" : "")">
+                    ГЛАВНАЯ
+                </a>*@
+
+                @foreach (var folder in menuFolders)
+                {
+                    var folderChildren = folder.Children.Where(x => x.IsVisible()).OrderBy(x => x.SortOrder);
+                    var hasChildren = folderChildren.Any();
+
+                    if (hasChildren)
+                    {
+                        <div class="relative group">
+                            <button class="flex items-center gap-1 font-medium hover:text-accent transition-colors text-sm xl:text-base whitespace-nowrap @(folder.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                                <span>@folder.Name.ToUpper()</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div class="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                <div class="py-2">
+                                    @foreach (var child in folderChildren)
+                                    {
+                                        <a href="@child.Url()" class="block px-4 py-2 font-medium hover:bg-neutral-100 transition-colors @(child.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                                            @child.Name.ToUpper()
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="@folder.Url()" class="font-medium hover:text-accent transition-colors text-sm xl:text-base whitespace-nowrap @(folder.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                            @folder.Name.ToUpper()
+                        </a>
+                    }
+                }
+
+                @{
+                    var otherMenuItems = rootPage.Children.Where(x => x.IsVisible() && x.ContentType.Alias != "papka" && x.ContentType.Alias != "home").OrderBy(x => x.SortOrder);
+                }
+                @foreach (var item in otherMenuItems)
+                {
+                    <a href="@item.Url()" class="font-medium hover:text-accent transition-colors text-sm xl:text-base whitespace-nowrap @(item.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                        @item.Name.ToUpper()
+                    </a>
+                }
+            </nav>
+
+            <!-- БЛОК 3: Социальные сети -->
+            <div class="hidden lg:flex items-center gap-2 flex-shrink-0">
+                @if (!string.IsNullOrEmpty(socialWhatsapp))
+                {
+                    <a href="@socialWhatsapp" target="_blank" rel="noopener noreferrer"
+                       class="w-8 h-8 bg-accent rounded flex items-center justify-center hover:bg-accent-hover transition-colors">
+                        <img src="/assets/icons/Icon-whatsapp-24.svg" alt="WhatsApp" class="w-[18px] h-[18px]">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialTelegram))
+                {
+                    <a href="@socialTelegram" target="_blank" rel="noopener noreferrer"
+                       class="w-8 h-8 bg-accent rounded flex items-center justify-center hover:bg-accent-hover transition-colors">
+                        <img src="/assets/icons/Icon-telegram-24.svg" alt="Telegram" class="w-[18px] h-[18px]">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialVk))
+                {
+                    <a href="@socialVk" target="_blank" rel="noopener noreferrer"
+                       class="w-8 h-8 bg-accent rounded flex items-center justify-center hover:bg-accent-hover transition-colors">
+                        <img src="/assets/icons/Icon-vk-24.svg" alt="VK" class="w-[18px] h-[18px]">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialYoutube))
+                {
+                    <a href="@socialYoutube" target="_blank" rel="noopener noreferrer"
+                       class="w-8 h-8 bg-accent rounded flex items-center justify-center hover:bg-accent-hover transition-colors">
+                        <img src="/assets/icons/Icon-youtube-24.svg" alt="YouTube" class="w-[18px] h-[18px]">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialRutube))
+                {
+                    <a href="@socialRutube" target="_blank" rel="noopener noreferrer"
+                       class="w-8 h-8 bg-accent rounded flex items-center justify-center hover:bg-accent-hover transition-colors">
+                        <img src="/assets/icons/Icon-rutube-24.svg" alt="RuTube" class="w-[18px] h-[18px]">
+                    </a>
+                }
+            </div>
+
+            <!-- БЛОК 4: Поиск (раскрывающийся) -->
+            <div class="hidden lg:flex flex-shrink-0">
+                <button id="searchToggle" class="w-10 h-10 bg-white border border-accent rounded-xl flex items-center justify-center hover:bg-neutral-50 transition-colors">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile: Search + Burger -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <button id="searchToggleMobile" class="w-10 h-10 bg-white border border-accent rounded-xl flex items-center justify-center hover:bg-neutral-50 transition-colors">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </button>
+                <button id="mobileMenuToggle" class="w-10 h-10 bg-accent rounded flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Overlay (выдвигается сверху) -->
+    <div id="searchOverlay" class="hidden absolute top-full left-0 right-0 bg-white border-b border-neutral-200 shadow-lg">
+        <div class="max-w-[1440px] mx-auto px-4 py-4">
+            <div class="flex items-center gap-3">
+                <div class="input-search-with-button bg-[#F7F7F7] w-full h-12">
+                    <input type="search" placeholder="Поиск" name="search" class="w-full h-full text-base px-4" id="desktop-search" autofocus>
+                    <button class="search-text-btn h-10 w-10 p-0 flex items-center justify-center" type="submit">
+                        <img src="/assets/icons/search-white.svg" alt="search" class="w-[16px] h-[16px]">
+                    </button>
+                </div>
+                <button id="searchClose" class="flex-shrink-0 w-10 h-10 flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-neutral-200">
+        <div class="px-4 py-2 space-y-1">
+            <a href="@rootPage.Url()" class="block px-3 py-2 font-medium hover:bg-neutral-100 rounded-md @(currentPage.Id == rootPage.Id ? "text-accent" : "")">
+                ГЛАВНАЯ
+            </a>
+
+            @foreach (var folder in menuFolders)
+            {
+                var folderChildren = folder.Children.Where(x => x.IsVisible()).OrderBy(x => x.SortOrder);
+                var hasChildren = folderChildren.Any();
+
+                if (hasChildren)
+                {
+                    <button data-mobile-dropdown="@folder.Id" class="mobile-dropdown-toggle w-full flex items-center justify-between px-3 py-2 font-medium hover:bg-neutral-100 rounded-md text-left">
+                        <span>@folder.Name.ToUpper()</span>
+                        <svg class="mobile-dropdown-chevron w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div data-mobile-menu="@folder.Id" class="mobile-dropdown-menu hidden pl-6 space-y-1">
+                        @foreach (var child in folderChildren)
+                        {
+                            <a href="@child.Url()" class="block px-3 py-2 font-medium hover:bg-neutral-100 rounded-md @(child.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                                @child.Name.ToUpper()
+                            </a>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <a href="@folder.Url()" class="block px-3 py-2 font-medium hover:bg-neutral-100 rounded-md @(folder.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                        @folder.Name.ToUpper()
+                    </a>
+                }
+            }
+
+            @foreach (var item in otherMenuItems)
+            {
+                <a href="@item.Url()" class="block px-3 py-2 font-medium hover:bg-neutral-100 rounded-md @(item.IsAncestorOrSelf(currentPage) ? "text-accent" : "")">
+                    @item.Name.ToUpper()
+                </a>
+            }
+
+            <div class="flex items-center gap-2 pt-2 border-t border-neutral-200">
+                @if (!string.IsNullOrEmpty(socialWhatsapp))
+                {
+                    <a href="@socialWhatsapp" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-accent rounded flex items-center justify-center">
+                        <img src="/assets/icons/Icon-whatsapp-24.svg" alt="WhatsApp" class="w-4 h-4">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialTelegram))
+                {
+                    <a href="@socialTelegram" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-accent rounded flex items-center justify-center">
+                        <img src="/assets/icons/Icon-telegram-24.svg" alt="Telegram" class="w-4 h-4">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialVk))
+                {
+                    <a href="@socialVk" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-accent rounded flex items-center justify-center">
+                        <img src="/assets/icons/Icon-vk-24.svg" alt="VK" class="w-4 h-4">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialYoutube))
+                {
+                    <a href="@socialYoutube" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-accent rounded flex items-center justify-center">
+                        <img src="/assets/icons/Icon-youtube-24.svg" alt="YouTube" class="w-4 h-4">
+                    </a>
+                }
+                @if (!string.IsNullOrEmpty(socialRutube))
+                {
+                    <a href="@socialRutube" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-accent rounded flex items-center justify-center">
+                        <img src="/assets/icons/Icon-rutube-24.svg" alt="RuTube" class="w-4 h-4">
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const searchToggle = document.getElementById('searchToggle');
+        const searchToggleMobile = document.getElementById('searchToggleMobile');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchClose = document.getElementById('searchClose');
+
+        // Mobile menu toggle
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Desktop search toggle
+        if (searchToggle && searchOverlay) {
+            searchToggle.addEventListener('click', function () {
+                searchOverlay.classList.remove('hidden');
+                const searchInput = document.getElementById('desktop-search');
+                if (searchInput) {
+                    setTimeout(() => searchInput.focus(), 100);
+                }
+            });
+        }
+
+        // Mobile search toggle
+        if (searchToggleMobile && searchOverlay) {
+            searchToggleMobile.addEventListener('click', function () {
+                searchOverlay.classList.remove('hidden');
+                const searchInput = document.getElementById('desktop-search');
+                if (searchInput) {
+                    setTimeout(() => searchInput.focus(), 100);
+                }
+            });
+        }
+
+        // Close search
+        if (searchClose && searchOverlay) {
+            searchClose.addEventListener('click', function () {
+                searchOverlay.classList.add('hidden');
+            });
+        }
+
+        // Close search on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && searchOverlay && !searchOverlay.classList.contains('hidden')) {
+                searchOverlay.classList.add('hidden');
+            }
+        });
+
+        // Mobile dropdowns
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const menuId = this.getAttribute('data-mobile-dropdown');
+                const menu = document.querySelector(`[data-mobile-menu="${menuId}"]`);
+                const chevron = this.querySelector('.mobile-dropdown-chevron');
+
+                if (menu) {
+                    menu.classList.toggle('hidden');
+                    chevron.classList.toggle('rotate-180');
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,1989 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+}
+<!-- HERO SECTION (TOP WIDGET) -->
+<section class="hero-section max-w-[1440px] mx-auto relative overflow-hidden xl:pb-40 pt-20 flex flex-col">
+    <!-- SVG ARCS BACKGROUND -->
+
+    <div class="container relative z-10 py-10">
+        <div class="text-center">
+
+            <h1 class="hero-title">РОНСОН ГРУПП</h1>
+            <h3 class="mt-5 text-[42px] font-normal tracking-normal">
+                здесь архитектура<br>встречается
+                с инженерией
+            </h3>
+            <div class="flex justify-center mt-12">
+                <button class="btn-primary">РАБОТАТЬ С НАМИ</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CLIENT LOGOS SECTION -->
+<section class="relative bg-transparent overflow-x-hidden md:overflow-x-visible mobile-section-divider">
+    <div class="container relative">
+        <!-- Fade overlays -->
+        <div class="pointer-events-none absolute top-0 h-full z-10
+                 left-0 w-12
+                 md:left-[-150px] md:w-[200px]"
+             style="background: linear-gradient(to right, #F7F7F7 80%, transparent);">
+        </div>
+        <div class="pointer-events-none absolute top-0 h-full z-10
+                 right-0 w-12
+                 md:right-[-150px] md:w-[200px]"
+             style="background: linear-gradient(to left, #F7F7F7 80%, transparent);">
+        </div>
+
+        <!-- Logo grid -->
+        <div id="logo-masonry-outer" class="relative z-0 w-full overflow-hidden" style="height: 240px;">
+            <div id="logo-masonry-marquee" class="w-max">
+                <div id="logo-masonry-rows" class="flex flex-col gap-6"></div>
+            </div>
+        </div>
+
+        <template id="logo-card-template">
+            <div class="bg-white rounded-4xl flex items-center justify-center w-[320px] h-[104px] shadow-sm logo-card">
+                <img src="/assets/img/logo-clinets.png" alt="Клиент" class="max-h-[72px] max-w-[280px] object-contain"
+                     loading="lazy" />
+            </div>
+        </template>
+
+        <script>
+            const outer = document.getElementById('logo-masonry-outer');
+            const marquee = document.getElementById('logo-masonry-marquee');
+            const rowsContainer = document.getElementById('logo-masonry-rows');
+            const tpl = document.getElementById('logo-card-template');
+            const LOGO_COUNT = 20;
+            const CARD_WIDTH = 320 + 24; // card + gap
+
+            function logosPerRow() {
+              return Math.floor(outer.offsetWidth / CARD_WIDTH) || 1;
+            }
+
+            function splitRowsEvenly() {
+              const n = LOGO_COUNT;
+              const topCount = Math.ceil(n / 2);
+              const bottomCount = Math.floor(n / 2);
+              const top = Array.from({ length: topCount }, (_, i) => i);
+              const bottom = Array.from({ length: bottomCount }, (_, i) => i + topCount);
+              return [top, bottom];
+            }
+
+            function renderRows() {
+              rowsContainer.innerHTML = '';
+              const [top, bottom] = splitRowsEvenly();
+
+              const topRow = document.createElement('div');
+              topRow.className = 'flex flex-row gap-6';
+              top.forEach(() => {
+                const clone = tpl.content.cloneNode(true);
+                topRow.appendChild(clone);
+              });
+              rowsContainer.appendChild(topRow);
+
+              if (bottom.length) {
+                const bottomRow = document.createElement('div');
+                bottomRow.className = 'flex flex-row gap-6';
+                bottomRow.style.marginLeft = (CARD_WIDTH / 2) + 'px';
+                bottom.forEach(() => {
+                  const clone = tpl.content.cloneNode(true);
+                  bottomRow.appendChild(clone);
+                });
+                rowsContainer.appendChild(bottomRow);
+              }
+            }
+
+            function startMarquee() {
+              marquee.classList.add('marquee-animation');
+            }
+
+            function stopMarquee() {
+              marquee.classList.remove('marquee-animation');
+            }
+
+            function update() {
+              stopMarquee();
+              renderRows();
+
+              const totalWidth = marquee.scrollWidth;
+              const containerWidth = outer.offsetWidth;
+              if (totalWidth > containerWidth) startMarquee();
+            }
+
+            window.addEventListener('resize', update);
+            update();
+        </script>
+    </div>
+</section>
+
+
+<!-- NEWS SECTION -->
+<section class="reveal container mx-auto mt-10 xl:mt-36 mobile-section-divider">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <h2>Новости</h2>
+        <a href="/o-nas/novosti/" class="btn-primary">ВСЕ НОВОСТИ</a>
+    </div>
+
+    <!-- key changes: auto-rows-fr + each article/a is h-full flex-col -->
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4 auto-rows-fr mt-10 md:mt-16">
+        <!-- 1 -->
+        <article class="col-span-1 h-full">
+            <a href="/o-nas/novosti/kak-proshel-proekt-dlya-zhk-mitino/" class="group h-full flex flex-col">
+                <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                    <img src="/assets/img/n1.jpg" alt="News 1" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+
+                <!-- make text area flex; push date to bottom -->
+                <div class="flex flex-col flex-1">
+                    <!-- force single line w/ ellipsis -->
+                    <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                        Как прошел проект для ЖК МИТИНО
+                    </h4>
+                    <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">12 марта, 2025</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- 2 -->
+        <article class="col-span-1 h-full">
+            <a href="/o-nas/novosti/ronson-grupp-zavershila-fasadnye-raboty-v-zhk-farskaya-stolifa/" class="group h-full flex flex-col">
+                <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                    <img src="/assets/img/n2.jpg" alt="News 2" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="flex flex-col flex-1">
+                    <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                        РОНСОН ГРУПП поздравляет с&nbsp;8&nbsp;марта!
+                    </h4>
+                    <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">8 марта, 2025</span>
+                </div>
+            </a>
+        </article>
+
+        <!-- 3 (double-wide on desktop) -->
+        <article class="col-span-1 md:col-span-2 h-full">
+            <a href="#" class="group h-full flex flex-col">
+                <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                    <img src="/assets/img/n3.jpg" alt="News 3" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="flex flex-col flex-1">
+                    <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                        Как мы сделали фасад для апарт-квартала на&nbsp;«Бауманской»
+                    </h4>
+                    <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">3 марта, 2025</span>
+                </div>
+            </a>
+        </article>
+    </div>
+</section>
+
+
+
+<!-- CIRCULAR ABOUT SECTION -->
+<section data-reveal-stagger class="reveal relative overflow-hidden mt-12 xl:mt-36 mobile-section-divider">
+    <div class="container mx-auto">
+        <!-- ===== Mobile / Tablet / Laptop (grid) ===== -->
+        <div class="block xl:hidden">
+            <div class="mx-auto px-4">
+                <!-- Heading -->
+                <div class="text-center">
+                    <h2 class="h2 sm:h1 mt-10">
+                        Более 30 лет создаём <br />
+                        фасады, <span class="text-regular-tertiary">которыми гордятся</span>
+                    </h2>
+                </div>
+
+                <!-- Description & CTA -->
+                <div class="mt-6 max-w-[680px] mx-auto">
+                    <p class="body2 mb-3">
+                        Мы сами проектируем, сами производим подсистемы и некоторые виды материалов для их
+                        облицовки (клинкер, декор из стеклофибро-бетона), имеем собственное монтажное
+                        подразделение и отдел логистики.
+                    </p>
+                    <p class="body2 mb-6 text-regular-tertiary">
+                        Комплексный подход помогает нашим клиентам избежать нестыковок на разных этапах
+                        фасадного производства.
+                    </p>
+                    <a href="/o-nas/kompaniya/" class="button btn-primary btn-stroke">О КОМПАНИИ</a>
+                </div>
+
+                <!-- Image grid (no absolute positioning) -->
+                <div class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <img src="/assets/img/c1.jpg" alt="Building 1"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c2.jpg" alt="Building 2"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c3.jpg" alt="Building 3"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c4.jpg" alt="Building 4"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c5.jpg" alt="Building 5"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c6.jpg" alt="Building 6"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                    <img src="/assets/img/c7.jpg" alt="Building 7"
+                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                </div>
+
+                <!-- Bottom text -->
+                <h3 class="mt-8 text-center">
+                    5 000 000 м² фасадов на подсистеме Ронсон
+                </h3>
+            </div>
+        </div>
+
+        <!-- ===== Desktop (original, untouched) ===== -->
+        <div class="hidden xl:block">
+            <div class="relative mx-auto">
+                <!-- Circular container -->
+                <div class="relative w-full aspect-square mx-auto rounded-full overflow-hidden shadow-custom-drop">
+
+                    <!-- Second background pattern -->
+                    <div class="absolute inset-0 top-0 rounded-full"
+                         style="background: url('/assets/bg/lines3.svg') center center no-repeat #fff; background-size: cover;">
+                    </div>
+
+                    <!-- Central content -->
+                    <div class="relative z-10 text-center h-full flex flex-col">
+                        <div class="flex flex-col gap-4">
+                            <!-- Main heading -->
+                            <h2 class="h1 mt-[250px]">
+                                Более 30 лет создаём <br> фасады,
+                                <span class="text-regular-tertiary"> которыми гордятся</span>
+                            </h2>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="max-w-[465px] body2 text-left absolute bottom-[40%] right-10">
+                            <p class="body2 mb-3">
+                                Мы сами проектируем, сами производим подсистемы и некоторые виды материалов для их
+                                облицовки (клинкер, декор из стеклофибро-бетона), имеем собственное монтажное подразделение и отдел
+                                логистики.
+                            </p>
+                            <p class="body2 mb-5 text-regular-tertiary">
+                                Комплексный подход помогает нашим клиентам избежать нестыковок
+                                на разных этапах фасадного производства.
+                            </p>
+                            <!-- Button -->
+                            <a href="/o-nas/kompaniya/" class="button btn-primary btn-stroke mb-8">О КОМПАНИИ</a>
+                        </div>
+
+                        <!-- Bottom text -->
+                        <h3 class="absolute bottom-[10%] left-[50%] transform -translate-x-1/2">
+                            5 000 000 м² фасадов на подсистеме Ронсон
+                        </h3>
+                    </div>
+
+                    <!-- Building images positioned absolutely around the circle -->
+                    <img src="/assets/img/c1.jpg" alt="Building 1"
+                         class="absolute top-[35%] left-[-1%] w-16 h-16 md:w-[177px] md:h-[177px] rounded-4xl object-cover">
+                    <img src="/assets/img/c2.jpg" alt="Building 2"
+                         class="absolute top-[54%] left-[10%] transform -translate-y-1/2 w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
+                    <img src="/assets/img/c3.jpg" alt="Building 3"
+                         class="absolute top-[38%] left-[26%] w-16 h-16 md:w-[177px] md:h-[177px] rounded-xl object-cover">
+                    <img src="/assets/img/c4.jpg" alt="Building 4"
+                         class="absolute top-[57%] left-[32%] transform -translate-x-1/2 w-16 h-16 md:w-[142px] md:h-[142px] rounded-xl object-cover">
+                    <img src="/assets/img/c5.jpg" alt="Building 5"
+                         class="absolute top-[32%] left-[43%] w-16 h-16 md:w-[177px] md:h-[177px] rounded-xl object-cover">
+                    <img src="/assets/img/c6.jpg" alt="Building 6"
+                         class="absolute top-[60%] left-[42%] transform -translate-y-1/2 w-16 h-16 md:w-[219px] md:h-[219px] rounded-xl object-cover">
+                    <img src="/assets/img/c7.jpg" alt="Building 7"
+                         class="absolute top-[65%] left-[64%] w-16 h-16 md:w-24 md:h-24 rounded-xl object-cover">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary  mt-10 xl:mt-36 mobile-section-divider">
+    <div class="container mx-auto">
+        <div class="max-w-[1100px] mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Card 1 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                             loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">
+                        Лев Фоменюк</hs4>
+                        <span class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший инженер</span>
+                </div>
+                <!-- Card 2 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m2.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                             loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший инженер</span>
+                </div>
+                <!-- Card 3 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                             loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший инженер</span>
+                </div>
+                <!-- Card 4 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m2.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                             loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший инженер</span>
+                </div>
+                <!-- Card 5 -->
+                <div class="flex flex-col">
+                    <div class="aspect-square w-full max-w-[200px]">
+                        <img src="/assets/img/m1.jpg" alt="Лев Фоменюк" class="w-full h-full object-cover rounded-4xl"
+                             loading="lazy" />
+                    </div>
+                    <h4 class="mt-10 tracking-wide">Лев Фоменюк</h4>
+                    <span class="inline-block bg-white mt-5 text-neutral-500 text-base rounded-xl px-5 py-2 w-fit">Старший инженер</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS/RECRUITMENT WIDGET -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary  mt-10 xl:mt-36 mobile-section-divider">
+    <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 items-center justify-items-center gap-5 md:gap-0">
+        <!-- Left Video -->
+        <div class="w-full flex items-center justify-center ">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <video src="/assets/video/v1.mp4" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
+            </div>
+        </div>
+        <!-- Center Text -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full p-[1px]" style="background:linear-gradient(180deg,#DBDBDB 0%,#DB0007 100%)">
+                <div class="bg-white rounded-full w-full h-full flex flex-col items-center justify-center text-center px-6">
+                    <div class="text-[96px] font-semibold leading-none mb-2">300+</div>
+                    <h4>специалистов в штате<br>РОНСОН ГРУПП</h4>
+                    <a href="#" class="btn-primary btn-stroke mt-8">ПОСМОТРЕТЬ ВАКАНСИИ</a>
+                </div>
+            </div>
+        </div>
+        <!-- Right Video -->
+        <div class="w-full flex items-center justify-center">
+            <div class="w-full aspect-square rounded-full overflow-hidden bg-black">
+                <video src="/assets/video/v2.mp4" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- HOW WE WORK SLIDER -->
+<section data-reveal-stagger class="reveal w-full bg-background-primary   mt-10 xl:mt-36 mobile-section-divider">
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="h2">Как мы работаем</h2>
+
+            <!-- Кнопки -->
+            <div class="flex gap-2">
+                <button id="slider-prev"
+                        class="border border-accent text-accent rounded-lg w-10 h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                        <path d="M13 15l-5-5 5-5" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button id="slider-next"
+                        class="border border-accent text-accent rounded-lg w-10 h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                        <path d="M7 5l5 5-5 5" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Слайдер -->
+        <div class="relative">
+            <div class="overflow-x-visible">
+                <div id="work-slider"
+                     class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory hide-scrollbar"
+                     style="width: calc(100vw - (100vw - 100%)); padding-right: 16px;">
+                    <!-- Step 1 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">1</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Предпроектная работа<br>с архитектором</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">2</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Осмечивание объекта</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">3</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Проектирование</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">4</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Поставка<br>и производство</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">5</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Обучение / Шеф-монтаж / авторский надзор</div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="min-w-[290px]  bg-white rounded-xl border border-stroke p-4 flex flex-col snap-start">
+                        <div class="w-7 h-7 border border-accent rounded-full flex items-center justify-center text-accent text-base mb-8">6</div>
+                        <div class="mt-auto">
+                            <div class="font-medium body2 ">Сдача объекта</div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <style>
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .cursor-grabbing {
+                cursor: grabbing !important;
+                user-select: none;
+            }
+        </style>
+    </div>
+
+
+    <script>
+        const slider = document.getElementById('work-slider');
+        const prevBtn = document.getElementById('slider-prev');
+        const nextBtn = document.getElementById('slider-next');
+
+        // --- Grab to scroll logic ---
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('cursor-grabbing');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.2; // 1.2 = scroll speed
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        /** Получаем все карточки */
+        function getCards() {
+            return slider.querySelectorAll('div.snap-start');
+        }
+
+        /** Проверяем, полностью ли видна последняя карточка */
+        function isLastCardFullyVisible() {
+            const cards = getCards();
+            if (cards.length === 0) return true;
+
+            const lastCard = cards[cards.length - 1];
+            const sliderRect = slider.getBoundingClientRect();
+            const lastCardRect = lastCard.getBoundingClientRect();
+
+            // Проверяем, что правая граница последней карточки находится внутри видимой области слайдера
+            return lastCardRect.right <= sliderRect.right + 1;
+        }
+
+        /** Получаем максимальную позицию прокрутки, где последняя карточка полностью видна */
+        function getMaxScrollPosition() {
+            const cards = getCards();
+            if (cards.length === 0) return 0;
+
+            const lastCard = cards[cards.length - 1];
+            const sliderRect = slider.getBoundingClientRect();
+            const lastCardRect = lastCard.getBoundingClientRect();
+
+            // Если последняя карточка уже полностью видна, возвращаем текущую позицию
+            if (lastCardRect.right <= sliderRect.right) {
+                return slider.scrollLeft;
+            }
+
+            // Иначе вычисляем позицию, где последняя карточка будет полностью видна
+            const scrollAmount = lastCardRect.right - sliderRect.right + slider.scrollLeft;
+            return scrollAmount;
+        }
+
+        /** Ограничиваем scrollLeft в допустимых пределах */
+        function clamp(value) {
+            const max = getMaxScrollPosition();
+            return Math.max(0, Math.min(value, max));
+        }
+
+        /** Обновляем состояние кнопок */
+        function updateBtns() {
+            prevBtn.disabled = slider.scrollLeft <= 0;
+            nextBtn.disabled = isLastCardFullyVisible();
+        }
+
+        /** Прокрутка к предыдущей карточке */
+        prevBtn.addEventListener('click', () => {
+            const cards = getCards();
+            if (cards.length === 0) return;
+
+            const currentScroll = slider.scrollLeft;
+            let targetScroll = currentScroll;
+
+            // Находим карточку, которая должна быть видна после прокрутки
+            for (let i = cards.length - 1; i >= 0; i--) {
+                const card = cards[i];
+                const cardLeft = card.offsetLeft;
+
+                if (cardLeft < currentScroll) {
+                    targetScroll = cardLeft;
+                    break;
+                }
+            }
+
+            slider.scrollTo({ left: targetScroll, behavior: 'smooth' });
+        });
+
+        /** Прокрутка к следующей карточке */
+        nextBtn.addEventListener('click', () => {
+            const cards = getCards();
+            if (cards.length === 0) return;
+
+            const currentScroll = slider.scrollLeft;
+            let targetScroll = currentScroll;
+
+            // Находим следующую карточку, которая должна быть видна
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                const cardLeft = card.offsetLeft;
+
+                if (cardLeft > currentScroll) {
+                    targetScroll = cardLeft;
+                    break;
+                }
+            }
+
+            // Если не нашли следующую карточку, прокручиваем к последней
+            if (targetScroll === currentScroll) {
+                const lastCard = cards[cards.length - 1];
+                const sliderRect = slider.getBoundingClientRect();
+                const lastCardRect = lastCard.getBoundingClientRect();
+
+                if (lastCardRect.right > sliderRect.right) {
+                    targetScroll = lastCardRect.right - sliderRect.right + slider.scrollLeft;
+                }
+            }
+
+            slider.scrollTo({ left: clamp(targetScroll), behavior: 'smooth' });
+        });
+
+        slider.addEventListener('scroll', updateBtns);
+        window.addEventListener('resize', updateBtns);
+        updateBtns();
+    </script>
+</section>
+
+<!-- SECTION: OUR SYSTEMS -->
+<section data-reveal-stagger class="reveal container mx-auto mt-10 xl:mt-36 mobile-section-divider">
+    <h2 class="text-center">Наши системы</h2>
+    <div class="flex flex-col md:flex-row gap-6 items-stretch xl:max-h-[500px] mt-14">
+        <!-- Left: Large image (33% on md+) -->
+        <div class="w-full md:w-[33%] flex items-center justify-center bg-white rounded-4xl p-6 min-h-[340px] max-h-[500px]">
+            <img id="system-image" src="/assets/img/s2.jpg" alt="System" class="max-h-[420px] transition-all duration-300" />
+        </div>
+
+        <!-- Right: Scrollable list (67% on md+) -->
+        <div class="bg-white rounded-4xl w-full md:w-[67%]">
+            <div class="md:pr-8 m-8 md:overflow-y-scroll  max-h-[430px] systems-scrollbar flex flex-col gap-4">
+
+                <!-- CARD 1 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s1.jpg" data-link="/systems/s1" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Модульная система</h4>
+                    </div>
+                    <div class="body1 mt-3">Universal modular solution for various facade types.</div>
+                    <!-- Single CTA (hidden by default; JS will unhide on active) -->
+                    <a href="/systems/s1" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 2 (initially active) -->
+                <div class="system-card group active relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200 bg-background-primary"
+                     data-img="assets/img/s2.jpg" data-link="/systems/s2" tabindex="0" role="button" aria-pressed="true">
+                    <div class="flex items-center justify-between">
+                        <h4 class="">Листовые материалы</h4>
+                    </div>
+                    <div class="body1 mt-3">
+                        SРОНСОН-740 — система навесного вентилируемого фасада, предназначенная для крепления кирпича РОНСОН
+                    </div>
+                    <a href="/systems/s2" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s3.jpg" data-link="/systems/s3" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Листовой стальной композит</h4>
+                    </div>
+                    <div class="body1 mt-3">Steel composite panels for durable facades.</div>
+                    <a href="/systems/s3" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s4.jpg" data-link="/systems/s4" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Керамогранит (скрытое крепление)</h4>
+                    </div>
+                    <div class="body1 mt-3">Porcelain stoneware with hidden mounting system.</div>
+                    <a href="/systems/s4" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s5.jpg" data-link="/systems/s5" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Керамогранит (видимое крепление)</h4>
+                    </div>
+                    <div class="body1 mt-3">Visible fixing for easy maintenance and replacement.</div>
+                    <a href="/systems/s5" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s6.jpg" data-link="/systems/s6" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Натуральный камень с рустами</h4>
+                    </div>
+                    <div class="body1 mt-3">Natural stone with rustication for classic facades.</div>
+                    <a href="/systems/s6" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 7 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s7.jpg" data-link="/systems/s7" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Терракота</h4>
+                    </div>
+                    <div class="body1 mt-3">Terracotta panels for warm and natural aesthetics.</div>
+                    <a href="/systems/s7" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 8 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s8.jpg" data-link="/systems/s8" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Декоративный камень и клинкер</h4>
+                    </div>
+                    <div class="body1 mt-3">Decorative stone and clinker for unique facades.</div>
+                    <a href="/systems/s8" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 9 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s9.jpg" data-link="/systems/s9" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Плитка на затирке</h4>
+                    </div>
+                    <div class="body1 mt-3">Tile with grout for traditional masonry look.</div>
+                    <a href="/systems/s9" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 10 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s10.jpg" data-link="/systems/s10" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Фасадный декор</h4>
+                    </div>
+                    <div class="body1 mt-3">Facade decor elements for architectural accents.</div>
+                    <a href="/systems/s10" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 11 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s11.jpg" data-link="/systems/s11" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Кирпичная кладка на вентфасаде</h4>
+                    </div>
+                    <div class="body1 mt-3">Brickwork on ventilated facades for durability.</div>
+                    <a href="/systems/s11" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+                <!-- CARD 12 -->
+                <div class="system-card group relative flex flex-col gap-1 rounded-2xl border p-4 cursor-pointer transition-all duration-200"
+                     data-img="assets/img/s12.jpg" data-link="/systems/s12" tabindex="0" role="button" aria-pressed="false">
+                    <div class="flex items-center justify-between">
+                        <h4>Кирпич РОНСОН</h4>
+                    </div>
+                    <div class="body1 mt-3">RONSON brick system for innovative facades.</div>
+                    <a href="/systems/s12" class="cta btn btn-stroke leading-[2rem] btn-sm btn-primary
+                    block md:inline-flex hidden
+                    w-full md:w-auto mt-4 md:mt-0 md:absolute md:top-4 md:right-4">
+                        Подробнее
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    (function () {
+      const cards = document.querySelectorAll('.system-card');
+      const img = document.getElementById('system-image');
+
+      function setActive(card) {
+        cards.forEach(c => {
+          c.classList.remove('active', 'bg-background-primary');
+          c.setAttribute('aria-pressed', 'false');
+          const btn = c.querySelector('.cta');
+          if (btn) btn.classList.add('hidden'); // hide CTA on all others
+        });
+        card.classList.add('active', 'bg-background-primary');
+        card.setAttribute('aria-pressed', 'true');
+        const btn = card.querySelector('.cta');
+        if (btn) btn.classList.remove('hidden'); // show CTA on active (mobile block, md inline-flex)
+        const src = card.getAttribute('data-img');
+        if (src && img) img.src = src;
+      }
+
+      // Initialize: prefer explicitly active, else first
+      const initial = document.querySelector('.system-card.active') || cards[0];
+      if (initial) setActive(initial);
+
+      cards.forEach(card => {
+        // Activate by click (no hover dependency)
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return; // don't re-trigger on CTA click
+          setActive(card);
+        });
+        // Keyboard accessibility
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setActive(card);
+          }
+        });
+      });
+    })();
+</script>
+
+
+<script>
+    // Accordion logic for systems widget with details button and description
+    // All comments in English
+
+    // Wait for DOM ready
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.system-card');
+        const image = document.getElementById('system-image');
+
+        if (!cards.length || !image) return;
+
+        cards.forEach((card, idx) => {
+          card.addEventListener('click', () => {
+            // Remove highlight from all cards
+            cards.forEach(c => c.classList.remove('bg-background-primary'));
+            // Highlight the current card
+            card.classList.add('bg-background-primary');
+            // Change the image in the left column
+            image.src = card.dataset.img;
+            // Show description and button only for the active card
+            cards.forEach((c, i) => {
+              const desc = c.querySelector('.body1.mt-3');
+              if (desc) desc.style.display = (c === card) ? '' : 'none';
+              const btn = c.querySelector('.btn');
+              if (btn) btn.style.display = (c === card) ? '' : 'none';
+              const title = c.querySelector('h4');
+              if (title) title.classList.toggle('text-4xl', c === card);
+            });
+          });
+        });
+
+        // Initially show description and button only for the second card
+        cards.forEach((c, idx) => {
+          const desc = c.querySelector('.body1.mt-3');
+          if (desc) desc.style.display = (idx === 1) ? '' : 'none';
+          const btn = c.querySelector('.btn');
+          if (btn) btn.style.display = (idx === 1) ? '' : 'none';
+          const title = c.querySelector('h4');
+          if (title) title.classList.toggle('text-2xl', idx === 1);
+        });
+      });
+</script>
+
+
+<script>
+    // Accordion logic for systems widget with details button and description
+    // All comments in English
+
+    // Wait for DOM ready
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.querySelectorAll('.system-card');
+        const image = document.getElementById('system-image');
+
+        if (!cards.length || !image) return;
+
+        cards.forEach((card, idx) => {
+          card.addEventListener('click', () => {
+            // Remove highlight from all cards
+            cards.forEach(c => c.classList.remove('bg-background-primary'));
+            // Highlight the current card
+            card.classList.add('bg-background-primary');
+            // Change the image in the left column
+            image.src = card.dataset.img;
+            // Show description and button only for the active card
+            cards.forEach((c, i) => {
+              const desc = c.querySelector('.body1.mt-3');
+              if (desc) desc.style.display = (c === card) ? '' : 'none';
+              const btn = c.querySelector('.btn');
+              if (btn) btn.style.display = (c === card) ? '' : 'none';
+              const title = c.querySelector('h4');
+              if (title) title.classList.toggle('text-2xl', c === card);
+            });
+          });
+        });
+
+        // Initially show description and button only for the second card
+        cards.forEach((c, idx) => {
+          const desc = c.querySelector('.body1.mt-3');
+          if (desc) desc.style.display = (idx === 1) ? '' : 'none';
+          const btn = c.querySelector('.btn');
+          if (btn) btn.style.display = (idx === 1) ? '' : 'none';
+          const title = c.querySelector('h4');
+          if (title) title.classList.toggle('text-2xl', idx === 1);
+        });
+      });
+</script>
+
+<section data-reveal-stagge class="reveal container mx-auto mt-10 xl:mt-36 mobile-section-divider">
+    <h2 class="text-center">Объекты</h2>
+
+    <!-- ===== РЯД 1 (2 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
+    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-10 md:mt-14 mb-14 md:mb-20">
+        <!-- o1 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
+                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- o2 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Переделкино Ближнее</h4>
+                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РЯД 2 (3 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
+    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
+        <!-- o3 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="#" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o4 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="#" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o5 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-квартал LOFT POST у метро «Бауманская»</h4>
+                        <div class="body1 text-regular-primary">г. Москва</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- YANDEX MAPS WIDGET -->
+<section data-reveal-stagge class=" relative mt-10 md:mt-20 pb-20 mobile-section-divider">
+    <div class="container md:overflow-hidden">
+        <div class="relative">
+            <h2 class="text-center mb-6 md:mb-10">Наши объекты на карте</h2>
+
+            <!-- Map Container -->
+            <div class="relative">
+                <div id="map" class="w-full h-[400px] md:h-[600px] shadow-lg rounded-2xl md:rounded-4xl overflow-hidden"></div>
+
+                <!-- Mobile Controls - Stacked Layout -->
+                <div class="absolute top-2 md:top-4 left-2 md:left-4 right-2 md:right-4 z-10 space-y-2 md:space-y-0 md:flex md:justify-between md:gap-4">
+                    <!-- Country Filter Bar -->
+                    <div class="flex flex-wrap gap-1 md:gap-2 bg-white/90 backdrop-blur-sm rounded-lg p-2 shadow-lg">
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all text-xs md:text-sm"
+                                data-country="russia">
+                            РОССИЯ
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="belarus">
+                            БЕЛАРУСЬ
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="kazakhstan">
+                            КАЗАХСТАН
+                        </button>
+                        <button class="country-btn px-2 py-1 md:px-4 md:py-2 rounded-lg border border-accent bg-white text-neutral-700 font-medium transition-all hover:bg-accent hover:text-white text-xs md:text-sm"
+                                data-country="armenia">
+                            АРМЕНИЯ
+                        </button>
+                    </div>
+
+                    <!-- Filters Button -->
+                    <button id="filters-btn"
+                            class="bg-white px-3 py-2 md:px-4 md:py-2 rounded-lg border border-accent shadow-md hover:shadow-lg transition-shadow text-sm md:text-base">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 mr-2 inline text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z">
+                            </path>
+                        </svg>
+                        <span class="hidden sm:inline">Фильтры</span>
+                        <span id="filter-count" class="ml-2 bg-accent text-white text-xs rounded-full px-2 py-1">0</span>
+                    </button>
+                </div>
+
+                <!-- Side Card - Mobile Responsive -->
+                <div id="side-card"
+                     class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-2rem)] md:w-80 bg-white rounded-lg shadow-lg p-4 md:p-6 z-20 max-w-sm md:max-w-none">
+                    <button id="close-card" class="absolute top-2 md:top-4 right-2 md:right-4 text-neutral-400 hover:text-neutral-600">
+                        <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <div id="card-content" class="text-sm md:text-base">
+                        <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Filters Modal - Mobile Responsive -->
+                <div id="filters-modal" class="fixed  md:absolute inset-0 bg-black bg-opacity-50 hidden z-30 rounded-2xl md:rounded-4xl overflow-hidden">
+                    <div class="flex items-center justify-center h-full p-2 md:p-4">
+                        <div class="bg-white shadow-xl w-full h-full md:max-w-3xl md:max-h-[500px] flex flex-col rounded-2xl md:rounded-4xl overflow-hidden">
+                            <div class="flex justify-between items-center p-4 md:p-6 bg-white sticky top-0 z-10 shadow">
+                                <div class="flex items-center gap-2">
+                                    <img src="/assets/icons/filterIcon.svg" alt="logo" class="w-4 h-4 md:w-5 md:h-5">
+                                    <h3 class="text-lg md:text-xl">Фильтры</h3>
+                                </div>
+                                <button id="close-modal" class="text-accent hover:text-accent-dark">
+                                    <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="overflow-y-auto systems-scrollbar flex-1">
+
+                                <div class="p-4 md:p-6 space-y-4 md:space-y-6">
+                                    <!-- Облицовка Section -->
+                                    <div class="facades-section" data-filter="facades">
+                                        <!-- Title and master checkbox -->
+                                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-4">
+                                            <h4 class="font-medium text-base md:text-lg">Облицовка</h4>
+                                            <div class="flex items-center gap-2">
+                                                <input type="checkbox" class="master-checkbox" id="facades-master">
+                                                <label for="facades-master" class="text-xs md:text-sm cursor-pointer">Выбрать все</label>
+                                                <span class="facades-count text-xs bg-accent text-white rounded-full px-2 py-1">0</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Facade categories grid - Mobile Responsive -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
+                                            <!-- Крупноформатные облицовки -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Крупноформатные облицовки" data-value="Крупноформатные облицовки">
+                                                    <span class="text-xs md:text-sm font-medium">КРУПНОФОРМАТНЫЕ ОБЛИЦОВКИ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Стеклофибробетон -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Стеклофибробетон">
+                                                    <span class="text-xs md:text-sm font-medium">СТЕКЛОФИБРОБЕТОН</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Стеклофибробетон" data-value="Крупноформатные панели из СФБ">
+                                                        <span class="text-xs md:text-sm">Крупноформатные панели из СФБ</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Стеклофибробетон" data-value="Декоративные элементы из СФБ">
+                                                        <span class="text-xs md:text-sm">Декоративные элементы из СФБ</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кирпич -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Кирпич">
+                                                    <span class="text-xs md:text-sm font-medium">КИРПИЧ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич" data-value="Кирпич стандартного размера">
+                                                        <span class="text-xs md:text-sm">Кирпич стандартного размера</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич" data-value="Кирпич РОКСОН">
+                                                        <span class="text-xs md:text-sm">Кирпич РОКСОН</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кирпич" data-value="Кирпич White Hills">
+                                                        <span class="text-xs md:text-sm">Кирпич White Hills</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Керамогранит -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Керамогранит">
+                                                    <span class="text-xs md:text-sm font-medium">КЕРАМОГРАНИТ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Керамогранит" data-value="Керамогранит (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (скрытый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Керамогранит" data-value="Керамогранит (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Керамогранит (видимый способ крепления)</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Кассеты -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Кассеты">
+                                                    <span class="text-xs md:text-sm font-medium">КАССЕТЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кассеты" data-value="Кассеты из алюмокомпозита">
+                                                        <span class="text-xs md:text-sm">Кассеты из алюмокомпозита</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Кассеты" data-value="Металлокассеты">
+                                                        <span class="text-xs md:text-sm">Металлокассеты</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Натуральный камень -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Натуральный камень" data-value="Натуральный камень">
+                                                    <span class="text-xs md:text-sm font-medium">НАТУРАЛЬНЫЙ КАМЕНЬ</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Плитка -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Плитка">
+                                                    <span class="text-xs md:text-sm font-medium">ПЛИТКА</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Плитка" data-value="Плитка – механический способ крепления">
+                                                        <span class="text-xs md:text-sm">Плитка – механический способ крепления</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Плитка" data-value="Плитка на затирке">
+                                                        <span class="text-xs md:text-sm">Плитка на затирке</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <!-- Терракота -->
+                                            <div class="facade-category">
+                                                <label class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Терракота" data-value="Терракота (объемная керамика)">
+                                                    <span class="text-xs md:text-sm font-medium">ТЕРРАКОТА (ОБЪЕМНАЯ КЕРАМИКА)</span>
+                                                </label>
+                                            </div>
+
+                                            <!-- Листовые материалы -->
+                                            <div class="facade-category" data-toggle="subcategory">
+                                                <div class="flex items-center hover:bg-neutral-50 cursor-pointer p-2 rounded">
+                                                    <input type="checkbox" class="category-checkbox mr-2" data-category="Листовые материалы">
+                                                    <span class="text-xs md:text-sm font-medium">ЛИСТОВЫЕ МАТЕРИАЛЫ</span>
+                                                    <svg class="subcategory-arrow w-3 h-3 md:w-4 md:h-4 ml-auto text-accent transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="subcategory-items hidden space-y-1 pl-4">
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Листовой композит">
+                                                        <span class="text-xs md:text-sm">Листовой композит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Листовой стальной композит">
+                                                        <span class="text-xs md:text-sm">Листовой стальной композит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Листовой алюмокомпозит">
+                                                        <span class="text-xs md:text-sm">Листовой алюмокомпозит</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Фиброцемент">
+                                                        <span class="text-xs md:text-sm">Фиброцемент</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Фиброцемент (скрытый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (скрытый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Фиброцемент (видимый способ крепления)">
+                                                        <span class="text-xs md:text-sm">Фиброцемент (видимый способ крепления)</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="HPL">
+                                                        <span class="text-xs md:text-sm">HPL</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Kmew">
+                                                        <span class="text-xs md:text-sm">Kmew</span>
+                                                    </label>
+                                                    <label class="flex items-center p-2 rounded hover:bg-neutral-50 cursor-pointer">
+                                                        <input type="checkbox" class="subcategory-checkbox mr-2" data-category="Листовые материалы" data-value="Рокпанель и Аква панель">
+                                                        <span class="text-xs md:text-sm">Рокпанель и Аква панель</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Назначение -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Назначение</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="ЖК">
+                                                ЖК
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Медицинские учреждения">
+                                                Медицинские учреждения
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Офисные здания">
+                                                Офисные здания
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Торговые центры">
+                                                Торговые центры
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Образовательные учреждения">
+                                                Образовательные учреждения
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Промышленные здания">
+                                                Промышленные здания
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Склады">
+                                                Склады
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="types" data-value="Инфраструктурные здания">
+                                                Инфраструктурные здания
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Система -->
+                                    <div>
+                                        <h4 class="font-medium mb-3">Система</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-100">
+                                                Ронсон-100
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-200">
+                                                Ронсон-200
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-300">
+                                                Ронсон-300
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-400">
+                                                Ронсон-400
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-500">
+                                                Ронсон-500
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-600">
+                                                Ронсон-600
+                                            </button>
+                                            <button class="filter-chip px-3 py-2 rounded-lg border border-neutral-300 hover:border-accent"
+                                                    data-filter="systems" data-value="Ронсон-740">
+                                                Ронсон-740
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="flex gap-3 p-2 md:p-6 border-t border-gray bg-white sticky bottom-0">
+                                <button id="apply-filters"
+                                        class="btn-primary btn-sm">
+                                    Применить фильтры
+                                </button>
+                                <button id="clear-filters"
+                                        class="btn-stroke btn-sm">
+                                    Очистить фильтры
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY_HERE&lang=ru_RU"></script>
+<script>
+      // Global variable to store projects data
+    let PROJECTS = null;
+
+      // Country centers and zoom levels
+      const COUNTRY_CENTERS = {
+        russia: { center: [37.6173, 55.7558], zoom: 4 },
+        belarus: { center: [27.5615, 53.9045], zoom: 7 },
+        kazakhstan: { center: [71.4306, 51.1801], zoom: 6 },
+        armenia: { center: [44.5035, 40.1872], zoom: 8 }
+      };
+
+      // Global variables
+      let map, objectManager;
+      let activeMarkerId = null; // Track active marker
+      let filtersState = {
+        country: 'russia',
+        facades: new Set(),
+        systems: new Set(),
+        types: new Set(),
+        year: ''
+      };
+
+      // Fetch projects data
+    async function fetchProjects() {
+      try {
+        const response = await fetch('/assets/data/projects.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        PROJECTS = await response.json();
+        console.log('Projects data loaded successfully');
+        return PROJECTS;
+      } catch (error) {
+        console.error('Failed to fetch projects data:', error);
+        // Fallback to empty data structure
+        PROJECTS = { type: "FeatureCollection", features: [] };
+        return PROJECTS;
+      }
+    }
+
+    // Initialize the map
+    async function initMap() {
+      try {
+        // First fetch the projects data
+        await fetchProjects();
+
+        ymaps.ready(() => {
+          // Create map instance
+          map = new ymaps.Map('map', {
+            center: COUNTRY_CENTERS.russia.center,
+            zoom: COUNTRY_CENTERS.russia.zoom,
+            controls: ['zoomControl', 'fullscreenControl']
+          });
+
+          // Create ObjectManager for clustering with custom styling
+          objectManager = new ymaps.ObjectManager({
+            clusterize: true,
+            gridSize: 50,
+            clusterDisableClickZoom: false,
+            clusterIcons: [
+              {
+                href: 'data:image/svg+xml;base64,' + btoa(`
+                  <svg width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="22" r="20" fill="white" stroke="#bd1a1a" stroke-width="3"/>
+                  </svg>
+                `),
+                size: [44, 44],
+                offset: [-22, -22]
+              }
+            ],
+            clusterIconContentLayout: ymaps.templateLayoutFactory.createClass(
+              '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);' +
+              'font-size:14px;font-weight:700;color:#bd1a1a;user-select:none;">' +
+              '$[properties.geoObjects.length]' +
+              '</div>'
+            )
+          });
+
+          // Set custom marker styling - use default layout but override with CSS
+          objectManager.objects.options.set('iconLayout', 'default#image');
+          objectManager.objects.options.set('iconImageHref', 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+            </svg>
+          `));
+          objectManager.objects.options.set('iconImageSize', [24, 24]);
+          objectManager.objects.options.set('iconImageOffset', [-12, -12]);
+
+          // Add objects to ObjectManager
+          objectManager.add(PROJECTS);
+
+          // Add ObjectManager to map
+          map.geoObjects.add(objectManager);
+
+          // Disable default balloons
+          objectManager.objects.options.set('balloonContentLayout', null);
+          objectManager.clusters.options.set('balloonContentLayout', null);
+
+          // Handle object clicks
+          objectManager.objects.events.add('click', (e) => {
+            const objectId = e.get('objectId');
+            const feature = PROJECTS.features.find(f => f.id === objectId);
+            if (feature) {
+              setActiveMarker(objectId);
+              openCard(feature);
+            }
+          });
+
+          // Handle cluster clicks (default zoom behavior)
+          objectManager.clusters.events.add('click', (e) => {
+            const clusterId = e.get('objectId');
+            const cluster = objectManager.clusters.getById(clusterId);
+            if (cluster) {
+              map.setBounds(cluster.geometry.getBounds(), { checkZoomRange: true });
+            }
+          });
+
+          console.log('Map initialized successfully');
+        });
+      } catch (error) {
+        console.error('Failed to initialize map:', error);
+      }
+    }
+
+      // Setup UI event listeners
+      function setupUI() {
+        // Country buttons
+        document.querySelectorAll('.country-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const country = btn.dataset.country;
+            setActiveCountry(country);
+          });
+        });
+
+        // Filters button
+        document.getElementById('filters-btn').addEventListener('click', openFiltersModal);
+
+        // Modal close button
+        document.getElementById('close-modal').addEventListener('click', closeFiltersModal);
+
+        // Apply filters button
+        document.getElementById('apply-filters').addEventListener('click', applyFilters);
+
+        // Clear filters button
+        document.getElementById('clear-filters').addEventListener('click', clearFilters);
+
+        // Close card button
+        document.getElementById('close-card').addEventListener('click', closeCard);
+
+
+
+        // Filter chips - using event delegation on the modal
+        const filtersModal = document.getElementById('filters-modal');
+        console.log('Setting up filter chips, modal found:', !!filtersModal);
+        console.log('Filter chips found:', document.querySelectorAll('.filter-chip').length);
+
+        filtersModal.addEventListener('click', (e) => {
+          if (e.target.classList.contains('filter-chip')) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Filter chip clicked:', e.target.dataset.filter, e.target.dataset.value);
+            const filter = e.target.dataset.filter;
+            const value = e.target.dataset.value;
+            toggleFilterChip(e.target, filter, value);
+          }
+        });
+
+        // Dropdown checkbox functionality
+        setupDropdownCheckboxes();
+
+        // Filter checkboxes (for other sections)
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+          checkbox.addEventListener('change', () => {
+            const filter = checkbox.dataset.filter;
+            const value = checkbox.value;
+            if (checkbox.checked) {
+              filtersState[filter].add(value);
+            } else {
+              filtersState[filter].delete(value);
+            }
+          });
+        });
+
+        // Close modal on backdrop click
+        document.getElementById('filters-modal').addEventListener('click', (e) => {
+          if (e.target.id === 'filters-modal') {
+            closeFiltersModal();
+          }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeFiltersModal();
+            closeCard();
+          }
+        });
+      }
+
+      // Set active country
+      function setActiveCountry(country) {
+        // Update button states
+        document.querySelectorAll('.country-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.country === country) {
+            btn.classList.add('active');
+          }
+        });
+
+        // Update filters state
+        filtersState.country = country;
+
+        // Move map to country center
+        const center = COUNTRY_CENTERS[country];
+        map.setCenter(center.center, center.zoom);
+
+        // Apply filters
+        applyFilters();
+
+        // Clear active marker when country changes
+        clearActiveMarker();
+      }
+
+      // Open filters modal
+      function openFiltersModal() {
+        const modal = document.getElementById('filters-modal');
+        modal.classList.remove('hidden');
+        document.getElementById('filters-btn').focus();
+        console.log('Filters modal opened, filter chips found:', document.querySelectorAll('.filter-chip').length);
+      }
+
+      // Close filters modal
+      function closeFiltersModal() {
+        document.getElementById('filters-modal').classList.add('hidden');
+      }
+
+      // Toggle filter chip
+      function toggleFilterChip(chip, filter, value) {
+        console.log('toggleFilterChip called:', filter, value, 'chip:', chip);
+        chip.classList.toggle('active');
+        if (chip.classList.contains('active')) {
+          filtersState[filter].add(value);
+          console.log('Added to filtersState:', filter, value);
+        } else {
+          filtersState[filter].delete(value);
+          console.log('Removed from filtersState:', filter, value);
+        }
+      }
+
+       // Apply filters
+     function applyFilters() {
+       objectManager.setFilter((obj) => {
+         const feature = PROJECTS.features.find(f => f.id === obj.id);
+         if (!feature) return false;
+
+         // Country filter
+         if (feature.properties.country !== filtersState.country) return false;
+
+         // Facade filter
+         if (filtersState.facades.size > 0 && !filtersState.facades.has(feature.properties.facade)) return false;
+
+         // Type filter
+         if (filtersState.types.size > 0 && !filtersState.types.has(feature.properties.type)) return false;
+
+         // System filter
+         if (filtersState.systems.size > 0) {
+           const hasMatchingSystem = feature.properties.system.some(sys => filtersState.systems.has(sys));
+           if (!hasMatchingSystem) return false;
+         }
+
+         // Year filter
+         if (filtersState.year && feature.properties.year !== parseInt(filtersState.year)) return false;
+
+         return true;
+       });
+
+       updateFilterCount();
+       closeFiltersModal();
+     }
+
+       // Update filter count
+     function updateFilterCount() {
+       const totalFilters = filtersState.facades.size + filtersState.types.size + filtersState.systems.size + (filtersState.year ? 1 : 0);
+       const countElement = document.getElementById('filter-count');
+       countElement.textContent = totalFilters;
+       countElement.style.display = totalFilters > 0 ? 'inline' : 'none';
+     }
+
+       // Clear filters
+     function clearFilters() {
+       // Reset filter state (except country)
+       filtersState.facades.clear();
+       filtersState.systems.clear();
+       filtersState.types.clear();
+       filtersState.year = '';
+
+       // Reset UI
+       resetFiltersUI();
+
+       // Apply filters
+       applyFilters();
+
+       // Clear active marker when filters change
+       clearActiveMarker();
+
+       // Update filter count
+       updateFilterCount();
+     }
+
+      // Reset filters UI
+      function resetFiltersUI() {
+        // Reset facades section checkboxes
+        const facadesSection = document.querySelector('.facades-section');
+        if (facadesSection) {
+          const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]');
+          allCheckboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.indeterminate = false;
+          });
+
+          // Close all subcategories
+          facadesSection.querySelectorAll('.facade-category').forEach(category => {
+            category.classList.remove('open');
+            const subcategoryItems = category.querySelector('.subcategory-items');
+            if (subcategoryItems) {
+              subcategoryItems.classList.add('hidden');
+            }
+          });
+
+          // Update facades count
+          updateFacadesCount();
+        }
+
+        // Reset other checkboxes
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+
+        // Reset chips
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+          chip.classList.remove('active');
+        });
+
+        // Reset year select
+        document.getElementById('year-filter').value = '';
+      }
+
+       // Open side card
+      function openCard(feature) {
+        const card = document.getElementById('side-card');
+        const content = document.getElementById('card-content');
+
+        content.innerHTML = `
+          <h3 class="text-xl font-semibold mb-4">${feature.properties.title}</h3>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="text-neutral-600">${feature.properties.address}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-medium">${feature.properties.year}</span>
+              <span class="text-neutral-600">Окончание монтажа</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              ${feature.properties.system.map(sys => `<span class="px-3 py-1 bg-white border border-accent text-accent text-xs rounded-lg">${sys}</span>`).join('')}
+            </div>
+          </div>
+        `;
+
+        card.classList.remove('hidden');
+      }
+
+      // Close side card
+      function closeCard() {
+        document.getElementById('side-card').classList.add('hidden');
+        clearActiveMarker(); // Clear active marker when card is closed
+      }
+
+      // Set active marker
+      function setActiveMarker(markerId) {
+        // Clear previous active marker
+        clearActiveMarker();
+
+        // Set new active marker
+        activeMarkerId = markerId;
+
+        // Update the marker icon to active state
+        const object = objectManager.objects.getById(markerId);
+        if (object) {
+          objectManager.objects.setObjectOptions(markerId, {
+            iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+              <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+                  </filter>
+                </defs>
+                <circle cx="15" cy="15" r="12" fill="#BD1A1A" filter="url(#shadow)"/>
+              </svg>
+            `),
+            iconImageSize: [30, 30],
+            iconImageOffset: [-15, -15]
+          });
+
+          // Add CSS class for active styling
+          setTimeout(() => {
+            const placemarkElement = document.querySelector(`[data-object-id="${markerId}"]`);
+            if (placemarkElement) {
+              placemarkElement.classList.add('active');
+            }
+          }, 100); // Small delay to ensure the marker is rendered
+        }
+      }
+
+      // Clear active marker
+      function clearActiveMarker() {
+        if (activeMarkerId) {
+          // Remove CSS class for active styling
+          const placemarkElement = document.querySelector(`[data-object-id="${activeMarkerId}"]`);
+          if (placemarkElement) {
+            placemarkElement.classList.remove('active');
+          }
+
+          // Reset the marker icon to normal state
+          const object = objectManager.objects.getById(activeMarkerId);
+          if (object) {
+            objectManager.objects.setObjectOptions(activeMarkerId, {
+              iconImageHref: 'data:image/svg+xml;base64,' + btoa(`
+                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="white" stroke="#bd1a1a" stroke-width="2"/>
+                </svg>
+              `),
+              iconImageSize: [24, 24],
+              iconImageOffset: [-12, -12]
+            });
+          }
+          activeMarkerId = null;
+        }
+      }
+
+      // Setup facades section functionality
+      function setupDropdownCheckboxes() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+
+        // Master checkbox functionality
+        masterCheckbox.addEventListener('change', () => {
+          const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)');
+          allCheckboxes.forEach(checkbox => {
+            checkbox.checked = masterCheckbox.checked;
+            if (masterCheckbox.checked) {
+              // Only add to filters if the checkbox has a data-value
+              if (checkbox.dataset.value) {
+                filtersState.facades.add(checkbox.dataset.value);
+              }
+            } else {
+              // Only remove from filters if the checkbox has a data-value
+              if (checkbox.dataset.value) {
+                filtersState.facades.delete(checkbox.dataset.value);
+              }
+            }
+          });
+          updateFacadesCount();
+        });
+
+        // Category checkbox functionality
+        facadesSection.querySelectorAll('.category-checkbox').forEach(checkbox => {
+          checkbox.addEventListener('change', () => {
+            const category = checkbox.dataset.category;
+            const subcategoryItems = checkbox.closest('.facade-category').querySelector('.subcategory-items');
+            const subcategoryCheckboxes = subcategoryItems ? subcategoryItems.querySelectorAll('.subcategory-checkbox') : [];
+
+            if (subcategoryCheckboxes.length > 0) {
+              // Handle subcategory checkboxes - only select/deselect, don't toggle visibility
+              subcategoryCheckboxes.forEach(subCheckbox => {
+                subCheckbox.checked = checkbox.checked;
+                if (checkbox.checked) {
+                  filtersState.facades.add(subCheckbox.dataset.value);
+                } else {
+                  filtersState.facades.delete(subCheckbox.dataset.value);
+                }
+              });
+            } else {
+              // Direct category checkbox - only if it has a data-value
+              if (checkbox.dataset.value) {
+                if (checkbox.checked) {
+                  filtersState.facades.add(checkbox.dataset.value);
+                } else {
+                  filtersState.facades.delete(checkbox.dataset.value);
+                }
+              }
+            }
+
+            updateMasterCheckbox();
+            updateFacadesCount();
+          });
+        });
+
+        // Subcategory checkbox functionality
+        facadesSection.querySelectorAll('.subcategory-checkbox').forEach(checkbox => {
+          checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+              filtersState.facades.add(checkbox.dataset.value);
+            } else {
+              filtersState.facades.delete(checkbox.dataset.value);
+            }
+
+            updateCategoryCheckbox(checkbox);
+            updateMasterCheckbox();
+            updateFacadesCount();
+          });
+        });
+
+        // Subcategory toggle functionality
+        facadesSection.querySelectorAll('[data-toggle="subcategory"]').forEach(toggle => {
+          toggle.addEventListener('click', (e) => {
+            // Don't toggle if clicking on checkbox or its label
+            if (e.target.type === 'checkbox' || e.target.tagName === 'LABEL' || e.target.closest('label')) {
+              return;
+            }
+
+            const facadeCategory = toggle.closest('.facade-category');
+            const subcategoryItems = facadeCategory.querySelector('.subcategory-items');
+            facadeCategory.classList.toggle('open');
+            subcategoryItems.classList.toggle('hidden');
+          });
+        });
+      }
+
+      // Update master checkbox state
+      function updateMasterCheckbox() {
+        const facadesSection = document.querySelector('.facades-section');
+        const masterCheckbox = facadesSection.querySelector('.master-checkbox');
+        const allCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        masterCheckbox.checked = checkedCheckboxes.length > 0;
+        masterCheckbox.indeterminate = checkedCheckboxes.length > 0 && checkedCheckboxes.length < allCheckboxes.length;
+      }
+
+      // Update category checkbox state
+      function updateCategoryCheckbox(subCheckbox) {
+        const category = subCheckbox.dataset.category;
+        const categoryCheckbox = document.querySelector(`.category-checkbox[data-category="${category}"]`);
+        const subcategoryCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox');
+        const checkedSubCheckboxes = categoryCheckbox.closest('.facade-category').querySelectorAll('.subcategory-checkbox:checked');
+
+        categoryCheckbox.checked = checkedSubCheckboxes.length > 0;
+        categoryCheckbox.indeterminate = checkedSubCheckboxes.length > 0 && checkedSubCheckboxes.length < subcategoryCheckboxes.length;
+      }
+
+      // Update facades count
+      function updateFacadesCount() {
+        const facadesSection = document.querySelector('.facades-section');
+        const facadesCount = facadesSection.querySelector('.facades-count');
+        const checkedCheckboxes = facadesSection.querySelectorAll('input[type="checkbox"]:not(.master-checkbox)[data-value]:checked');
+
+        facadesCount.textContent = checkedCheckboxes.length;
+        facadesCount.style.display = checkedCheckboxes.length > 0 ? 'inline' : 'none';
+      }
+
+      // Get country name
+      function getCountryName(countryCode) {
+        const names = {
+          russia: 'Россия',
+          belarus: 'Беларусь',
+          kazakhstan: 'Казахстан',
+          armenia: 'Армения'
+        };
+        return names[countryCode] || countryCode;
+      }
+
+       // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initMap();
+      setupUI();
+      updateFilterCount(); // Initialize filter count
+    });
+</script>

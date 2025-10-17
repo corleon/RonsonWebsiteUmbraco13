@@ -1,0 +1,96 @@
+﻿@using Umbraco.Extensions
+@using Umbraco.Cms.Core.Models.PublishedContent
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    // Не показываем hero для Систем тип 1 и 2
+    if (Model.ContentType.Alias == "sistemaTip1" || Model.ContentType.Alias == "sistemaTip2" || Model.ContentType.Alias == "sistema") return;
+
+    // Проверяем, нужно ли скрывать hero-секцию
+    var hideHeroSection = Model.HasValue("hideHeroSection") && Model.Value<bool>("hideHeroSection");
+    
+    if (hideHeroSection || Model.Level <= 1) 
+    {
+        return; // Не показываем hero на главной странице или если явно скрыто
+    }
+
+    // Получаем данные для hero-секции
+    var heroTitle = Model.HasValue("heroTitle") && !string.IsNullOrEmpty(Model.Value<string>("heroTitle")) 
+        ? Model.Value<string>("heroTitle") 
+        : Model.Name;
+    
+    var heroDescription = Model.HasValue("heroDescription") ? Model.Value<string>("heroDescription") : "";
+    var heroButtonText = Model.HasValue("heroButtonText") ? Model.Value<string>("heroButtonText") : "";
+    
+    // Обработка ссылки кнопки
+    var heroButtonUrl = "";
+    if (Model.HasValue("heroButtonUrl"))
+    {
+        var buttonLinks = Model.Value<IEnumerable<Umbraco.Cms.Core.Models.Link>>("heroButtonUrl");
+        var buttonLink = buttonLinks?.FirstOrDefault();
+        if (buttonLink != null)
+        {
+            heroButtonUrl = buttonLink.Url;
+        }
+    }
+    
+    // Собираем хлебные крошки
+    var breadcrumbs = new List<(string Name, string Url)>();
+    var currentPage = Model;
+    
+    while (currentPage != null && currentPage.Level > 1)
+    {
+        if (currentPage.ContentType.Alias != "papka")
+            breadcrumbs.Insert(0, (currentPage.Name, currentPage.Url()));
+        currentPage = currentPage.Parent;
+    }
+    breadcrumbs.Insert(0, ("Главная", "/"));
+}
+
+<section class="hero-section max-w-[1440px] mx-auto relative overflow-hidden xl:pb-40 pt-10 flex flex-col">
+    <div class="container relative z-10">
+        <div class="text-center max-w-[870px] mx-auto">
+            
+            @* Хлебные крошки *@
+            @if (breadcrumbs.Count > 1)
+            {
+                <nav class="text-center" aria-label="Breadcrumb">
+                    <ol class="list-reset inline-flex flex-wrap justify-center text-regular-secondary font-medium bg-white rounded-lg p-2 md:p-3 text-sm md:body2">
+                        @for (int i = 0; i < breadcrumbs.Count; i++)
+                        {
+                            <li>
+                                @if (i < breadcrumbs.Count - 1)
+                                {
+                                    <a href="@breadcrumbs[i].Url" class="text-regular-secondary hover:text-accent">@breadcrumbs[i].Name</a>
+                                    <span class="mx-1 md:mx-2">/</span>
+                                }
+                                else
+                                {
+                                    <span class="text-bold">@breadcrumbs[i].Name</span>
+                                }
+                            </li>
+                        }
+                    </ol>
+                </nav>
+            }
+
+            @* Заголовок *@
+            <h1 class="leading-2 py-6">@Html.Raw(heroTitle)</h1>
+            
+            @* Описание *@
+            @if (!string.IsNullOrEmpty(heroDescription))
+            {
+                @Html.Raw(heroDescription)
+            }
+            
+            @* CTA Кнопка *@
+            @if (!string.IsNullOrEmpty(heroButtonText) && !string.IsNullOrEmpty(heroButtonUrl))
+            {
+                <div class="flex justify-center py-10">
+                    <a class="btn-primary" href="@heroButtonUrl">@heroButtonText</a>
+                </div>
+            }
+            
+        </div>
+    </div>
+</section>

@@ -1,0 +1,446 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Novost>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+<!-- Breadcrumb -->
+<nav class="mb-6 md:mb-8 mt-8 md:mt-16 text-center" aria-label="Breadcrumb">
+    <ol class="list-reset inline-flex flex-wrap justify-center text-regular-secondary font-medium bg-white rounded-lg p-2 md:p-3 text-sm md:body2">
+        <li>
+            <a href="/" class="text-regular-secondary hover:text-accent">Главная</a>
+            <span class="mx-1 md:mx-2">/</span>
+        </li>
+        <li>
+            <a href="/o-nas/novosti/" class="text-regular-secondary hover:text-accent">Новости</a>
+            <span class="mx-1 md:mx-2">/</span>
+        </li>
+        <li class="text-bold ">Как прошел проект для ЖК МИТИНО</li>
+    </ol>
+</nav>
+
+<!-- News Article Content -->
+<div class="container">
+    <div class="grid lg:grid-cols-2 gap-5 items-stretch">
+        <!-- Left Section - Text Content -->
+        <div class="card h-full flex flex-col justify-between shadow-md">
+            <div>
+                <h1 class="h1 md:mb-6 ">
+                    Как прошел проект для ЖК МИТИНО
+                </h1>
+                <p class="body1 mb-8 leading-relaxed">
+                    РОНСОН ГРУПП успешно завершила монтаж современных энергоэффективных фасадов для ЖК МИТИНО, применив
+                    инновационные материалы и продуманные технические решения.
+                </p>
+            </div>
+            <div class="border border-gray rounded-lg px-3 py-2 body2 inline-block text-regular-secondary w-fit">
+                12 марта, 2025
+            </div>
+        </div>
+        <!-- Right Section - Image -->
+        <div class="relative h-full rounded-xl overflow-hidden">
+            <img src="/assets/img/news1.jpg" alt="ЖК МИТИНО - современные жилые комплексы с энергоэффективными фасадами"
+                 class="w-full h-full object-cover " loading="lazy" />
+        </div>
+    </div>
+</div>
+
+<!-- News Single Page -->
+<div class="container-sm mt-20">
+    <div class="text-section card">
+        <h4>О проекте</h4>
+        <p>
+            Реализация фасадных работ для жилого комплекса МИТИНО стала для РОНСОН ГРУПП очередным вызовом, который
+            мы с успехом
+            преодолели благодаря слаженной работе команды, применению современных технологий и тщательному планированию.
+            Этот проект
+            занял особое место в нашем портфолио не только из‑за масштабов, но и из‑за сложности архитектурных решений,
+            которые
+            потребовали индивидуального подхода на каждом этапе монтажа.
+        </p>
+        <p>
+            Работа над ЖК МИТИНО началась с детального изучения проектной документации и проведения технического аудита.
+            Наши
+            специалисты проанализировали конструктивные особенности здания, климатические условия района и требования
+            заказчика
+            к эстетике и функциональности фасада. Уже на этом этапе стало ясно, что проект потребует нестандартных
+            решений –
+            комбинации вентилируемых фасадных систем с элементами остекления и декоративными панелями.
+
+        </p>
+        <p>
+            Одной из ключевых задач стало обеспечение высокой энергоэффективности. Мы использовали современные
+            теплоизоляционные
+            материалы, которые не только соответствуют строгим нормам энергосбережения, но и значительно снижают
+            нагрузку
+            на инженерные системы здания. Особое внимание удели герметичности стыков и узлов примыкания, чтобы исключить
+            мостики
+            холода и возможные теплопотери.
+
+        </p>
+
+
+        <!-- slider goes here -->
+        <div class="slider-container">
+            <div class="slider-track">
+                <div class="slider-item active">
+                    <img src="/assets/img/news11.jpg" alt="ЖК МИТИНО - вид на жилые комплексы" loading="lazy">
+                </div>
+                <div class="slider-item">
+                    <img src="/assets/img/n222.jpg" alt="ЖК МИТИНО - строительные работы" loading="lazy">
+                </div>
+                <div class="slider-item">
+                    <img src="/assets/img/n333.jpg" alt="ЖК МИТИНО - монтаж фасадных конструкций" loading="lazy">
+                </div>
+            </div>
+            <div class="slider-controls">
+                <!-- Fallback controls (will be replaced by JavaScript) -->
+                <div class="slider-control active" data-slide="0" role="button" tabindex="0" aria-label="Go to slide 1"></div>
+                <div class="slider-control" data-slide="1" role="button" tabindex="0" aria-label="Go to slide 2"></div>
+                <div class="slider-control" data-slide="2" role="button" tabindex="0" aria-label="Go to slide 3"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="text-section card">
+        <h4>Монтаж конструкций</h4>
+        <p>
+            Монтаж фасадных конструкций проходил в несколько этапов. Сначала была установлена подсистема
+            из коррозионностойких
+            алюминиевых профилей, которая обеспечивает долговечность и устойчивость всей конструкции. Затем наши
+            монтажники
+            приступили к креплению теплоизоляционных плит и ветрозащитной мембраны. Этот этап требовал особой точности,
+            так как даже
+            небольшие отклонения могли повлиять на итоговые эксплуатационные характеристики фасада.
+        </p>
+        <p>
+            Завершающей стадией стала установка декоративных панелей и остекленных секций. Для облицовки мы выбрали
+            высококачественные композитные материалы, устойчивые к воздействию ультрафиолета и перепадам температур.
+            Их цветовая
+            гамма была подобрана с учетом архитектурной концепции всего жилого комплекса, что придало фасаду гармоничный
+            и современный вид.
+
+        </p>
+        <p>
+            Работа в условиях плотной городской застройки потребовала строгого соблюдения норм безопасности и логистики.
+            Наши
+            специалисты разработали поэтапный график поставок материалов, чтобы минимизировать простои и избежать
+            скопления техники
+            на площадке. Кроме того, мы использовали системы временного ограждения и страховочные конструкции,
+            чтобы обеспечить
+            безопасность как для рабочих, так и для жителей близлежащих домов.
+        </p>
+    </div>
+
+
+
+</div>
+
+<!-- Другие новости Ронсон Slider -->
+<section class="container mx-auto mt-20 xl:mt-36 mobile-section-divider">
+    <div class="news-slider-container">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+            <h2>Другие новости Ронсон</h2>
+            <div class="flex gap-2">
+                <button class="news-slider-prev border border-accent text-accent rounded-lg w-10 h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                        aria-label="Previous news">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                        <path d="M13 15l-5-5 5-5" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="news-slider-next border border-accent text-accent rounded-lg w-10 h-10 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed"
+                        aria-label="Next news">
+                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                        <path d="M7 5l5 5-5 5" stroke="#DB0007" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="news-slider-container overflow-hidden">
+            <div class="news-slider-track flex transition-transform duration-300">
+                <!-- News Card 1 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n1.jpg" alt="News 1" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Как прошел проект для ЖК МИТИНО
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">12 марта, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 2 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n2.jpg" alt="News 2" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                РОНСОН ГРУПП поздравляет с&nbsp;8&nbsp;марта!
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">8 марта, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 3 (1/2 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(50%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n3.jpg" alt="News 3" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Как мы сделали фасад для апарт-квартала на&nbsp;«Бауманской»
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">3 марта, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 4 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n1.jpg" alt="News 4" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Новые технологии в фасадном строительстве
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">1 марта, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 5 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n2.jpg" alt="News 5" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                РОНСОН ГРУПП на выставке строительных технологий
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">28 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 6 (1/2 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(50%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n3.jpg" alt="News 6" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Инновационные решения для энергоэффективных фасадов
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">25 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 7 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n1.jpg" alt="News 7" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Завершение проекта ЖК "Солнечный"
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">22 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 8 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n2.jpg" alt="News 8" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Новые стандарты качества в фасадном строительстве
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">20 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 9 (1/2 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(50%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n3.jpg" alt="News 9" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                РОНСОН ГРУПП расширяет производственные мощности
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">18 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 10 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n1.jpg" alt="News 10" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Партнерство с ведущими архитектурными бюро
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">15 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 11 (1/4 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(25%-16px)] h-full mr-6">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n2.jpg" alt="News 11" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Экологичные материалы в современном строительстве
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">12 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- News Card 12 (1/2 width) -->
+                <article class="news-slide flex-shrink-0 w-full sm:w-1/2 md:w-[calc(50%-16px)] h-full">
+                    <a href="#" class="group h-full flex flex-col">
+                        <div class="w-full h-[240px] md:h-[280px] rounded-4xl overflow-hidden">
+                            <img src="/assets/img/n3.jpg" alt="News 12" class="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <h4 class="mt-6 md:mt-10 group-hover:text-[#BD1A1A] transition-colors mb-5">
+                                Инновационные технологии вентилируемых фасадов
+                            </h4>
+                            <span class="body2 bg-white px-3 py-2 rounded-xl inline-block mt-auto w-fit">10 февраля, 2025</span>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sliderContainer = document.querySelector('.news-slider-container');
+      const sliderTrack = document.querySelector('.news-slider-track');
+      const slides = document.querySelectorAll('.news-slide');
+      const prevBtn = document.querySelector('.news-slider-prev');
+      const nextBtn = document.querySelector('.news-slider-next');
+
+      if (!sliderContainer || !sliderTrack || !slides.length) return;
+
+      let currentIndex = 0;
+      const gap = 24; // 6 * 4px (gap-6)
+
+      function getSlideWidth(slide) {
+        return slide.offsetWidth;
+      }
+
+      function getVisibleSlides() {
+        if (window.innerWidth >= 768) return 3; // md: 3 slides visible (25% + 25% + 40%)
+        if (window.innerWidth >= 640) return 2; // sm: 2 slides visible
+        return 1; // mobile: 1 slide visible
+      }
+
+         function updateSlider() {
+         let translateX = 0;
+         for (let i = 0; i < currentIndex; i++) {
+           translateX += getSlideWidth(slides[i]) + gap;
+         }
+         sliderTrack.style.transform = `translateX(-${translateX}px)`;
+
+        // Update button states
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= slides.length - getVisibleSlides();
+
+        prevBtn.classList.toggle('opacity-50', currentIndex === 0);
+        nextBtn.classList.toggle('opacity-50', currentIndex >= slides.length - getVisibleSlides());
+      }
+
+      function nextSlide() {
+        const visibleSlides = getVisibleSlides();
+        if (currentIndex < slides.length - visibleSlides) {
+          currentIndex++;
+          updateSlider();
+        }
+      }
+
+      function prevSlide() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+        }
+      }
+
+      // Event listeners
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      });
+
+      // Touch/swipe support
+      let startX = 0;
+      let currentX = 0;
+
+      sliderContainer.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+      });
+
+      sliderContainer.addEventListener('touchmove', function(e) {
+        currentX = e.touches[0].clientX;
+      });
+
+      sliderContainer.addEventListener('touchend', function() {
+        const diff = startX - currentX;
+        const threshold = 50;
+
+        if (Math.abs(diff) > threshold) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        }
+      });
+
+      // Initialize
+      updateSlider();
+
+      // Handle resize
+      window.addEventListener('resize', function() {
+        updateSlider();
+      });
+    });
+</script>

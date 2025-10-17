@@ -1,0 +1,26 @@
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var image = Model.Content.Value<Umbraco.Cms.Core.Models.MediaWithCrops>("image");
+    var imageSize = Model.Content.Value<string>("imageSize") ?? "100%";
+    var imageAlign = Model.Content.Value<string>("imageAlign") ?? "left";
+    
+    var alignClass = imageAlign switch
+    {
+        "center" => "text-center",
+        "right" => "text-right",
+        _ => "text-left"
+    };
+}
+
+@if (image != null)
+{
+    <div class="space-y-6 mt-10 mb-10 @alignClass">
+        <img src="@image.MediaUrl()" 
+             alt="@(image.Value("altText")?.ToString() ?? "")" 
+             class="h-auto rounded-2xl inline-block" 
+             style="width: @imageSize;"
+             loading="lazy">
+    </div>
+}

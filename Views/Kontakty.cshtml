@@ -1,0 +1,266 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Kontakty>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<!-- Contact Sections -->
+<section class="container mx-auto mb-16">
+    <!-- Central Office -->
+    <div class="grid lg:grid-cols-2 gap-8 mb-16">
+        <div class="card">
+            <h3 class="h4 mb-3">Центральный офис</h3>
+            <div class="body1 text-regular-primary  border border-[#DADADA] inline-block px-4 py-1 rounded-lg body2 mt-4 mb-4">ООО «АРТ ФАСАД»</div>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <img src="/assets/icons/Icon-location-24.svg" alt="Location" class="w-6 h-6 text-accent flex-shrink-0">
+                    <div>
+                        <div class="body1">Московская область, г. Реутов, Носовихинское шоссе д. 9А, корпус А, 143969</div>
+                        <div class="body2 text-regular-secondary mt-1">55.746005, 37.860378</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (905) 570-30-90 (отдел продаж)</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (495) 730-35-88</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-email-24.svg" alt="Email" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">info@ronson-group.ru</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-clock-24.svg" alt="Clock" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">ПН-ПТ 9:00-18:00 (МСК)</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-filled btn-sm mt-4 flex items-center gap-2" onclick="openDirectionsModal()">
+
+                СХЕМА ПРОЕЗДА
+            </button>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-md">
+            <div id="map-central" class="w-full h-full min-h-[400px]"></div>
+        </div>
+    </div>
+
+    <!-- Plant -->
+    <div class="grid lg:grid-cols-2 gap-8 mb-16">
+        <div class="card">
+            <h3 class="h4 mb-3">Завод фасадных конструкций и основной склад</h3>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <img src="/assets/icons/Icon-location-24.svg" alt="Location" class="w-6 h-6 text-accent flex-shrink-0">
+                    <div>
+                        <div class="body1">Владимирская область, г. Киржач, ул. Линейная, д. 17</div>
+                        <div class="body2 text-regular-secondary mt-1">56.1485, 38.8611</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (906) 610-30-16</div>
+                    </div>
+
+                    <!-- <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-clock-24.svg" alt="Clock" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">ПН-ПТ 8:30-15:30 (МСК)</div>
+                    </div> -->
+                </div>
+            </div>
+
+            <button class="btn-primary btn-filled btn-sm mt-4 flex items-center gap-2" onclick="openDirectionsModal('plant')">
+                СХЕМА ПРОЕЗДА
+            </button>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-md">
+            <div id="map-plant" class="w-full h-full min-h-[400px]"></div>
+        </div>
+    </div>
+
+    <!-- Facade Systems Center -->
+    <div class="grid lg:grid-cols-2 gap-8">
+        <div class="card">
+            <h3 class="h4 mb-3">Центр фасадных систем им. Бaрышева В.В.</h3>
+
+            <div class="space-y-4">
+                <div class="flex items-start gap-3">
+                    <img src="/assets/icons/Icon-location-24.svg" alt="Location" class="w-6 h-6 text-accent flex-shrink-0">
+                    <div>
+                        <div class="body1">Московская область, Балашихинский район, д. Черное, ул. Агрогородок, 78А</div>
+                        <div class="body2 text-regular-secondary mt-1">55.746005, 37.860378</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-phone-24.svg" alt="Phone" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">+7 (495) 730-35-88</div>
+                    </div>
+
+                    <!-- <div class="flex items-center gap-3 border border-accent rounded-lg px-4 py-2">
+                        <img src="/assets/icons/Icon-clock-24.svg" alt="Clock" class="w-6 h-6 text-accent flex-shrink-0">
+                        <div class="text-regular-primary">ПН-ПТ 8:30-17:00 (МСК)</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-md">
+            <div id="map-center" class="w-full h-full min-h-[400px]"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Directions Modal -->
+<div id="directionsModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b bg-white sticky top-0 z-10">
+                <div class="flex items-center gap-4">
+                    <div class="bg-accent text-white px-4 py-2 rounded-lg">
+                        Центральный офис
+                    </div>
+
+                </div>
+                <button onclick="closeDirectionsModal()" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 20 20">
+                        <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto max-h-[calc(90vh-88px)]">
+                <div id="modalContent">
+                    <!-- Content will be set by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Yandex Maps API -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+
+<script>
+    // Initialize Yandex Maps
+    function initMaps() {
+        // Central Office Map
+        ymaps.ready(function () {
+            var centralMap = new ymaps.Map('map-central', {
+                center: [55.746005, 37.860378],
+                zoom: 15,
+                controls: ['zoomControl']
+            });
+
+            var centralPlacemark = new ymaps.Placemark([55.746005, 37.860378], {
+                balloonContent: 'Центральный офис РОНСОН ГРУПП<br>Носовихинское шоссе д. 9А, корпус А'
+            }, {
+                preset: 'islands#redDotIcon'
+            });
+
+            centralMap.geoObjects.add(centralPlacemark);
+        });
+
+        // Plant Map
+        ymaps.ready(function () {
+            var plantMap = new ymaps.Map('map-plant', {
+                center: [56.1485, 38.8611], // Kirzhach coordinates
+                zoom: 15,
+                controls: ['zoomControl']
+            });
+
+            var plantPlacemark = new ymaps.Placemark([56.1485, 38.8611], {
+                balloonContent: 'Завод фасадных конструкций<br>ул. Линейная, д. 17'
+            }, {
+                preset: 'islands#redDotIcon'
+            });
+
+            plantMap.geoObjects.add(plantPlacemark);
+        });
+
+        // Facade Systems Center Map
+        ymaps.ready(function () {
+            var centerMap = new ymaps.Map('map-center', {
+                center: [55.746005, 37.860378], // Using same coordinates as placeholder
+                zoom: 15,
+                controls: ['zoomControl']
+            });
+
+            var centerPlacemark = new ymaps.Placemark([55.746005, 37.860378], {
+                balloonContent: 'Центр фасадных систем им. Бaрышева В.В.<br>ул. Агрогородок, 78А'
+            }, {
+                preset: 'islands#redDotIcon'
+            });
+
+            centerMap.geoObjects.add(centerPlacemark);
+        });
+    }
+
+    // Modal functions
+    function openDirectionsModal(section = 'central') {
+        document.getElementById('directionsModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+
+        const modalTitle = document.querySelector('#directionsModal .bg-accent');
+        const modalContent = document.getElementById('modalContent');
+
+        if (section === 'plant') {
+            modalTitle.textContent = 'Завод фасадных конструкций и основной склад';
+            modalContent.innerHTML = `
+                <div class="flex justify-center">
+                    <img src="/assets/img/map1.jpg" alt="Схема проезда" class="w-full max-w-4xl h-auto object-contain">
+                </div>
+            `;
+        } else {
+            // Default: Central Office
+            modalTitle.textContent = 'Центральный офис';
+            modalContent.innerHTML = `
+                <div class="flex justify-center">
+                    <img src="/assets/img/map2.jpg" alt="Схема проезда" class="w-full max-w-4xl h-auto object-contain">
+                </div>
+            `;
+        }
+    }
+
+    function closeDirectionsModal() {
+        document.getElementById('directionsModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('directionsModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeDirectionsModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeDirectionsModal();
+        }
+    });
+
+    // Initialize maps when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        initMaps();
+    });
+</script>

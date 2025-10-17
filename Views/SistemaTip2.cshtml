@@ -1,0 +1,415 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SistemaTip2>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+<!-- Main Content Section -->
+<section class="container mx-auto mb-10 xl:mb-40 mt-10 md:mt-20 ">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+
+        <!-- Left Content Area -->
+        <div class="lg:col-span-8 card shadow-xl h-full flex flex-col">
+            <div class="space-y-6 flex-1">
+                <!-- Breadcrumbs -->
+                <nav class="bg-background-primary inline-block rounded-xl" aria-label="Breadcrumb">
+                    <ol class="list-reset inline-flex flex-wrap justify-center text-regular-secondary font-medium rounded-lg p-2 md:p-3 text-sm md:body2">
+                        <li>
+                            <a href="/" class="text-regular-secondary hover:text-accent">Главная</a>
+                            <span class="mx-1 md:mx-2">/</span>
+                        </li>
+                        <li>
+                            <a href="/sistemy/" class="text-regular-secondary hover:text-accent">Системы</a>
+                            <span class="mx-1 md:mx-2">/</span>
+                        </li>
+                        <li class="text-bold">Кирпич РОНСОН</li>
+                    </ol>
+                </nav>
+
+
+                <!-- Main Title -->
+                <h1 class="h1">Кирпич РОНСОН</h1>
+
+                <!-- System Tag -->
+                <div class="inline-block">
+                    <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">РОНСОН‑740</span>
+                </div>
+
+                <!-- Description -->
+                <p class="body1 text-regular-primary ">
+                    Самый легкий в мире фасад с облицовкой из натурального кирпича. Вес 1 м2 фасада составляет 80 кг. Это минимум в 2 раза
+                    легче, чем при использовании кирпича стандартного размера.
+                </p>
+
+                <!-- Call to Action Button -->
+                <div class="mt-20">
+                    <button class="btn btn-filled btn-primary btn-lg">
+                        ВИДЕО-ПРЕЗЕНТАЦИЯ
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Visual Area -->
+        <div class="lg:col-span-4 relative h-full flex flex-col image-item">
+            <!-- Main Large Image -->
+            <div class="relative group cursor-pointer flex-1" onclick="openImageModal('/assets/img/kk1.jpg', 'Схема системы РОНСОН-500')">
+                <img src="/assets/img/kk1.jpg"
+                     alt="Схема системы РОНСОН-500"
+                     class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+                <!-- Hover Overlay -->
+                <div class="hover-overlay absolute inset-0 bg-black opacity-0 transition-all duration-300 rounded-lg"></div>
+
+                <!-- Zoom Icon (separate from overlay) -->
+                <div class="zoom-icon absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 transition-all duration-300 z-20">
+                    <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
+                </div>
+            </div>
+
+            <!-- Small Detail Image (Bottom Left Corner) -->
+            <div class="absolute bottom-0 left-0 cursor-pointer z-10 pt-4 pr-4 rounded-tr-2xl bg-background-primary wrapper-small-image">
+                <div class="small-image">
+                    <img src="/assets/img/kksmall.png"
+                         alt="Деталь крепления"
+                         class="rounded-2xl "
+                         loading="lazy"
+                         width="150"
+                         height="150">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- System Advantages Section -->
+<section class="container mx-auto mb-10 xl:mb-40">
+    <div class="text-center mb-16">
+        <h2 class="h2">Преимущества системы</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <!-- 1 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr7.svg" alt="Надежная фиксация" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Надежная фиксация</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Особая запатентованная форма профиля обеспечивает надежное механическое крепление
+                и четкое позиционирование каждого кирпича.
+            </p>
+        </div>
+
+        <!-- 2 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr1.svg" alt="Прочность и устойчивость" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Прочность и устойчивость</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Стальные профили изолированы от раствора антиадгезионной лентой, благодаря чему
+                температурные расширения профиля не вызывают разрушения раствора.
+            </p>
+        </div>
+
+        <!-- 3 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr8.svg" alt="Гибкость" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Гибкость</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Продуманность системы обеспечивает воплощение любых архитектурных форм.
+            </p>
+        </div>
+
+        <!-- 4 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr10.svg" alt="Малый вес" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Малый вес</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Самый легкий в мире фасад с облицовкой из натурального кирпича.
+                Вес 1&nbsp;м² фасада составляет 80&nbsp;кг.
+            </p>
+        </div>
+
+        <!-- 5 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr2.svg" alt="Экономия" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Экономия</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Глубина заполнения шва раствором до 20&nbsp;мм позволяет сформировать любой профиль шва
+                (в т. ч. утолщённый) и применять стандартный кладочный раствор вместо дорогих затирок.
+            </p>
+        </div>
+
+        <!-- 6 -->
+        <div class="flex flex-col p-6 bg-white rounded-xl shadow-xl h-full">
+            <div class="flex flex-col mb-4">
+                <div class="flex-shrink-0 w-32 h-32 flex items-center justify-center mb-3 -ml-6">
+                    <img src="/assets/icons/pr4.svg" alt="Удобство монтажа" class="w-16 h-16">
+                </div>
+                <h3 class="h3">Удобство монтажа</h3>
+            </div>
+            <p class="body2 text-neutral-800 leading-relaxed">
+                Система позволяет вести круглогодичную установку — в холодное время года выполняется
+                основной монтаж, а в тёплое остаётся лишь расклинка швов. Механическое крепление
+                не требует навыков каменщика и ускоряет процесс.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Objects Grid -->
+<section class="container mx-auto mb-10 xl:mb-40">
+
+    <h2 class="h2 text-center mb-10">Реализованные объекты</h2>
+    <!-- ===== РЯД 1 (2 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
+    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-10 md:mt-14 mb-14 md:mb-20">
+        <!-- o1 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
+                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- o2 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">
+                            ЖК Переделкино Ближнее
+                        </h4>
+                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== РЯД 2 (3 элемента) ===== -->
+    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
+    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
+        <!-- o3 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="#" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o4 (button always under text on all breakpoints, as before) -->
+        <div class="md:col-span-1 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
+                     loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
+                <div class="body1 text-regular-primary">г. Москва</div>
+                <a href="#" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            </div>
+        </div>
+
+        <!-- o5 -->
+        <div class="md:col-span-2 flex flex-col group">
+            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
+                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
+            </div>
+            <div class="mt-4 md:mt-8">
+                <div class="md:flex md:justify-between gap-3">
+                    <div class="flex flex-col gap-1">
+                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">
+                            Апарт-квартал LOFT POST у
+                            метро
+                            «Бауманская»
+                        </h4>
+                        <div class="body1 text-regular-primary">г. Москва</div>
+                    </div>
+                    <a href="#" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-30 z-50 hidden flex items-center justify-center p-4">
+    <div class="relative w-full h-full flex items-center justify-center">
+        <img id="modalImage" src="" alt="" class="max-w-none max-h-none w-auto h-auto object-contain rounded-lg shadow-2xl">
+
+        <!-- Close Button -->
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 bg-white/90 hover:bg-white transition-all duration-200 rounded-full p-4 shadow-lg cursor-pointer z-10">
+            <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Image Alt Text -->
+        <div class="absolute bottom-6 left-6 bg-black/80 text-white px-6 py-3 rounded-xl backdrop-blur-sm">
+            <p id="modalImageAlt" class="text-base font-medium"></p>
+        </div>
+
+        <!-- Zoom Controls -->
+        <div class="absolute bottom-6 right-6 flex gap-3">
+            <button onclick="zoomIn()" class="bg-white/90 hover:bg-white transition-all duration-200 rounded-full p-3 shadow-lg cursor-pointer">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+            </button>
+            <button onclick="zoomOut()" class="bg-white/90 hover:bg-white transition-all duration-200 rounded-full p-3 shadow-lg cursor-pointer">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+            </button>
+            <button onclick="resetZoom()" class="bg-white/90 hover:bg-white transition-all duration-200 rounded-full p-3 shadow-lg cursor-pointer">
+                <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Image Modal Functionality
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX, startY, translateX = 0, translateY = 0;
+
+    function openImageModal(imageSrc, imageAlt) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalImageAlt = document.getElementById('modalImageAlt');
+
+        modalImage.src = imageSrc;
+        modalImageAlt.textContent = imageAlt;
+        modal.classList.remove('hidden');
+
+        // Reset zoom and position
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        updateImageTransform();
+
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+
+        // Restore body scroll
+        document.body.style.overflow = 'auto';
+    }
+
+    function zoomIn() {
+        currentZoom = Math.min(currentZoom * 1.2, 5);
+        updateImageTransform();
+    }
+
+    function zoomOut() {
+        currentZoom = Math.max(currentZoom / 1.2, 0.5);
+        updateImageTransform();
+    }
+
+    function resetZoom() {
+        currentZoom = 1;
+        translateX = 0;
+        translateY = 0;
+        updateImageTransform();
+    }
+
+    function updateImageTransform() {
+        const modalImage = document.getElementById('modalImage');
+        modalImage.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+    }
+
+    // Mouse drag functionality
+    function startDrag(e) {
+        if (e.target.id === 'modalImage') {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            e.preventDefault();
+        }
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            updateImageTransform();
+        }
+    }
+
+    function stopDrag() {
+        isDragging = false;
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+
+        // Mouse events for dragging
+        modalImage.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
+
+        // Close modal on backdrop click
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeImageModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    });
+</script>

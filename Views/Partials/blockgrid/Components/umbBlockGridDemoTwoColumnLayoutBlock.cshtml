@@ -1,0 +1,22 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+
+@{
+    var leftArea = Model.Areas.FirstOrDefault(x => x.Alias == "left");
+    var rightArea = Model.Areas.FirstOrDefault(x => x.Alias == "right");
+}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 mb-10">
+    <div>
+        @if (leftArea != null)
+        {
+            @await Html.GetBlockGridItemAreaHtmlAsync(leftArea)
+        }
+    </div>
+    <div>
+        @if (rightArea != null)
+        {
+            @await Html.GetBlockGridItemAreaHtmlAsync(rightArea)
+        }
+    </div>
+</div>
