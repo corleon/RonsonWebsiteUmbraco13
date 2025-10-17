@@ -452,20 +452,20 @@ img, video {
     font-size: 32px;
     font-weight: 500;
     line-height: 90%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     .h1 {
         font-size: 48px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     .h1 {
         font-size: 72px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -473,20 +473,20 @@ img, video {
     font-size: 28px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     .h2 {
         font-size: 40px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     .h2 {
         font-size: 56px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -494,20 +494,20 @@ img, video {
     font-size: 24px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     .h3 {
-        font-size: 32px;
-        letter-spacing: 1.5px
+        font-size: 26px;
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     .h3 {
         font-size: 44px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -515,20 +515,20 @@ img, video {
     font-size: 20px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     .h4 {
         font-size: 26px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     .h4 {
-        font-size: 32px;
-        letter-spacing: 2px
+        font-size: 26px;
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -536,20 +536,20 @@ img, video {
     font-size: 18px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: .5px
+    /*letter-spacing: .5px*/
 }
 
 @media (min-width:768px) {
     .h5 {
         font-size: 21px;
-        letter-spacing: .75px
+        /*letter-spacing: .75px*/
     }
 }
 
 @media (min-width:1024px) {
     .h5 {
         font-size: 24px;
-        letter-spacing: 1px
+        /*letter-spacing: 1px*/
     }
 }
 
@@ -2587,7 +2587,7 @@ img, video {
 }
 
 .gap-8 {
-    gap: 2rem
+    gap: 3rem
 }
 
 .gap-x-5 {
@@ -3311,20 +3311,20 @@ h1 {
     font-size: 32px;
     font-weight: 500;
     line-height: 90%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     h1 {
         font-size: 48px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     h1 {
         font-size: 72px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -3332,20 +3332,20 @@ h2 {
     font-size: 28px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     h2 {
         font-size: 40px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     h2 {
         font-size: 56px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -3353,20 +3353,20 @@ h3 {
     font-size: 24px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     h3 {
-        font-size: 32px;
-        letter-spacing: 1.5px
+        font-size: 26px;
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     h3 {
         font-size: 44px;
-        letter-spacing: 2px
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -3374,20 +3374,20 @@ h4 {
     font-size: 20px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: 1px
+    /*letter-spacing: 1px*/
 }
 
 @media (min-width:768px) {
     h4 {
         font-size: 26px;
-        letter-spacing: 1.5px
+        /*letter-spacing: 1.5px*/
     }
 }
 
 @media (min-width:1024px) {
     h4 {
-        font-size: 32px;
-        letter-spacing: 2px
+        font-size: 26px;
+        /*letter-spacing: 2px*/
     }
 }
 
@@ -3395,20 +3395,20 @@ h5 {
     font-size: 18px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: .5px
+    /*letter-spacing: .5px*/
 }
 
 @media (min-width:768px) {
     h5 {
         font-size: 21px;
-        letter-spacing: .75px
+        /*letter-spacing: .75px*/
     }
 }
 
 @media (min-width:1024px) {
     h5 {
         font-size: 24px;
-        letter-spacing: 1px
+        /*letter-spacing: 1px*/
     }
 }
 
@@ -3416,20 +3416,20 @@ h6 {
     font-size: 16px;
     font-weight: 500;
     line-height: 100%;
-    letter-spacing: .5px
+    /*letter-spacing: .5px*/
 }
 
 @media (min-width:768px) {
     h6 {
         font-size: 18px;
-        letter-spacing: .75px
+        /*letter-spacing: .75px*/
     }
 }
 
 @media (min-width:1024px) {
     h6 {
         font-size: 20px;
-        letter-spacing: 1px
+        /*letter-spacing: 1px*/
     }
 }
 

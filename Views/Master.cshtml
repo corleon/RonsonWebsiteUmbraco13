@@ -60,23 +60,151 @@
     <link rel="manifest" href="/assets/favicons/site.webmanifest">
     <meta name="theme-color" content="#bd1a1a">
 
-    @* <!-- Preload critical resources -->
-    <link rel="preload" href="/assets/fonts/RG-StandardMedium.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/assets/fonts/RG-StandardBook.woff2" as="font" type="font/woff2" crossorigin> *@
-
-    <!-- Google Fonts - Montserrat Bold -->
+    <!-- Google Fonts для переключателя шрифтов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    @*<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Commissioner:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link href="/css/styles.css" rel="stylesheet">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="@Model.Url(mode: UrlMode.Absolute)">
+
+    <style>
+        /* Глобальные классы для шрифтов */
+        .font-inter { font-family: 'Inter', sans-serif !important; }
+        .font-manrope { font-family: 'Manrope', sans-serif !important; }
+        .font-golos { font-family: 'Golos Text', sans-serif !important; }
+        .font-ibm { font-family: 'IBM Plex Sans', sans-serif !important; }
+        .font-commissioner { font-family: 'Commissioner', sans-serif !important; }
+        .font-montserrat { font-family: 'Montserrat', sans-serif !important; }
+        .font-roboto { font-family: 'Roboto', sans-serif !important; }
+
+        .font-random {
+            font-family: 'Random Grotesque', sans-serif !important;
+        }
+        /* Стили для переключателя */
+        .font-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 12px;
+        }
+
+        .font-switcher-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .font-switcher-btn:hover {
+            background: #e5e7eb;
+            transform: scale(1.05);
+        }
+
+        .font-menu {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 8px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .font-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .font-option {
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .font-option:hover {
+            background: #f3f4f6;
+        }
+
+        .font-option.active {
+            background: #bd1a1a;
+            color: white;
+        }
+
+        .font-badge {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .font-option.active .font-badge {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 <body class="bg-background-primary text-neutral-900 min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Глобальный переключатель шрифтов -->
+    <div class="font-switcher">
+        <button class="font-switcher-btn" id="fontSwitcherBtn" aria-label="Выбрать шрифт">
+            <span>Aa</span>
+        </button>
+
+        <div class="font-menu" id="fontMenu">
+            <div class="font-option font-inter" data-font="inter">
+                <span>Inter</span>
+            </div>
+            <div class="font-option font-manrope" data-font="manrope">
+                <span>Manrope</span>
+            </div>
+            <div class="font-option font-golos" data-font="golos">
+                <span>Golos Text</span>
+            </div>
+            <div class="font-option font-ibm" data-font="ibm">
+                <span>IBM Plex Sans</span>
+            </div>
+            <div class="font-option font-commissioner" data-font="commissioner">
+                <span>Commissioner</span>
+            </div>
+            <div class="font-option font-montserrat" data-font="montserrat">
+                <span>Montserrat</span>
+            </div>
+            <div class="font-option font-roboto" data-font="roboto">
+                <span>Roboto</span>
+            </div>
+            <div class="font-option font-random active" data-font="random">
+                <span>Random Grotesque</span>
+                <span class="font-badge">По умолчанию</span>
+            </div>
+        </div>
+    </div>
 
     @{
         var headerData = new ViewDataDictionary(ViewData);
@@ -152,13 +280,7 @@
 
     <footer class="lg:mt-20">
         <div class="container px-4 sm:px-6 xl:px-8 py-8">
-            <!-- =====================
-                 TOP: LINK COLUMNS
-                 ===================== -->
-            <div class="footer-columns flex flex-col gap-10 mb-12
-                 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12
-                 xl:flex xl:flex-row xl:justify-between xl:items-start xl:gap-6 xl:mb-20">
-                <!-- Column 1: Left -->
+            <div class="footer-columns flex flex-col gap-10 mb-12 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12 xl:flex xl:flex-row xl:justify-between xl:items-start xl:gap-6 xl:mb-20">
                 <div class="flex flex-col gap-3 mb-6 md:mb-0">
                     <a href="/sistemy/" class="text-base font-semibold hover:underline sm:text-[18px]">СИСТЕМЫ</a>
                     <a href="/ob-ekty/zhilye-kompleksy/" class="text-base font-semibold hover:underline sm:text-[18px]">ОБЪЕКТЫ</a>
@@ -166,7 +288,6 @@
                     <a href="/kontakty/" class="text-base font-semibold hover:underline sm:text-[18px]">КОНТАКТЫ</a>
                 </div>
 
-                <!-- Column 2: Middle -->
                 <div class="mb-6 md:mb-0">
                     <div class="text-base font-semibold mb-3 sm:text-[18px]">КОМПАНИЯ</div>
                     <ul class="flex flex-col gap-2 sm:gap-3">
@@ -177,7 +298,6 @@
                     </ul>
                 </div>
 
-                <!-- Column 3: Right -->
                 <div class="mb-6 md:mb-0">
                     <div class="text-base font-semibold mb-3 sm:text-[18px]">ПАРТНЕРСКАЯ СЕТЬ</div>
                     <ul class="flex flex-col gap-2 sm:gap-3">
@@ -188,102 +308,55 @@
                     </ul>
                 </div>
 
-                <!-- Column 4: Phones -->
                 <div class="flex flex-col gap-4 mb-6 md:mb-0 md:max-w-xs flex-shrink-0">
                     <div>
-                        <a href="tel:+74957303588"
-                           class="block text-xl font-semibold text-[#BD1A1A] leading-tight mb-1 sm:text-3xl md:text-[2rem]">
-                            +7 (495)
-                            730-35-88
-                        </a>
+                        <a href="tel:+74957303588" class="block text-xl font-semibold text-[#BD1A1A] leading-tight mb-1 sm:text-3xl md:text-[2rem]">+7 (495) 730-35-88</a>
                         <div class="body2 text-regular-primary text-sm sm:text-base">Основной телефон/факс</div>
                     </div>
                     <div>
-                        <a href="tel:+79055703090"
-                           class="block text-xl font-semibold text-[#BD1A1A] leading-tight mb-1 sm:text-3xl md:text-[2rem]">
-                            +7 (905)
-                            570-30-90
-                        </a>
+                        <a href="tel:+79055703090" class="block text-xl font-semibold text-[#BD1A1A] leading-tight mb-1 sm:text-3xl md:text-[2rem]">+7 (905) 570-30-90</a>
                         <div class="body2 text-regular-primary text-sm sm:text-base">Отдел продаж</div>
                     </div>
                 </div>
 
-                <!-- Column 5: Email, Address, Socials -->
                 <div class="flex flex-col gap-4 md:max-w-xs flex-shrink-0">
                     <div>
-                        <a href="mailto:info@ronson-group.ru"
-                           class="block font-medium text-lg text-neutral-900 hover:underline mb-1 sm:text-2xl md:text-[28px]">info@ronson-group.ru</a>
-                        <div class="body3 text-regular-primary text-xs sm:text-base">
-                            143969, МО, г. Реутов, Носовихинское шоссе<br>д.
-                            9А, корпус А.
-                        </div>
+                        <a href="mailto:info@ronson-group.ru" class="block font-medium text-lg text-neutral-900 hover:underline mb-1 sm:text-2xl md:text-[28px]">info@ronson-group.ru</a>
+                        <div class="body3 text-regular-primary text-xs sm:text-base">143969, МО, г. Реутов, Носовихинское шоссе<br>д. 9А, корпус А.</div>
                     </div>
 
-                    <!-- SOCIAL ICONS -->
                     <div class="flex gap-2 sm:gap-4 mt-1">
-                        <a href="#"
-                           class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors"
-                           aria-label="WhatsApp">
-                            <span class="sr-only">WhatsApp</span>
-                            <!-- WhatsApp SVG -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.2328 22.003 8.4966 21.5353 6.97002 20.645L2.00402 22L3.35602 17.032C2.46497 15.5049 1.99692 13.768 2.00002 12C2.00002 6.477 6.47702 2 12 2ZM8.59202 7.3L8.39201 7.308C8.26271 7.31691 8.13636 7.35087 8.02002 7.408C7.91159 7.46951 7.81258 7.5463 7.72602 7.636C7.60602 7.749 7.53802 7.847 7.46502 7.942C7.09514 8.4229 6.89599 9.01331 6.89902 9.62C6.90102 10.11 7.02902 10.587 7.22902 11.033C7.63802 11.935 8.31102 12.89 9.19902 13.775C9.41302 13.988 9.62302 14.202 9.84902 14.401C10.9524 15.3724 12.2673 16.073 13.689 16.447L14.257 16.534C14.442 16.544 14.627 16.53 14.813 16.521C15.1042 16.5056 15.3885 16.4268 15.646 16.29C15.7769 16.2223 15.9047 16.1489 16.029 16.07C16.029 16.07 16.0714 16.0413 16.154 15.98C16.289 15.88 16.372 15.809 16.484 15.692C16.568 15.6053 16.638 15.5047 16.694 15.39C16.772 15.227 16.85 14.916 16.882 14.657C16.906 14.459 16.899 14.351 16.896 14.284C16.892 14.177 16.803 14.066 16.706 14.019L16.124 13.758C16.124 13.758 15.254 13.379 14.722 13.137C14.6663 13.1128 14.6067 13.0989 14.546 13.096C14.4776 13.0888 14.4084 13.0965 14.3432 13.1184C14.278 13.1403 14.2182 13.176 14.168 13.223C14.163 13.221 14.096 13.278 13.373 14.154C13.3315 14.2098 13.2744 14.2519 13.2088 14.2751C13.1433 14.2982 13.0723 14.3013 13.005 14.284C12.9398 14.2666 12.876 14.2446 12.814 14.218C12.69 14.166 12.647 14.146 12.562 14.11C11.9879 13.8599 11.4565 13.5215 10.987 13.107C10.861 12.997 10.744 12.877 10.624 12.761C10.2306 12.3842 9.88777 11.958 9.60401 11.493L9.54501 11.398C9.50328 11.3338 9.46905 11.265 9.44302 11.193C9.40502 11.046 9.50402 10.928 9.50402 10.928C9.50402 10.928 9.74702 10.662 9.86002 10.518C9.97002 10.378 10.063 10.242 10.123 10.145C10.241 9.955 10.278 9.76 10.216 9.609C9.93602 8.925 9.64668 8.24467 9.34802 7.568C9.28902 7.434 9.11402 7.338 8.95502 7.319C8.90102 7.31233 8.84701 7.307 8.79302 7.303C8.65874 7.2953 8.52411 7.29664 8.39002 7.307L8.59202 7.3Z"
-                                      fill="white" />
+                        <a href="#" class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors" aria-label="WhatsApp">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22C10.2328 22.003 8.4966 21.5353 6.97002 20.645L2.00402 22L3.35602 17.032C2.46497 15.5049 1.99692 13.768 2.00002 12C2.00002 6.477 6.47702 2 12 2ZM8.59202 7.3L8.39201 7.308C8.26271 7.31691 8.13636 7.35087 8.02002 7.408C7.91159 7.46951 7.81258 7.5463 7.72602 7.636C7.60602 7.749 7.53802 7.847 7.46502 7.942C7.09514 8.4229 6.89599 9.01331 6.89902 9.62C6.90102 10.11 7.02902 10.587 7.22902 11.033C7.63802 11.935 8.31102 12.89 9.19902 13.775C9.41302 13.988 9.62302 14.202 9.84902 14.401C10.9524 15.3724 12.2673 16.073 13.689 16.447L14.257 16.534C14.442 16.544 14.627 16.53 14.813 16.521C15.1042 16.5056 15.3885 16.4268 15.646 16.29C15.7769 16.2223 15.9047 16.1489 16.029 16.07C16.029 16.07 16.0714 16.0413 16.154 15.98C16.289 15.88 16.372 15.809 16.484 15.692C16.568 15.6053 16.638 15.5047 16.694 15.39C16.772 15.227 16.85 14.916 16.882 14.657C16.906 14.459 16.899 14.351 16.896 14.284C16.892 14.177 16.803 14.066 16.706 14.019L16.124 13.758C16.124 13.758 15.254 13.379 14.722 13.137C14.6663 13.1128 14.6067 13.0989 14.546 13.096C14.4776 13.0888 14.4084 13.0965 14.3432 13.1184C14.278 13.1403 14.2182 13.176 14.168 13.223C14.163 13.221 14.096 13.278 13.373 14.154C13.3315 14.2098 13.2744 14.2519 13.2088 14.2751C13.1433 14.2982 13.0723 14.3013 13.005 14.284C12.9398 14.2666 12.876 14.2446 12.814 14.218C12.69 14.166 12.647 14.146 12.562 14.11C11.9879 13.8599 11.4565 13.5215 10.987 13.107C10.861 12.997 10.744 12.877 10.624 12.761C10.2306 12.3842 9.88777 11.958 9.60401 11.493L9.54501 11.398C9.50328 11.3338 9.46905 11.265 9.44302 11.193C9.40502 11.046 9.50402 10.928 9.50402 10.928C9.50402 10.928 9.74702 10.662 9.86002 10.518C9.97002 10.378 10.063 10.242 10.123 10.145C10.241 9.955 10.278 9.76 10.216 9.609C9.93602 8.925 9.64668 8.24467 9.34802 7.568C9.28902 7.434 9.11402 7.338 8.95502 7.319C8.90102 7.31233 8.84701 7.307 8.79302 7.303C8.65874 7.2953 8.52411 7.29664 8.39002 7.307L8.59202 7.3Z" fill="white" />
                             </svg>
                         </a>
-                        <a href="#"
-                           class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors"
-                           aria-label="Telegram">
-                            <span class="sr-only">Telegram</span>
-                            <!-- Telegram SVG -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.25 11.24 9.52 13.08C9.12 13.35 8.76 13.49 8.44 13.48C8.08 13.47 7.4 13.28 6.89 13.11C6.26 12.91 5.77 12.8 5.81 12.45C5.83 12.27 6.08 12.09 6.55 11.9C9.47 10.63 11.41 9.79 12.38 9.39C15.16 8.23 15.73 8.03 16.11 8.03C16.19 8.03 16.38 8.05 16.5 8.15C16.6 8.23 16.63 8.34 16.64 8.42C16.63 8.48 16.65 8.66 16.64 8.8Z"
-                                      fill="white" />
+                        <a href="#" class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors" aria-label="Telegram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.25 11.24 9.52 13.08C9.12 13.35 8.76 13.49 8.44 13.48C8.08 13.47 7.4 13.28 6.89 13.11C6.26 12.91 5.77 12.8 5.81 12.45C5.83 12.27 6.08 12.09 6.55 11.9C9.47 10.63 11.41 9.79 12.38 9.39C15.16 8.23 15.73 8.03 16.11 8.03C16.19 8.03 16.38 8.05 16.5 8.15C16.6 8.23 16.63 8.34 16.64 8.42C16.63 8.48 16.65 8.66 16.64 8.8Z" fill="white" />
                             </svg>
                         </a>
-                        <a href="#"
-                           class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors"
-                           aria-label="VK">
-                            <span class="sr-only">VK</span>
-                            <!-- VK SVG -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M3.4 3.4C2 4.81333 2 7.07333 2 11.6V12.4C2 16.92 2 19.18 3.4 20.6C4.81333 22 7.07333 22 11.6 22H12.4C16.92 22 19.18 22 20.6 20.6C22 19.1867 22 16.9267 22 12.4V11.6C22 7.08 22 4.82 20.6 3.4C19.1867 2 16.9267 2 12.4 2H11.6C7.08 2 4.82 2 3.4 3.4ZM5.37333 8.08667H7.66667C7.74 11.9 9.42 13.5133 10.7533 13.8467V8.08667H12.9067V11.3733C14.22 11.2333 15.6067 9.73333 16.0733 8.08H18.22C18.0448 8.9358 17.6951 9.7463 17.1927 10.4609C16.6903 11.1755 16.046 11.7789 15.3 12.2333C16.1327 12.6476 16.8681 13.2338 17.4576 13.9532C18.0471 14.6726 18.4774 15.5088 18.72 16.4067H16.3533C15.8467 14.8267 14.58 13.6 12.9067 13.4333V16.4067H12.64C8.08 16.4067 5.48 13.2867 5.37333 8.08667Z"
-                                      fill="white" />
+                        <a href="#" class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors" aria-label="VK">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M3.4 3.4C2 4.81333 2 7.07333 2 11.6V12.4C2 16.92 2 19.18 3.4 20.6C4.81333 22 7.07333 22 11.6 22H12.4C16.92 22 19.18 22 20.6 20.6C22 19.1867 22 16.9267 22 12.4V11.6C22 7.08 22 4.82 20.6 3.4C19.1867 2 16.9267 2 12.4 2H11.6C7.08 2 4.82 2 3.4 3.4ZM5.37333 8.08667H7.66667C7.74 11.9 9.42 13.5133 10.7533 13.8467V8.08667H12.9067V11.3733C14.22 11.2333 15.6067 9.73333 16.0733 8.08H18.22C18.0448 8.9358 17.6951 9.7463 17.1927 10.4609C16.6903 11.1755 16.046 11.7789 15.3 12.2333C16.1327 12.6476 16.8681 13.2338 17.4576 13.9532C18.0471 14.6726 18.4774 15.5088 18.72 16.4067H16.3533C15.8467 14.8267 14.58 13.6 12.9067 13.4333V16.4067H12.64C8.08 16.4067 5.48 13.2867 5.37333 8.08667Z" fill="white" />
                             </svg>
                         </a>
-                        <a href="#"
-                           class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors"
-                           aria-label="YouTube">
-                            <span class="sr-only">YouTube</span>
-                            <!-- YouTube SVG -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M12 4.15002C10.809 4.15002 9.42 4.17802 8.066 4.21602L8.011 4.21802C6.633 4.25702 5.521 4.28802 4.645 4.43302C3.732 4.58402 2.974 4.87302 2.368 5.49602C1.76 6.12102 1.495 6.89402 1.37 7.81902C1.25 8.70902 1.25 9.83702 1.25 11.239V12.763C1.25 14.163 1.25 15.291 1.37 16.182C1.494 17.107 1.76 17.88 2.368 18.505C2.974 19.129 3.732 19.417 4.645 19.568C5.521 19.713 6.633 19.744 8.011 19.783L8.066 19.785C9.421 19.823 10.809 19.851 12 19.851C13.191 19.851 14.58 19.823 15.934 19.785L15.989 19.783C17.367 19.744 18.479 19.713 19.355 19.568C20.268 19.417 21.026 19.128 21.632 18.505C22.24 17.88 22.506 17.107 22.63 16.182C22.75 15.292 22.75 14.164 22.75 12.762V11.238C22.75 9.83702 22.75 8.70902 22.63 7.81902C22.506 6.89402 22.24 6.12102 21.632 5.49602C21.026 4.87202 20.268 4.58402 19.355 4.43302C18.479 4.28802 17.367 4.25702 15.988 4.21802L15.934 4.21602C14.623 4.17623 13.3116 4.15423 12 4.15002ZM10.872 14.651C10.758 14.7162 10.6288 14.7502 10.4975 14.7498C10.3661 14.7493 10.2372 14.7144 10.1236 14.6485C10.01 14.5826 9.91571 14.488 9.85014 14.3742C9.78457 14.2604 9.75004 14.1314 9.75 14V10C9.75004 9.86869 9.78457 9.73966 9.85014 9.62586C9.91571 9.51206 10.01 9.41747 10.1236 9.35155C10.2372 9.28564 10.3661 9.25071 10.4975 9.25027C10.6288 9.24983 10.758 9.28388 10.872 9.34902L14.372 11.349C14.4867 11.4146 14.582 11.5094 14.6484 11.6237C14.7147 11.7381 14.7496 11.8679 14.7496 12C14.7496 12.1322 14.7147 12.262 14.6484 12.3763C14.582 12.4906 14.4867 12.5854 14.372 12.651L10.872 14.651Z"
-                                      fill="white" />
+                        <a href="#" class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors" aria-label="YouTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4.15002C10.809 4.15002 9.42 4.17802 8.066 4.21602L8.011 4.21802C6.633 4.25702 5.521 4.28802 4.645 4.43302C3.732 4.58402 2.974 4.87302 2.368 5.49602C1.76 6.12102 1.495 6.89402 1.37 7.81902C1.25 8.70902 1.25 9.83702 1.25 11.239V12.763C1.25 14.163 1.25 15.291 1.37 16.182C1.494 17.107 1.76 17.88 2.368 18.505C2.974 19.129 3.732 19.417 4.645 19.568C5.521 19.713 6.633 19.744 8.011 19.783L8.066 19.785C9.421 19.823 10.809 19.851 12 19.851C13.191 19.851 14.58 19.823 15.934 19.785L15.989 19.783C17.367 19.744 18.479 19.713 19.355 19.568C20.268 19.417 21.026 19.128 21.632 18.505C22.24 17.88 22.506 17.107 22.63 16.182C22.75 15.292 22.75 14.164 22.75 12.762V11.238C22.75 9.83702 22.75 8.70902 22.63 7.81902C22.506 6.89402 22.24 6.12102 21.632 5.49602C21.026 4.87202 20.268 4.58402 19.355 4.43302C18.479 4.28802 17.367 4.25702 15.988 4.21802L15.934 4.21602C14.623 4.17623 13.3116 4.15423 12 4.15002ZM10.872 14.651C10.758 14.7162 10.6288 14.7502 10.4975 14.7498C10.3661 14.7493 10.2372 14.7144 10.1236 14.6485C10.01 14.5826 9.91571 14.488 9.85014 14.3742C9.78457 14.2604 9.75004 14.1314 9.75 14V10C9.75004 9.86869 9.78457 9.73966 9.85014 9.62586C9.91571 9.51206 10.01 9.41747 10.1236 9.35155C10.2372 9.28564 10.3661 9.25071 10.4975 9.25027C10.6288 9.24983 10.758 9.28388 10.872 9.34902L14.372 11.349C14.4867 11.4146 14.582 11.5094 14.6484 11.6237C14.7147 11.7381 14.7496 11.8679 14.7496 12C14.7496 12.1322 14.7147 12.262 14.6484 12.3763C14.582 12.4906 14.4867 12.5854 14.372 12.651L10.872 14.651Z" fill="white" />
                             </svg>
                         </a>
-                        <a href="#"
-                           class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors"
-                           aria-label="RuTube">
-                            <span class="sr-only">RuTube</span>
-                            <!-- RuTube SVG -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                <path d="M20.3456 6.20011C21.2592 6.20011 21.9998 5.4595 21.9998 4.54592C21.9998 3.63233 21.2592 2.89172 20.3456 2.89172C19.432 2.89172 18.6914 3.63233 18.6914 4.54592C18.6914 5.4595 19.432 6.20011 20.3456 6.20011Z"
-                                      fill="white" />
-                                <path d="M7.04924 14.8239C7.04924 14.8732 7.04924 14.9093 7.04924 14.9472C7.04355 16.2808 7.03596 17.6144 7.03216 18.9499C7.03216 19.0258 7.0113 19.0524 6.93162 19.0524C5.92052 19.0486 3.76172 19.0486 3.76172 19.0486V6.05594C3.76172 6.05594 3.77879 6.05594 3.81294 6.05594C4.32513 6.05594 8.59151 6.05214 10.6839 6.04455C11.843 6.04076 12.9983 6.05214 14.1573 6.04455C14.66 6.04076 15.6086 6.03697 16.1094 6.06352C16.4224 6.08012 16.7562 6.11095 17.2722 6.26651C18.0083 6.48846 18.5679 6.90959 18.9245 7.6039C19.137 8.01934 19.2489 8.46514 19.3039 8.92422C19.4026 9.73234 19.3969 10.5443 19.3608 11.3562C19.3343 11.9632 19.247 12.5627 19.0156 13.1318C18.676 13.9665 18.0652 14.4862 17.1888 14.693C17.1053 14.712 17.0237 14.7329 16.9402 14.7461C16.8568 14.7613 16.7733 14.7689 16.6652 14.7841C16.7107 14.8619 16.7449 14.9302 16.7885 14.9909C17.257 15.6301 17.7256 16.2675 18.1942 16.9049C18.657 17.5347 19.1218 18.1665 19.5828 18.7982C19.634 18.8683 19.6719 18.9499 19.7251 19.0391C19.6871 19.0448 19.6606 19.0524 19.634 19.0524C18.4901 19.0524 17.3462 19.0524 16.2004 19.0561C16.1226 19.0561 16.0866 19.0163 16.0506 18.9613C15.6161 18.3049 15.1836 17.6448 14.7435 16.9922C14.2712 16.2922 13.7893 15.5979 13.3132 14.8979C13.2771 14.8448 13.2392 14.8239 13.1747 14.8239C11.1639 14.8239 9.15302 14.8239 7.14409 14.8239H7.05113H7.04924ZM7.04924 11.9424C7.10046 11.9424 7.1384 11.9424 7.17634 11.9424C9.19665 11.9462 11.217 11.9499 13.2373 11.9518C13.905 11.9518 14.5709 11.9462 15.2386 11.9348C15.4283 11.931 15.6161 11.8892 15.7831 11.7925C16.024 11.6521 16.0847 11.4112 16.0961 11.1608C16.1113 10.8383 16.115 10.5158 16.1113 10.1952C16.1075 9.93343 16.0999 9.66974 16.0126 9.41934C15.9519 9.24861 15.8476 9.11771 15.6825 9.03993C15.4473 8.92991 15.195 8.90525 14.9427 8.90525C14.2863 8.90335 13.6281 8.91473 12.9717 8.91283C11.8657 8.90904 10.7598 8.89576 9.65383 8.89386C8.91969 8.89386 8.18744 8.90335 7.4533 8.91094C7.31861 8.91094 7.18392 8.92422 7.05113 8.9318V11.9462L7.04924 11.9424Z"
-                                      fill="white" />
+                        <a href="#" class="w-9 h-9 sm:w-[32px] sm:h-[32px] bg-accent rounded-xl flex items-center justify-center hover:bg-[#a31515] transition-colors" aria-label="RuTube">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.3456 6.20011C21.2592 6.20011 21.9998 5.4595 21.9998 4.54592C21.9998 3.63233 21.2592 2.89172 20.3456 2.89172C19.432 2.89172 18.6914 3.63233 18.6914 4.54592C18.6914 5.4595 19.432 6.20011 20.3456 6.20011Z" fill="white" />
+                                <path d="M7.04924 14.8239C7.04924 14.8732 7.04924 14.9093 7.04924 14.9472C7.04355 16.2808 7.03596 17.6144 7.03216 18.9499C7.03216 19.0258 7.0113 19.0524 6.93162 19.0524C5.92052 19.0486 3.76172 19.0486 3.76172 19.0486V6.05594C3.76172 6.05594 3.77879 6.05594 3.81294 6.05594C4.32513 6.05594 8.59151 6.05214 10.6839 6.04455C11.843 6.04076 12.9983 6.05214 14.1573 6.04455C14.66 6.04076 15.6086 6.03697 16.1094 6.06352C16.4224 6.08012 16.7562 6.11095 17.2722 6.26651C18.0083 6.48846 18.5679 6.90959 18.9245 7.6039C19.137 8.01934 19.2489 8.46514 19.3039 8.92422C19.4026 9.73234 19.3969 10.5443 19.3608 11.3562C19.3343 11.9632 19.247 12.5627 19.0156 13.1318C18.676 13.9665 18.0652 14.4862 17.1888 14.693C17.1053 14.712 17.0237 14.7329 16.9402 14.7461C16.8568 14.7613 16.7733 14.7689 16.6652 14.7841C16.7107 14.8619 16.7449 14.9302 16.7885 14.9909C17.257 15.6301 17.7256 16.2675 18.1942 16.9049C18.657 17.5347 19.1218 18.1665 19.5828 18.7982C19.634 18.8683 19.6719 18.9499 19.7251 19.0391C19.6871 19.0448 19.6606 19.0524 19.634 19.0524C18.4901 19.0524 17.3462 19.0524 16.2004 19.0561C16.1226 19.0561 16.0866 19.0163 16.0506 18.9613C15.6161 18.3049 15.1836 17.6448 14.7435 16.9922C14.2712 16.2922 13.7893 15.5979 13.3132 14.8979C13.2771 14.8448 13.2392 14.8239 13.1747 14.8239C11.1639 14.8239 9.15302 14.8239 7.14409 14.8239H7.05113H7.04924ZM7.04924 11.9424C7.10046 11.9424 7.1384 11.9424 7.17634 11.9424C9.19665 11.9462 11.217 11.9499 13.2373 11.9518C13.905 11.9518 14.5709 11.9462 15.2386 11.9348C15.4283 11.931 15.6161 11.8892 15.7831 11.7925C16.024 11.6521 16.0847 11.4112 16.0961 11.1608C16.1113 10.8383 16.115 10.5158 16.1113 10.1952C16.1075 9.93343 16.0999 9.66974 16.0126 9.41934C15.9519 9.24861 15.8476 9.11771 15.6825 9.03993C15.4473 8.92991 15.195 8.90525 14.9427 8.90525C14.2863 8.90335 13.6281 8.91473 12.9717 8.91283C11.8657 8.90904 10.7598 8.89576 9.65383 8.89386C8.91969 8.89386 8.18744 8.90335 7.4533 8.91094C7.31861 8.91094 7.18392 8.92422 7.05113 8.9318V11.9462L7.04924 11.9424Z" fill="white" />
                             </svg>
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- =====================
-                 BOTTOM ROW
-                 ===================== -->
-            <div class="mt-8 flex flex-col gap-6 md:mt-10
-                md:flex-row md:items-center md:justify-between md:gap-10
-                text-xs text-regular-primary sm:text-base">
+            <div class="mt-8 flex flex-col gap-6 md:mt-10 md:flex-row md:items-center md:justify-between md:gap-10 text-xs text-regular-primary sm:text-base">
                 <div class="flex flex-col gap-2 sm:flex-row sm:gap-6 xl:gap-[55px]">
                     <span>2025 © Все права защищены</span>
                     <a href="/o-nas/politika-obrabotki-personal-nykh-dannykh/" class="hover:underline">Политика обработки персональных данных</a>
@@ -298,7 +371,62 @@
             </div>
         </div>
     </footer>
-
+<!-- Font Switcher Script -->
+    <script>
+        (function() {
+            const fontSwitcherBtn = document.getElementById('fontSwitcherBtn');
+            const fontMenu = document.getElementById('fontMenu');
+            const fontOptions = document.querySelectorAll('.font-option');
+            const body = document.body;
+            
+            // Загрузка сохраненного шрифта из localStorage
+            const savedFont = localStorage.getItem('selectedFont') || 'random';
+            applyFont(savedFont);
+            
+            // Переключение меню
+            fontSwitcherBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                fontMenu.classList.toggle('active');
+            });
+            
+            // Закрытие меню при клике вне его
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.font-switcher')) {
+                    fontMenu.classList.remove('active');
+                }
+            });
+            
+            // Выбор шрифта
+            fontOptions.forEach(function(option) {
+                option.addEventListener('click', function() {
+                    const selectedFont = option.dataset.font;
+                    applyFont(selectedFont);
+                    localStorage.setItem('selectedFont', selectedFont);
+                    fontMenu.classList.remove('active');
+                });
+            });
+            
+            // Применение шрифта
+            function applyFont(fontName) {
+                // Удаляем все классы шрифтов
+                body.className = body.className.replace(/font-\w+/g, '').trim();
+                
+                // Добавляем выбранный шрифт
+                body.classList.add('font-' + fontName);
+                
+                // Обновляем активный элемент в меню
+                fontOptions.forEach(function(opt) {
+                    opt.classList.remove('active');
+                    const badge = opt.querySelector('.font-badge');
+                    if (badge) badge.remove();
+                    
+                    if (opt.dataset.font === fontName) {
+                        opt.classList.add('active');
+                    }
+                });
+            }
+        })();
+    </script>
 
     <script>
         (() => {
@@ -314,10 +442,8 @@
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
-            // Find all reveal containers or individual items
             const items = document.querySelectorAll('[data-reveal], .reveal');
             items.forEach((el, i) => {
-                // Allow stagger via data-reveal-delay (ms) or auto-stagger
                 const delay = el.dataset.revealDelay ?? (el.hasAttribute('data-reveal-stagger') ? (i * 80) : 0);
                 el.style.transitionDelay = delay + 'ms';
                 el.classList.add('reveal-init');
@@ -326,7 +452,6 @@
         })();
     </script>
 
-
     <script>
         (() => {
             if (CSS?.supports?.('view-transition-name: root')) {
@@ -334,7 +459,6 @@
                 @@media (prefers-reduced-motion: no-preference) {
                   :root { view-transition-name: root; }
                   @@view-transition { navigation: auto; }
-                  /* tune the default timing */
                   ::view-transition-old(root), ::view-transition-new(root) {
                     animation-duration: 300ms;
                     animation-timing-function: cubic-bezier(.2,.8,.2,1);
@@ -402,7 +526,6 @@
 
             if (!form) return;
 
-            // Validation rules
             const validationRules = {
                 name: {
                     required: true,
@@ -458,7 +581,6 @@
                 }
             };
 
-            // Phone number formatting
             const phoneInput = document.getElementById('phone');
             if (phoneInput) {
                 phoneInput.addEventListener('input', function (e) {
@@ -473,7 +595,6 @@
                 });
             }
 
-            // Validation functions
             function showError(fieldName, message) {
                 const field = document.querySelector(`[name="${fieldName}"]`);
                 const errorDiv = document.querySelector(`[data-field="${fieldName}"]`);
@@ -509,7 +630,6 @@
                 const rules = validationRules[fieldName];
                 if (!rules) return true;
 
-                // Special validation for checkbox
                 if (fieldName === 'agreement') {
                     if (!value) {
                         showError(fieldName, rules.messages.required);
@@ -520,31 +640,26 @@
                     }
                 }
 
-                // Required validation for other fields
                 if (rules.required && (!value || value.trim() === '')) {
                     showError(fieldName, rules.messages.required);
                     return false;
                 }
 
-                // Skip other validations if field is empty and not required
                 if (!value || value.trim() === '') {
                     showSuccess(fieldName);
                     return true;
                 }
 
-                // Min length validation
                 if (rules.minLength && value.length < rules.minLength) {
                     showError(fieldName, rules.messages.minLength);
                     return false;
                 }
 
-                // Max length validation
                 if (rules.maxLength && value.length > rules.maxLength) {
                     showError(fieldName, rules.messages.maxLength);
                     return false;
                 }
 
-                // Pattern validation
                 if (rules.pattern && !rules.pattern.test(value)) {
                     showError(fieldName, rules.messages.pattern);
                     return false;
@@ -570,7 +685,6 @@
                 return isValid;
             }
 
-            // Real-time validation
             form.addEventListener('input', function (e) {
                 const fieldName = e.target.name;
                 if (validationRules[fieldName]) {
@@ -587,32 +701,26 @@
                 }
             });
 
-            // Special handling for checkbox to ensure it validates on click
             const agreementCheckbox = document.querySelector('[name="agreement"]');
             if (agreementCheckbox) {
                 agreementCheckbox.addEventListener('click', function (e) {
-                    // Use setTimeout to validate after the checkbox state changes
                     setTimeout(() => {
                         validateField('agreement', e.target.checked);
                     }, 0);
                 });
             }
 
-            // Form submission
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 if (validateForm()) {
-                    // Disable submit button
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Отправка...';
 
-                    // Simulate form submission (replace with actual API call)
                     setTimeout(() => {
                         alert('Форма успешно отправлена!');
                         form.reset();
 
-                        // Reset all field states
                         document.querySelectorAll('.input-field').forEach(field => {
                             field.classList.remove('error', 'success');
                         });
@@ -621,12 +729,10 @@
                             error.classList.add('hidden');
                         });
 
-                        // Re-enable submit button
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'ОСТАВИТЬ ЗАЯВКУ';
                     }, 2000);
                 } else {
-                    // Scroll to first error
                     const firstError = document.querySelector('.error-message.show');
                     if (firstError) {
                         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
