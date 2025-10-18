@@ -13,7 +13,7 @@
     var socialYoutube = ViewData["SocialYoutube"] as string;
     var socialRutube = ViewData["SocialRutube"] as string;
 
-    var menuFolders = rootPage.Children.Where(x => x.IsVisible() && (x.ContentType.Alias == "papka" || x.ContentType.Alias == "sistemy")).OrderBy(x => x.SortOrder);
+    var menuFolders = rootPage.Children.Where(x => x.IsVisible() && x.ContentType.Alias == "papka").OrderBy(x => x.SortOrder);
 }
 
 <header class="bg-white relative z-50">
@@ -68,7 +68,7 @@
                 }
 
                 @{
-                    var otherMenuItems = rootPage.Children.Where(x => x.IsVisible() && x.ContentType.Alias != "papka" && x.ContentType.Alias != "home").OrderBy(x => x.SortOrder);
+                    var otherMenuItems = rootPage.Children.Where(x => x.IsVisible() && x.ContentType.Alias != "papka").OrderBy(x => x.SortOrder);
                 }
                 @foreach (var item in otherMenuItems)
                 {
