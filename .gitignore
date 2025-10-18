@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+[Uu]mbraco/Data/
+[Ww]wwroot/media/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
