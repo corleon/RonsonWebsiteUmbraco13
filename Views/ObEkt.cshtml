@@ -166,6 +166,65 @@
     </div>
 </div>
 
+<style>
+    /* Slider styles */
+    .slider-track {
+        position: relative;
+        width: 100%;
+        min-height: 400px;
+    }
+    
+    .slider-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+        pointer-events: none;
+    }
+    
+    .slider-item.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    .slider-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Slider controls */
+    .slider-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .slider-dot {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .slider-dot:hover {
+        background-color: #BD1A1A;
+    }
+    
+    .slider-arrow {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .zoom-button {
+        z-index: 10;
+    }
+</style>
+
 <script>
     // Image Modal Functions
     let currentZoom = 1;
@@ -314,7 +373,7 @@
             // Dots container
             html += '<div class="flex gap-2">';
             items.forEach((_, i) => {
-                html += `<button class="slider-dot w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-accent w-8' : 'bg-gray-300'}" data-slide="${i}"></button>`;
+                html += `<button class="slider-control w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-accent w-8 active' : 'bg-gray-300'}" data-slide="${i}"></button>`;
             });
             html += '</div>';
 
@@ -331,6 +390,24 @@
 
             html += '</div>';
             controlsContainer.innerHTML = html;
+            
+            // Add event listeners immediately after creating controls
+            setTimeout(() => {
+                const controls = controlsContainer.querySelectorAll('.slider-control');
+                
+                controls.forEach(control => {
+                    control.addEventListener('click', () => {
+                        goToSlide(parseInt(control.dataset.slide));
+                        startAutoPlay();
+                    });
+                });
+
+                const prevBtn = controlsContainer.querySelector('.prev-slide');
+                const nextBtn = controlsContainer.querySelector('.next-slide');
+                
+                if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+                if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
+            }, 0);
         }
 
         // Sync active states
@@ -338,13 +415,16 @@
             items.forEach((item, i) => {
                 item.classList.toggle('active', i === index);
             });
-            controlsContainer.querySelectorAll('.slider-dot').forEach((dot, i) => {
+            
+            const controls = controlsContainer.querySelectorAll('.slider-control');
+            
+            controls.forEach((control, i) => {
                 if (i === index) {
-                    dot.classList.add('bg-accent', 'w-8');
-                    dot.classList.remove('bg-gray-300');
+                    control.classList.add('bg-accent', 'w-8', 'active');
+                    control.classList.remove('bg-gray-300');
                 } else {
-                    dot.classList.remove('bg-accent', 'w-8');
-                    dot.classList.add('bg-gray-300');
+                    control.classList.remove('bg-accent', 'w-8', 'active');
+                    control.classList.add('bg-gray-300');
                 }
             });
         }
@@ -379,18 +459,6 @@
 
         // Event listeners
         createControls();
-
-        controlsContainer.querySelectorAll('.slider-dot').forEach(dot => {
-            dot.addEventListener('click', () => {
-                goToSlide(parseInt(dot.dataset.slide));
-                startAutoPlay();
-            });
-        });
-
-        const prevBtn = controlsContainer.querySelector('.prev-slide');
-        const nextBtn = controlsContainer.querySelector('.next-slide');
-        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
-        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
 
         // Touch/mouse drag support
         let startPos = 0;
@@ -532,7 +600,7 @@
                         <div class="flex flex-col gap-4 justify-center">
                             <img src="/assets/img/o_logo.png" alt="logo" class="h-20 rounded-4xl object-contain mt-20">
                             <!-- Main heading -->
-                            <h2 class="h1 mt-[80px]">
+                            <h2 class="mt-[80px]">
                                 Фасады @objectName — наш <br> проект для застройщика
                             </h2>
                         </div>

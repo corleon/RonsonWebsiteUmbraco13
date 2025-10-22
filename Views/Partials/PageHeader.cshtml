@@ -4,7 +4,7 @@
 
 @{
     // Не показываем hero для Систем тип 1 и 2
-    if (Model.ContentType.Alias == "sistemaTip1" || Model.ContentType.Alias == "sistemaTip2" || Model.ContentType.Alias == "sistema") return;
+    if (Model.ContentType.Alias == "sistemaTip1" || Model.ContentType.Alias == "sistemaTip2" || Model.ContentType.Alias == "sistema" || Model.ContentType.Alias == "obEkt") return;
 
     // Проверяем, нужно ли скрывать hero-секцию
     var hideHeroSection = Model.HasValue("hideHeroSection") && Model.Value<bool>("hideHeroSection");
