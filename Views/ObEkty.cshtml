@@ -10,7 +10,7 @@
     // Get all child objects
     var objects = Model.Children<ContentModels.ObEkt>()
         .Where(x => x.IsVisible())
-        .OrderBy(x => x.SortOrder)
+        .OrderByDescending(obj => obj.Value<int?>("god") ?? 0) // Сортируем по году, новые первыми
         .ToList();
 
     // Helper function to get cover image URL (first image from gallery)

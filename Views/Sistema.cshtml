@@ -26,15 +26,18 @@
     // Получаем все объекты (obEkt) которые используют эту систему
     var rootNode = Model.Root();
     var allObjects = rootNode.DescendantsOfType("obEkt");
-    
-    // Фильтруем объекты по systemTag - берем только те, у которых в systems есть наш systemTag
+
+    // Фильтруем объекты по полю obl (облицовочный материал)
     var realizedProjects = allObjects
-        .Where(obj => {
-            var objSystems = obj.Value<IEnumerable<string>>("systems");
-            return objSystems != null && objSystems.Any(s => s.Equals(systemTag, StringComparison.OrdinalIgnoreCase));
+        .Where(obj =>
+        {
+            var obl = obj.Value<string>("obl") ?? "";
+            // Проверяем содержит ли поле obl название системы (регистронезависимый поиск)
+            return !string.IsNullOrWhiteSpace(obl) &&
+                   obl.IndexOf(systemName, StringComparison.OrdinalIgnoreCase) >= 0;
         })
-        .OrderByDescending(obj => obj.Value<int?>("god") ?? 0) // Сортируем по году, новые первыми
-        .Take(10) // Берем максимум 10 объектов
+        .OrderByDescending(obj => obj.Value<int?>("god") ?? 0)
+        .Take(10)
         .ToList();
 
     // Данные о станке
