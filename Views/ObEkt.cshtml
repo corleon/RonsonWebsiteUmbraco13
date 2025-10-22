@@ -1,8 +1,30 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ObEkt>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Extensions;
+@using System.Linq;
 @{
 	Layout = "Master.cshtml";
+	
+	// Получаем данные объекта
+	var objectName = Model.ObjectName ?? "";
+	var description = Model.Description ?? "";
+	var completionYear = Model.God;
+	var coveringMaterial = Model.Obl ?? "";
+	var systems = Model.Systems ?? Enumerable.Empty<string>();
+	
+	// Получаем изображения галереи
+	var imageGallery = Model.ImageGallery;
+	var galleryImages = imageGallery?.ToList() ?? new List<MediaWithCrops>();
+	
+	// Получаем обложку
+	@*var cover = Model.Cover;*@
+	
+	// Получаем родительскую категорию для хлебных крошек
+	var parentNode = Model.Parent;
+	var parentName = parentNode?.Name ?? "Объекты";
+	var parentUrl = parentNode?.Url() ?? "/obekty/zhilye-kompleksy/";
 }
 
 <!-- Breadcrumb -->
@@ -13,10 +35,10 @@
             <span class="mx-1 md:mx-2">/</span>
         </li>
         <li>
-            <a href="/ob-ekty/zhilye-kompleksy/" class="text-regular-secondary hover:text-accent">Объекты</a>
+            <a href="@parentUrl" class="text-regular-secondary hover:text-accent">@parentName</a>
             <span class="mx-1 md:mx-2">/</span>
         </li>
-        <li class="text-bold">ЖК Дивное</li>
+        <li class="text-bold">@objectName</li>
     </ol>
 </nav>
 
@@ -26,29 +48,43 @@
         <!-- Left Section - Information Card -->
         <div class="card h-full flex flex-col justify-between shadow-xl">
             <div>
-                <h1 class="h1 mb-4 md:mb-6">ЖК Дивное</h1>
+                <h1 class="h1 mb-4 md:mb-6">@objectName</h1>
 
-                <!-- Tags/Buttons -->
-                <div class="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6">
-                    <span class="border border-accent text-accent bg-white px-3 py-2 md:px-4 md:py-3 body1 rounded-2xl font-medium text-sm md:text-base">РОНСОН-400</span>
-                    <span class="border border-accent text-accent bg-white px-3 py-2 md:px-4 md:py-3 body1 rounded-2xl font-medium text-sm md:text-base">РОНСОН-300</span>
-                </div>
+                <!-- Tags/Buttons - Systems -->
+                @if (systems.Any())
+                {
+                    <div class="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6">
+                        @foreach (var system in systems)
+                        {
+                            <span class="border border-accent text-accent bg-white px-3 py-2 md:px-4 md:py-3 body1 rounded-2xl font-medium text-sm md:text-base">@system</span>
+                        }
+                    </div>
+                }
 
                 <!-- Material Description -->
-                <p class="body1 mb-8 md:mb-12 text-bold">
-                    <b>Облицовочный материал:</b> керамогранит (скрытое крепление), стеклофибробетон на модульной системе, плитка на затирке.
-                </p>
+                @if (!string.IsNullOrEmpty(coveringMaterial))
+                {
+                    <p class="body1 mb-8 md:mb-12 text-bold">
+                        <b>Облицовочный материал:</b> @coveringMaterial
+                    </p>
+                }
 
                 <!-- Address and Completion Info -->
                 <div class="grid grid-cols-1 md:flex gap-4 md:gap-6">
-                    <div class="border border-gray rounded-lg p-3 md:p-4 flex-1">
-                        <p class="body1 text-bold">г. Видное, Зеленый пер., д. 9</p>
-                        <p class="body2 text-regular-secondary mt-1">Адрес объекта</p>
-                    </div>
-                    <div class="border border-gray rounded-lg p-3 md:p-4">
-                        <p class="body1 text-bold">2023</p>
-                        <p class="body2 text-regular-secondary mt-1">Окончание монтажа</p>
-                    </div>
+                    @if (!string.IsNullOrEmpty(description))
+                    {
+                        <div class="border border-gray rounded-lg p-3 md:p-4 flex-1">
+                            <p class="body1 text-bold">@description</p>
+                            <p class="body2 text-regular-secondary mt-1">Адрес объекта</p>
+                        </div>
+                    }
+                    @if (completionYear > 0)
+                    {
+                        <div class="border border-gray rounded-lg p-3 md:p-4">
+                            <p class="body1 text-bold">@completionYear</p>
+                            <p class="body2 text-regular-secondary mt-1">Окончание монтажа</p>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -57,31 +93,36 @@
         <div class="h-full flex flex-col">
             <!-- Story-like Slider -->
             <div class="slider-container h-full flex flex-col">
-                <div class="slider-track overflow-hidden shadow-lg  lg:flex-1 relative">
-                    <div class="slider-item active">
-                        <img src="/assets/img/object1.jpg" alt="ЖК Дивное - вид на жилой комплекс" loading="lazy" class="w-full h-full object-cover">
-                        <button onclick="openImageModal('/assets/img/object1.jpg', 'ЖК Дивное - вид на жилой комплекс')" class="absolute top-4 right-4   transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="0">
-                            <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
-                        </button>
-                    </div>
-                    <div class="slider-item">
-                        <img src="/assets/img/news11.jpg" alt="ЖК Дивное - архитектурные детали" loading="lazy" class="w-full h-full object-cover">
-                        <button onclick="openImageModal('/assets/img/news11.jpg', 'ЖК Дивное - архитектурные детали')" class="absolute top-4 right-4   transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="1">
-                            <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
-                        </button>
-                    </div>
-                    <div class="slider-item">
-                        <img src="/assets/img/p1.jpg" alt="ЖК Дивное - фасадные конструкции" loading="lazy" class="w-full h-full object-cover">
-                        <button onclick="openImageModal('/assets/img/p1.jpg', 'ЖК Дивное - фасадные конструкции')" class="absolute top-4 right-4   transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="2">
-                            <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
-                        </button>
-                    </div>
-                    <div class="slider-item">
-                        <img src="/assets/img/p2.jpg" alt="ЖК Дивное - внутренние помещения" loading="lazy" class="w-full h-full object-cover">
-                        <button onclick="openImageModal('/assets/img/p2.jpg', 'ЖК Дивное - внутренние помещения')" class="absolute top-4 right-4   transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="3">
-                            <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
-                        </button>
-                    </div>
+                <div class="slider-track overflow-hidden shadow-lg lg:flex-1 relative">
+                    @if (galleryImages.Any())
+                    {
+                        @for (int i = 0; i < galleryImages.Count; i++)
+                        {
+                            var image = galleryImages[i];
+                            var imageUrl = image.Url();
+                            var imageAlt = !string.IsNullOrEmpty(image.Name) ? $"{objectName} - {image.Name}" : objectName;
+                            var activeClass = i == 0 ? "active" : "";
+                            
+                            <div class="slider-item @activeClass">
+                                <img src="@imageUrl" alt="@imageAlt" loading="lazy" class="w-full h-full object-cover">
+                                <button onclick="openImageModal('@imageUrl', '@imageAlt')" class="absolute top-4 right-4 transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="@i">
+                                    <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
+                                </button>
+                            </div>
+                        }
+                    }
+                    @*else if (cover != null)
+                    {
+                        var coverUrl = cover.Url();
+                        var coverAlt = objectName;
+                        
+                        <div class="slider-item active">
+                            <img src="@coverUrl" alt="@coverAlt" loading="lazy" class="w-full h-full object-cover">
+                            <button onclick="openImageModal('@coverUrl', '@coverAlt')" class="absolute top-4 right-4 transition-all duration-200 rounded-full backdrop-blur-sm cursor-pointer zoom-button" data-slide="0">
+                                <img src="/assets/icons/zoom.svg" alt="zoom" class="w-12 h-12">
+                            </button>
+                        </div>
+                    }*@
                 </div>
                 <div class="slider-controls mt-4">
                     <!-- Controls will be generated by JavaScript -->
@@ -141,56 +182,69 @@
         const modalImage = document.getElementById('modalImage');
         const modalImageAlt = document.getElementById('modalImageAlt');
 
-        if (!modal || !modalImage || !modalImageAlt) {
+        if (modal && modalImage && modalImageAlt) {
+            modalImage.src = imageSrc;
+            modalImage.alt = imageAlt;
+            modalImageAlt.textContent = imageAlt;
+            modal.classList.remove('hidden');
+            resetZoom();
+
+            console.log('Modal opened:', {
+                modalSrc: modalImage.src,
+                modalAlt: modalImage.alt,
+                modalAltText: modalImageAlt.textContent
+            });
+        } else {
             console.error('Modal elements not found');
-            return;
         }
 
-        modalImage.src = imageSrc;
-        modalImage.alt = imageAlt;
-        modalImageAlt.textContent = imageAlt;
-
-        console.log('Modal image src set to:', modalImage.src);
-
-        // Reset zoom and position
-        currentZoom = 1;
-        translateX = 0;
-        translateY = 0;
-        updateImageTransform();
-
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+        // Add dragging functionality
+        modalImage.addEventListener('mousedown', startDrag);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDrag);
     }
 
     function closeImageModal() {
         const modal = document.getElementById('imageModal');
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
+        const modalImage = document.getElementById('modalImage');
+
+        if (modal && modalImage) {
+            modal.classList.add('hidden');
+            modalImage.src = '';
+            modalImage.alt = '';
+            resetZoom();
+
+            // Remove dragging listeners
+            modalImage.removeEventListener('mousedown', startDrag);
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('mouseup', stopDrag);
+        }
     }
 
     function zoomIn() {
-        currentZoom = Math.min(currentZoom * 1.5, 5);
-        updateImageTransform();
+        currentZoom = Math.min(currentZoom + 0.2, 3);
+        applyZoom();
     }
 
     function zoomOut() {
-        currentZoom = Math.max(currentZoom / 1.5, 0.5);
-        updateImageTransform();
+        currentZoom = Math.max(currentZoom - 0.2, 0.5);
+        applyZoom();
     }
 
     function resetZoom() {
         currentZoom = 1;
         translateX = 0;
         translateY = 0;
-        updateImageTransform();
+        applyZoom();
     }
 
-    function updateImageTransform() {
+    function applyZoom() {
         const modalImage = document.getElementById('modalImage');
-        modalImage.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+        if (modalImage) {
+            modalImage.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+        }
     }
 
-    // Mouse drag functionality
     function startDrag(e) {
         if (currentZoom > 1) {
             isDragging = true;
@@ -201,10 +255,10 @@
     }
 
     function drag(e) {
-        if (isDragging && currentZoom > 1) {
+        if (isDragging) {
             translateX = e.clientX - startX;
             translateY = e.clientY - startY;
-            updateImageTransform();
+            applyZoom();
         }
     }
 
@@ -212,138 +266,167 @@
         isDragging = false;
     }
 
-    // Add drag event listeners to modal image
-    document.addEventListener('DOMContentLoaded', function () {
-        const modalImage = document.getElementById('modalImage');
-        if (modalImage) {
-            modalImage.addEventListener('mousedown', startDrag);
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', stopDrag);
-        }
-    });
-
-    // Close modal on escape key
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
             closeImageModal();
         }
     });
 
-    // Close modal when clicking outside the image
-    document.getElementById('imageModal').addEventListener('click', function (event) {
-        if (event.target === this) {
+    // Close modal on background click
+    document.getElementById('imageModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'imageModal') {
             closeImageModal();
         }
     });
 
+    // Slider functionality
     document.addEventListener('DOMContentLoaded', () => {
         const sliderContainer = document.querySelector('.slider-container');
         if (!sliderContainer) return;
 
         const track = sliderContainer.querySelector('.slider-track');
-        const items = Array.from(sliderContainer.querySelectorAll('.slider-item'));
+        const items = Array.from(track.querySelectorAll('.slider-item'));
         const controlsContainer = sliderContainer.querySelector('.slider-controls');
-        if (!track || !items.length || !controlsContainer) return;
 
-        // Use slide marked .active in markup, else 0
-        let currentSlide = Math.max(0, items.findIndex(el => el.classList.contains('active')));
-        if (currentSlide === -1) currentSlide = 0;
+        let currentSlide = 0;
+        let autoPlayTimer = null;
+        let isInteracting = false;
 
-        let autoPlayInterval = null;
-        const autoPlayDelay = 3000;
+        // Only proceed if we have slides
+        if (items.length === 0) return;
 
-        // Build dots (no styles, no aria)
-        controlsContainer.innerHTML = '';
-        items.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = 'slider-control' + (i === currentSlide ? ' active' : '');
-            dot.dataset.slide = String(i);
-            dot.tabIndex = 0;
-            controlsContainer.appendChild(dot);
-        });
+        // Create controls (dots + arrows)
+        function createControls() {
+            let html = '<div class="flex items-center justify-center gap-4">';
 
-        const getDots = () => Array.from(controlsContainer.querySelectorAll('.slider-control'));
+            // Previous arrow
+            if (items.length > 1) {
+                html += `
+                    <button class="slider-arrow prev-slide p-2 rounded-full hover:bg-gray-100 transition-colors" aria-label="Previous slide">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                `;
+            }
 
+            // Dots container
+            html += '<div class="flex gap-2">';
+            items.forEach((_, i) => {
+                html += `<button class="slider-dot w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-accent w-8' : 'bg-gray-300'}" data-slide="${i}"></button>`;
+            });
+            html += '</div>';
+
+            // Next arrow
+            if (items.length > 1) {
+                html += `
+                    <button class="slider-arrow next-slide p-2 rounded-full hover:bg-gray-100 transition-colors" aria-label="Next slide">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                `;
+            }
+
+            html += '</div>';
+            controlsContainer.innerHTML = html;
+        }
+
+        // Sync active states
         function syncActive(index) {
-            items.forEach((item, i) => item.classList.toggle('active', i === index));
-            getDots().forEach((dot, i) => dot.classList.toggle('active', i === index));
-
-            // Show/hide zoom buttons based on active slide
-            const zoomButtons = document.querySelectorAll('.zoom-button');
-            zoomButtons.forEach((button, i) => {
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+            controlsContainer.querySelectorAll('.slider-dot').forEach((dot, i) => {
                 if (i === index) {
-                    button.style.display = 'block';
-                    button.style.zIndex = '10';
+                    dot.classList.add('bg-accent', 'w-8');
+                    dot.classList.remove('bg-gray-300');
                 } else {
-                    button.style.display = 'none';
-                    button.style.zIndex = '1';
+                    dot.classList.remove('bg-accent', 'w-8');
+                    dot.classList.add('bg-gray-300');
                 }
             });
         }
 
-        function showSlide(index) {
-            if (index < 0 || index >= items.length) return;
-            currentSlide = index;
+        // Navigation
+        function goToSlide(index) {
+            currentSlide = (index + items.length) % items.length;
             syncActive(currentSlide);
         }
 
         function nextSlide() {
-            showSlide((currentSlide + 1) % items.length);
+            goToSlide(currentSlide + 1);
         }
 
         function prevSlide() {
-            showSlide((currentSlide - 1 + items.length) % items.length);
+            goToSlide(currentSlide - 1);
         }
 
+        // Auto-play
         function startAutoPlay() {
-            stopAutoPlay(); // avoid stacking intervals
-            autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+            if (items.length <= 1) return;
+            stopAutoPlay();
+            autoPlayTimer = setInterval(nextSlide, 5000);
         }
 
         function stopAutoPlay() {
-            if (autoPlayInterval) {
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = null;
+            if (autoPlayTimer) {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
             }
         }
 
-        // Dot clicks + keyboard (event delegation)
-        controlsContainer.addEventListener('click', (e) => {
-            const dot = e.target.closest('.slider-control');
-            if (!dot) return;
-            const idx = Number(dot.dataset.slide);
-            showSlide(idx);
-            startAutoPlay();
+        // Event listeners
+        createControls();
+
+        controlsContainer.querySelectorAll('.slider-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.slide));
+                startAutoPlay();
+            });
         });
 
-        controlsContainer.addEventListener('keydown', (e) => {
-            if (e.key !== 'Enter' && e.key !== ' ') return;
-            const dot = e.target.closest('.slider-control');
-            if (!dot) return;
-            e.preventDefault();
-            const idx = Number(dot.dataset.slide);
-            showSlide(idx);
-            startAutoPlay();
-        });
+        const prevBtn = controlsContainer.querySelector('.prev-slide');
+        const nextBtn = controlsContainer.querySelector('.next-slide');
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoPlay(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoPlay(); });
 
-        // Swipe / drag
-        let startX = 0, currentX = 0, isInteracting = false;
+        // Touch/mouse drag support
+        let startPos = 0;
+        let currentTranslate = 0;
+        let isDragging = false;
 
         function pointerDown(x) {
-            startX = x;
-            currentX = x;
+            if (items.length <= 1) return;
+            startPos = x;
+            isDragging = false;
             isInteracting = true;
             stopAutoPlay();
         }
+
         function pointerMove(x) {
-            if (!isInteracting) return;
-            currentX = x;
+            if (items.length <= 1 || startPos === 0) return;
+            const diff = x - startPos;
+            if (Math.abs(diff) > 5) isDragging = true;
+            if (!isDragging) return;
+            currentTranslate = diff;
         }
+
         function pointerUp() {
-            if (!isInteracting) return;
-            const dx = startX - currentX;
+            if (items.length <= 1 || !isDragging) {
+                isInteracting = false;
+                startAutoPlay();
+                return;
+            }
+
             const threshold = 50;
-            if (Math.abs(dx) > threshold) (dx > 0 ? nextSlide() : prevSlide());
+            if (currentTranslate > threshold) prevSlide();
+            else if (currentTranslate < -threshold) nextSlide();
+
+            startPos = 0;
+            currentTranslate = 0;
+            isDragging = false;
             isInteracting = false;
             startAutoPlay();
         }
@@ -391,42 +474,44 @@
                 <div class="text-center flex flex-col items-center">
                     <img src="/assets/img/o_logo.png" alt="logo" class="h-16 sm:h-20 object-contain mt-10">
                     <h2 class="h2 sm:h1 mt-6">
-                        Фасады ЖК Дивное — наш <br class="hidden sm:block" />
-                        проект для застройщика <br class="hidden sm:block" />
-                        «СИТИ21»
+                        Фасады @objectName — наш <br class="hidden sm:block" />
+                        проект для застройщика
                     </h2>
                 </div>
 
                 <!-- Description & Tags -->
                 <div class="mt-6 max-w-[680px] mx-auto">
-                    <p class="body2 mb-4 text-regular-primary">
-                        Мы&nbsp;занимались фасадным строительством домов комплекса из&nbsp;керамогранита
-                        с&nbsp;видимым и&nbsp;скрытым креплениями.
-                    </p>
+                    @if (!string.IsNullOrEmpty(coveringMaterial))
+                    {
+                        <p class="body2 mb-4 text-regular-primary">
+                            @coveringMaterial
+                        </p>
+                    }
 
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">
-                            РОНСОН-400
-                        </span>
-                        <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">
-                            РОНСОН-300
-                        </span>
-                    </div>
+                    @if (systems.Any())
+                    {
+                        <div class="flex flex-wrap justify-center gap-3">
+                            @foreach (var system in systems)
+                            {
+                                <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">
+                                    @system
+                                </span>
+                            }
+                        </div>
+                    }
                 </div>
 
                 <!-- Images grid -->
-                <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    <img src="/assets/img/o111.png" alt="Building 1"
-                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
-                    <img src="/assets/img/o222.png" alt="Building 2"
-                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
-                    <img src="/assets/img/o333.png" alt="Building 3"
-                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
-                    <img src="/assets/img/o444.png" alt="Building 4"
-                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
-                    <img src="/assets/img/o555.png" alt="Building 5"
-                         class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
-                </div>
+                @if (galleryImages.Any())
+                {
+                    <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        @foreach (var image in galleryImages.Take(5))
+                        {
+                            <img src="@image.Url()" alt="@objectName"
+                                 class="w-full aspect-square object-cover rounded-2xl shadow-custom-drop" />
+                        }
+                    </div>
+                }
 
             </div>
         </div>
@@ -448,19 +533,27 @@
                             <img src="/assets/img/o_logo.png" alt="logo" class="h-20 rounded-4xl object-contain mt-20">
                             <!-- Main heading -->
                             <h2 class="h1 mt-[80px]">
-                                Фасады ЖК Дивное — наш <br> проект для застройщика <br> «СИТИ21»
+                                Фасады @objectName — наш <br> проект для застройщика
                             </h2>
                         </div>
 
                         <!-- Description -->
                         <div class="max-w-[465px] body2 text-left absolute bottom-[43%] right-10">
-                            <p class="body2 mb-3 text-regular-primary">
-                                Мы занимались фасадным строительством домов комплекса из керамогранита с видимым и скрытым креплениями.
-                            </p>
-                            <div class="flex gap-3 mb-6">
-                                <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">РОНСОН-400</span>
-                                <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">РОНСОН-300</span>
-                            </div>
+                            @if (!string.IsNullOrEmpty(coveringMaterial))
+                            {
+                                <p class="body2 mb-3 text-regular-primary">
+                                    @coveringMaterial
+                                </p>
+                            }
+                            @if (systems.Any())
+                            {
+                                <div class="flex gap-3 mb-6">
+                                    @foreach (var system in systems)
+                                    {
+                                        <span class="border border-accent text-accent bg-white px-4 py-3 body1 rounded-2xl font-medium">@system</span>
+                                    }
+                                </div>
+                            }
 
                         </div>
 
@@ -468,16 +561,19 @@
                     </div>
 
                     <!-- Building images positioned absolutely around the circle -->
-                    <img src="/assets/img/o111.png" alt="Building 1"
-                         class="absolute top-[44%] left-[-4%] w-16 h-16 md:w-[167px] md:h-[167px] rounded-4xl object-cover">
-                    <img src="/assets/img/o222.png" alt="Building 2"
-                         class="absolute top-[34%] left-[10%] transform -translate-y-1/2 w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
-                    <img src="/assets/img/o333.png" alt="Building 3"
-                         class="absolute top-[66%] left-[10%] w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
-                    <img src="/assets/img/o444.png" alt="Building 4"
-                         class="absolute top-[42%] left-[34%] transform -translate-x-1/2 w-16 h-16 md:w-[228px] md:h-[228px] rounded-xl object-cover">
-                    <img src="/assets/img/o555.png" alt="Building 4"
-                         class="absolute top-[81%] left-[50%] transform -translate-x-1/2 w-16 h-16 md:w-[142px] md:h-[142px] rounded-xl object-cover">
+                    @if (galleryImages.Count >= 5)
+                    {
+                        <img src="@galleryImages[0].Url()" alt="@objectName"
+                             class="absolute top-[44%] left-[-4%] w-16 h-16 md:w-[167px] md:h-[167px] rounded-4xl object-cover">
+                        <img src="@galleryImages[1].Url()" alt="@objectName"
+                             class="absolute top-[34%] left-[10%] transform -translate-y-1/2 w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
+                        <img src="@galleryImages[2].Url()" alt="@objectName"
+                             class="absolute top-[66%] left-[10%] w-16 h-16 md:w-[146px] md:h-[146px] rounded-xl object-cover">
+                        <img src="@galleryImages[3].Url()" alt="@objectName"
+                             class="absolute top-[42%] left-[34%] transform -translate-x-1/2 w-16 h-16 md:w-[228px] md:h-[228px] rounded-xl object-cover">
+                        <img src="@galleryImages[4].Url()" alt="@objectName"
+                             class="absolute top-[81%] left-[50%] transform -translate-x-1/2 w-16 h-16 md:w-[142px] md:h-[142px] rounded-xl object-cover">
+                    }
 
                 </div>
             </div>

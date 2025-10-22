@@ -1,186 +1,127 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+@using Umbraco.Cms.Core.Models;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ObEkty>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Extensions;
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
+
+    // Get all child objects
+    var objects = Model.Children<ContentModels.ObEkt>()
+        .Where(x => x.IsVisible())
+        .OrderBy(x => x.SortOrder)
+        .ToList();
+
+    // Helper function to get cover image URL (first image from gallery)
+    string GetCoverUrl(IPublishedContent obj)
+    {
+        var imageGallery = obj.Value<IEnumerable<MediaWithCrops>>("imageGallery");
+        if (imageGallery != null && imageGallery.Any())
+        {
+            var firstImage = imageGallery.First();
+            return firstImage.Url();
+        }
+        return "/assets/img/placeholder.jpg";
+    }
+
+    // Helper function to get object description (city/address)
+    string GetDescription(IPublishedContent obj)
+    {
+        return obj.Value<string>("description") ?? "";
+    }
+
+    // Helper function to get object URL
+    string GetObjectUrl(IPublishedContent obj)
+    {
+        return obj.Url();
+    }
 }
 
 <!-- Objects Grid -->
-<section class=" container mx-auto md:mt-10 mobile-section-divider">
-    <!-- ===== РЯД 1 (2 элемента) ===== -->
-    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
-    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-0 md:mt-14 mb-14 md:mb-20">
-        <!-- o1 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
-                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+<section class="container mx-auto md:mt-10 mobile-section-divider">
+    @{
+        int index = 0;
+        int totalObjects = objects.Count;
+
+        // Process objects in groups for the pattern: 2-3-2-3...
+        while (index < totalObjects)
+        {
+            // Pattern 1: Two items (2 columns each)
+            if (index < totalObjects)
+            {
+                <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-0 md:mt-14 mb-14 md:mb-20">
+                    @for (int i = 0; i < 2 && index < totalObjects; i++, index++)
+                    {
+                        var obj = objects[index];
+                        string name = obj.Value<string>("objectName") ?? obj.Name;
+                        var coverUrl = GetCoverUrl(obj);
+                        var description = GetDescription(obj);
+                        var url = GetObjectUrl(obj);
+                        var height = i == 0 ? "md:h-[310px]" : "md:h-[460px]";
+
+                        <div class="md:col-span-2 flex flex-col group">
+                            <div class="w-full aspect-[3/2] md:aspect-auto @height overflow-hidden rounded-4xl">
+                                <img src="@coverUrl" alt="@name" class="w-full h-full object-cover rounded-4xl" loading="lazy">
+                            </div>
+                            <div class="mt-4 md:mt-8">
+                                <div class="md:flex md:justify-between gap-3">
+                                    <div class="flex flex-col gap-1">
+                                        <h4 class="mt-3 mb-4 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">@name</h4>
+                                        <div class="body1 text-regular-primary">@description</div>
+                                    </div>
+                                    <a href="@url" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-            </div>
-        </div>
+            }
 
-        <!-- o2 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Переделкино Ближнее</h4>
-                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+            // Pattern 2: Three items (1-1-2 columns)
+            if (index < totalObjects)
+            {
+                <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
+                    @for (int i = 0; i < 3 && index < totalObjects; i++, index++)
+                    {
+                        var obj = objects[index];
+                        string name = obj.Value<string>("objectName") ?? obj.Name;
+                        var coverUrl = GetCoverUrl(obj);
+                        var description = GetDescription(obj);
+                        var url = GetObjectUrl(obj);
+                        var colSpan = i < 2 ? "md:col-span-1" : "md:col-span-2";
+                        var hasButtonRight = i == 2; // Last item has button on right (desktop)
+
+                        <div class="@colSpan flex flex-col group">
+                            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                                <img src="@coverUrl" alt="@name" class="w-full h-full object-cover rounded-4xl" loading="lazy">
+                            </div>
+                            @if (hasButtonRight)
+                            {
+                                <div class="mt-4 md:mt-8">
+                                    <div class="md:flex md:justify-between gap-3">
+                                        <div class="flex flex-col gap-1">
+                                            <h4 class="mt-3 mb-4  md:mt-0 group-hover:text-[#BD1A1A] transition-colors">@name</h4>
+                                            <div class="body1 text-regular-primary">@description</div>
+                                        </div>
+                                        <a href="@url" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                                    <h4 class="mt-3 mb-4 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">@name</h4>
+                                    <div class="body1 text-regular-primary">@description</div>
+                                    <a href="@url" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== РЯД 2 (3 элемента) ===== -->
-    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
-    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
-        <!-- o3 (button always under text on all breakpoints, as before) -->
-        <div class="md:col-span-1 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8 flex flex-col gap-1">
-                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
-                <div class="body1 text-regular-primary">г. Москва</div>
-                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
-            </div>
-        </div>
-
-        <!-- o4 (button always under text on all breakpoints, as before) -->
-        <div class="md:col-span-1 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8 flex flex-col gap-1">
-                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
-                <div class="body1 text-regular-primary">г. Москва</div>
-                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
-            </div>
-        </div>
-
-        <!-- o5 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
-                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-квартал LOFT POST у метро «Бауманская»</h4>
-                        <div class="body1 text-regular-primary">г. Москва</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== РЯД 3 (2 элемента) ===== -->
-    <!-- mobile: stacked; desktop: same 2x2 with original heights -->
-    <div class="grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-10 md:mt-14 mb-14 md:mb-20">
-        <!-- o1 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[310px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o1.jpg" alt="ЖК Царская Столица" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <!-- Desktop: title+city on left, button on right. Mobile: text first, then button -->
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Царская Столица</h4>
-                        <div class="body1 text-regular-primary">г. Санкт-Петербург</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- o2 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[460px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o2.jpg" alt="ЖК Переделкино Ближнее" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК Переделкино Ближнее</h4>
-                        <div class="body1 text-regular-primary">д. Рассказовка, Московская обл.</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== РЯД 4 (3 элемента) ===== -->
-    <!-- mobile: stacked; desktop: same 1/4 + 1/4 + 1/2 and 300px heights -->
-    <div class="grid md:grid-cols-4 md:gap-6 gap-y-10">
-        <!-- o3 (button always under text on all breakpoints, as before) -->
-        <div class="md:col-span-1 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o3.jpg" alt="Апарт-комплекс Loft Garden"
-                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8 flex flex-col gap-1">
-                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">Апарт-комплекс Loft Garden</h4>
-                <div class="body1 text-regular-primary">г. Москва</div>
-                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
-            </div>
-        </div>
-
-        <!-- o4 (button always under text on all breakpoints, as before) -->
-        <div class="md:col-span-1 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o4.jpg" alt="ЖК МИТИНО в столице" class="w-full h-full object-cover rounded-4xl"
-                     loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8 flex flex-col gap-1">
-                <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">ЖК МИТИНО в столице</h4>
-                <div class="body1 text-regular-primary">г. Москва</div>
-                <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
-            </div>
-        </div>
-
-        <!-- o5 -->
-        <div class="md:col-span-2 flex flex-col group">
-            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
-                <img src="/assets/img/o5.jpg" alt="Апарт-квартал LOFT POST у метро «Бауманская»"
-                     class="w-full h-full object-cover rounded-4xl" loading="lazy">
-            </div>
-            <div class="mt-4 md:mt-8">
-                <div class="md:flex md:justify-between gap-3">
-                    <div class="flex flex-col gap-1">
-                        <h4 class="mt-3 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">
-                            Апарт-квартал LOFT POST у
-                            метро «Бауманская»
-                        </h4>
-                        <div class="body1 text-regular-primary">г. Москва</div>
-                    </div>
-                    <a href="/ob-ekty/zhilye-kompleksy/zhk-divnoe/" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
-                </div>
-            </div>
-        </div>
-    </div>
+            }
+        }
+    }
 </section>
 
 <!-- YANDEX MAPS WIDGET -->
