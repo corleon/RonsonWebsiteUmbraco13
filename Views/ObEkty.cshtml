@@ -36,7 +36,266 @@
     {
         return obj.Url();
     }
+
+@functions {
+    // Helper function to extract filter data from object
+    
+    // Get facades/облицовка from obl field
+    string GetFacadesData(IPublishedContent obj)
+    {
+        var obl = obj.Value<string>("obl") ?? "";
+        return obl.ToLower(); // For filtering
+    }
+    
+    // Get systems from obl field (extract Ронсон-XXX patterns)
+    string GetSystemsData(IPublishedContent obj)
+    {
+        var obl = obj.Value<string>("obl") ?? "";
+        var systems = new List<string>();
+        
+        // Extract Ронсон-XXX patterns
+        var ronsonPattern = new System.Text.RegularExpressions.Regex(@"Ронсон[-\s]?\d{3}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        var matches = ronsonPattern.Matches(obl);
+        
+        foreach (System.Text.RegularExpressions.Match match in matches)
+        {
+            systems.Add(match.Value);
+        }
+        
+        // Also check systems field if it exists
+        var systemsField = obj.Value<IEnumerable<string>>("systems");
+        if (systemsField != null)
+        {
+            systems.AddRange(systemsField);
+        }
+        
+        return string.Join(", ", systems.Select(s => s.Trim()).Distinct());
+    }
+    
+    // Extract building type from Keyword field or objectName
+    string GetBuildingType(IPublishedContent obj)
+    {
+        // Check Keyword field first
+        var keyword = obj.Value<string>("Keyword") ?? "";
+        if (!string.IsNullOrWhiteSpace(keyword))
+        {
+            return keyword;
+        }
+        
+        // Fallback to parsing from objectName
+        var name = obj.Value<string>("objectName") ?? obj.Name;
+        
+        if (name.Contains("ЖК") || name.Contains("жилой"))
+            return "ЖК";
+        if (name.Contains("школ") || name.Contains("образоват"))
+            return "Образовательные учреждения";
+        if (name.Contains("офис"))
+            return "Офисные здания";
+        if (name.Contains("торг") || name.Contains("ТЦ") || name.Contains("ТРЦ"))
+            return "Торговые центры";
+        if (name.Contains("больниц") || name.Contains("клиник") || name.Contains("медиц"))
+            return "Медицинские учреждения";
+        if (name.Contains("склад"))
+            return "Склады";
+        if (name.Contains("промышлен") || name.Contains("завод"))
+            return "Промышленные здания";
+            
+        return ""; // Unknown type
+    }
+    
+    // Get country from description
+    string GetCountry(IPublishedContent obj)
+    {
+        var description = obj.Value<string>("description") ?? "";
+        
+        if (description.Contains("Беларусь") || description.Contains("Минск"))
+            return "belarus";
+        if (description.Contains("Казахстан") || description.Contains("Алматы") || description.Contains("Астана"))
+            return "kazakhstan";
+        if (description.Contains("Армения") || description.Contains("Ереван"))
+            return "armenia";
+            
+        return "russia"; // Default to Russia
+    }
 }
+
+}
+
+<!-- Objects Section with Filters -->
+<section class="container mx-auto mb-6 md:mb-10">
+    
+    <!-- Filters Row -->
+    <div class="relative mb-6">
+        <!-- Filters Button -->
+        <button id="objects-filters-btn"
+                class="bg-white px-4 py-2 rounded-lg border border-accent shadow-md hover:shadow-lg transition-shadow flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z">
+                </path>
+            </svg>
+            <span>Фильтры</span>
+            <span id="objects-filter-count" class="bg-accent text-white text-xs rounded-full px-2 py-1">0</span>
+        </button>
+        
+        <!-- Filters Dropdown Panel -->
+        <div id="objects-filters-panel"
+             class="hidden absolute left-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-neutral-200 z-50 w-full sm:w-[500px] md:w-[600px] max-h-[70vh] overflow-hidden">
+            
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b border-neutral-200 bg-background-primary">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z">
+                        </path>
+                    </svg>
+                    <h3 class="font-medium">Фильтры</h3>
+                </div>
+                <button id="objects-filters-close" class="text-neutral-400 hover:text-accent transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Filters Content -->
+            <div class="overflow-y-auto max-h-[calc(70vh-120px)] systems-scrollbar">
+                <div class="p-4 space-y-6">
+                    
+                    <!-- Country Filter -->
+                    <div>
+                        <h4 class="font-medium mb-3">Страна</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="objects-country-btn px-4 py-2 rounded-lg border-2 border-accent bg-accent text-white font-medium transition-all text-sm"
+                                    data-country="russia">
+                                РОССИЯ
+                            </button>
+                            <button class="objects-country-btn px-4 py-2 rounded-lg border-2 border-neutral-300 bg-white text-neutral-700 font-medium transition-all hover:border-accent text-sm"
+                                    data-country="belarus">
+                                БЕЛАРУСЬ
+                            </button>
+                            <button class="objects-country-btn px-4 py-2 rounded-lg border-2 border-neutral-300 bg-white text-neutral-700 font-medium transition-all hover:border-accent text-sm"
+                                    data-country="kazakhstan">
+                                КАЗАХСТАН
+                            </button>
+                            <button class="objects-country-btn px-4 py-2 rounded-lg border-2 border-neutral-300 bg-white text-neutral-700 font-medium transition-all hover:border-accent text-sm"
+                                    data-country="armenia">
+                                АРМЕНИЯ
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Building Types -->
+                    <div>
+                        <h4 class="font-medium mb-3">Тип объекта</h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="ЖК">
+                                <span class="text-sm">ЖК</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="Офисные здания">
+                                <span class="text-sm">Офисные здания</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="Торговые центры">
+                                <span class="text-sm">Торговые центры</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="Медицинские учреждения">
+                                <span class="text-sm">Медицинские учреждения</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="Образовательные учреждения">
+                                <span class="text-sm">Образовательные учреждения</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-type-checkbox mr-2" data-value="Промышленные здания">
+                                <span class="text-sm">Промышленные здания</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Systems -->
+                    <div>
+                        <h4 class="font-medium mb-3">Системы Ронсон</h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-100">
+                                <span class="text-sm">Ронсон-100</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-200">
+                                <span class="text-sm">Ронсон-200</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-300">
+                                <span class="text-sm">Ронсон-300</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-400">
+                                <span class="text-sm">Ронсон-400</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-500">
+                                <span class="text-sm">Ронсон-500</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-system-checkbox mr-2" data-value="Ронсон-600">
+                                <span class="text-sm">Ронсон-600</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Облицовка -->
+                    <div>
+                        <h4 class="font-medium mb-3">Облицовка</h4>
+                        <div class="grid grid-cols-1 gap-2">
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-facade-checkbox mr-2" data-value="керамогранит">
+                                <span class="text-sm">Керамогранит</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-facade-checkbox mr-2" data-value="натуральный камень">
+                                <span class="text-sm">Натуральный камень</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-facade-checkbox mr-2" data-value="стеклофибробетон">
+                                <span class="text-sm">Стеклофибробетон (СФБ)</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-facade-checkbox mr-2" data-value="алюмокомпозит">
+                                <span class="text-sm">Алюмокомпозит</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer p-2 rounded hover:bg-neutral-50">
+                                <input type="checkbox" class="objects-facade-checkbox mr-2" data-value="фиброцемент">
+                                <span class="text-sm">Фиброцементные панели</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="flex gap-3 p-4 border-t border-neutral-200 bg-background-primary">
+                <button id="objects-filters-clear" class="flex-1 px-4 py-2 border-2 border-accent text-accent rounded-lg font-medium hover:bg-accent hover:text-white transition-colors">
+                    Сбросить
+                </button>
+                <button id="objects-filters-apply" class="flex-1 px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-accent-dark transition-colors">
+                    Применить
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Active Filters Display -->
+    <div id="active-filters" class="hidden mb-6 flex flex-wrap gap-2">
+        <!-- Active filter chips will be added here by JavaScript -->
+    </div>
+</section>
+
 
 <!-- Objects Grid -->
 <section class="container mx-auto md:mt-10 mobile-section-divider">
@@ -60,7 +319,12 @@
                         var url = GetObjectUrl(obj);
                         var height = i == 0 ? "md:h-[310px]" : "md:h-[460px]";
 
-                        <div class="md:col-span-2 flex flex-col group">
+                        <div class="md:col-span-2 flex flex-col group" 
+                             data-object-id="@obj.Id"
+                             data-facades="@GetFacadesData(obj)"
+                             data-type="@GetBuildingType(obj)"
+                             data-systems="@GetSystemsData(obj)"
+                             data-country="@GetCountry(obj)">
                             <div class="w-full aspect-[3/2] md:aspect-auto @height overflow-hidden rounded-4xl">
                                 <img src="@coverUrl" alt="@name" class="w-full h-full object-cover rounded-4xl" loading="lazy">
                             </div>
@@ -92,7 +356,12 @@
                         var colSpan = i < 2 ? "md:col-span-1" : "md:col-span-2";
                         var hasButtonRight = i == 2; // Last item has button on right (desktop)
 
-                        <div class="@colSpan flex flex-col group">
+                        <div class="@colSpan flex flex-col group"
+                             data-object-id="@obj.Id"
+                             data-facades="@GetFacadesData(obj)"
+                             data-type="@GetBuildingType(obj)"
+                             data-systems="@GetSystemsData(obj)"
+                             data-country="@GetCountry(obj)">
                             <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
                                 <img src="@coverUrl" alt="@name" class="w-full h-full object-cover rounded-4xl" loading="lazy">
                             </div>
@@ -1113,3 +1382,483 @@
         updateFilterCount(); // Initialize filter count
     });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const filtersBtn = document.getElementById('objects-filters-btn');
+    const filtersPanel = document.getElementById('objects-filters-panel');
+    const closeBtn = document.getElementById('objects-filters-close');
+    const applyBtn = document.getElementById('objects-filters-apply');
+    const clearBtn = document.getElementById('objects-filters-clear');
+    const filterCountBadge = document.getElementById('objects-filter-count');
+    const activeFiltersContainer = document.getElementById('active-filters');
+    
+    // Filter state
+    let activeFilters = {
+        facades: [],
+        types: [],
+        systems: [],
+        country: 'russia' // Default
+    };
+    
+    // Store original objects data
+    let allObjects = [];
+    
+    // Initialize - collect all objects
+    function initializeObjects() {
+        const objectElements = document.querySelectorAll('[data-object-id]');
+        allObjects = Array.from(objectElements).map(el => {
+            return {
+                element: el,
+                id: el.dataset.objectId,
+                facades: (el.dataset.facades || '').toLowerCase(),
+                type: (el.dataset.type || '').toLowerCase(),
+                systems: (el.dataset.systems || '').toLowerCase(),
+                country: el.dataset.country || 'russia',
+                // Store the HTML content
+                html: el.outerHTML
+            };
+        });
+    }
+    
+    // Initialize on load
+    initializeObjects();
+    
+    // Toggle filters panel
+    if (filtersBtn) {
+        filtersBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            filtersPanel.classList.toggle('hidden');
+        });
+    }
+    
+    // Close panel
+    function closePanel() {
+        if (filtersPanel) {
+            filtersPanel.classList.add('hidden');
+        }
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closePanel);
+    }
+    
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (filtersPanel && !filtersPanel.classList.contains('hidden')) {
+            if (!filtersPanel.contains(e.target) && e.target !== filtersBtn && !filtersBtn.contains(e.target)) {
+                closePanel();
+            }
+        }
+    });
+    
+    // Prevent panel close when clicking inside
+    if (filtersPanel) {
+        filtersPanel.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // Country buttons
+    document.querySelectorAll('.objects-country-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active from all
+            document.querySelectorAll('.objects-country-btn').forEach(b => {
+                b.classList.remove('bg-accent', 'text-white');
+                b.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
+            });
+            
+            // Add active to this
+            this.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
+            this.classList.add('bg-accent', 'text-white', 'border-accent');
+            
+            activeFilters.country = this.dataset.country;
+        });
+    });
+    
+    // Type checkboxes
+    document.querySelectorAll('.objects-type-checkbox').forEach(cb => {
+        cb.addEventListener('change', function() {
+            const value = this.dataset.value;
+            if (this.checked) {
+                if (!activeFilters.types.includes(value)) {
+                    activeFilters.types.push(value);
+                }
+            } else {
+                activeFilters.types = activeFilters.types.filter(v => v !== value);
+            }
+        });
+    });
+    
+    // System checkboxes
+    document.querySelectorAll('.objects-system-checkbox').forEach(cb => {
+        cb.addEventListener('change', function() {
+            const value = this.dataset.value;
+            if (this.checked) {
+                if (!activeFilters.systems.includes(value)) {
+                    activeFilters.systems.push(value);
+                }
+            } else {
+                activeFilters.systems = activeFilters.systems.filter(v => v !== value);
+            }
+        });
+    });
+    
+    // Facade checkboxes
+    document.querySelectorAll('.objects-facade-checkbox').forEach(cb => {
+        cb.addEventListener('change', function() {
+            const value = this.dataset.value;
+            if (this.checked) {
+                if (!activeFilters.facades.includes(value)) {
+                    activeFilters.facades.push(value);
+                }
+            } else {
+                activeFilters.facades = activeFilters.facades.filter(v => v !== value);
+            }
+        });
+    });
+    
+    // Apply filters button
+    if (applyBtn) {
+        applyBtn.addEventListener('click', function() {
+            applyFilters();
+            closePanel();
+        });
+    }
+    
+    // Clear filters button
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            clearAllFilters();
+            applyFilters();
+        });
+    }
+    
+    // Apply filters function - REBUILD GRID
+    function applyFilters() {
+        // Filter objects based on active filters
+        const filteredObjects = allObjects.filter(obj => {
+            let visible = true;
+            
+            // Filter by country
+            if (activeFilters.country && obj.country !== activeFilters.country) {
+                visible = false;
+            }
+            
+            // Filter by facades
+            if (visible && activeFilters.facades.length > 0) {
+                visible = activeFilters.facades.some(facade => 
+                    obj.facades.includes(facade.toLowerCase())
+                );
+            }
+            
+            // Filter by types
+            if (visible && activeFilters.types.length > 0) {
+                visible = activeFilters.types.some(type => 
+                    obj.type.includes(type.toLowerCase())
+                );
+            }
+            
+            // Filter by systems
+            if (visible && activeFilters.systems.length > 0) {
+                visible = activeFilters.systems.some(system => 
+                    obj.systems.includes(system.toLowerCase())
+                );
+            }
+            
+            return visible;
+        });
+        
+        // Rebuild the grid with filtered objects
+        rebuildGrid(filteredObjects);
+        
+        // Update filter count
+        const totalActive = activeFilters.facades.length + activeFilters.types.length + activeFilters.systems.length;
+        if (filterCountBadge) {
+            filterCountBadge.textContent = totalActive;
+        }
+        
+        // Update active filters display
+        updateActiveFiltersDisplay();
+    }
+    
+    // Rebuild grid with 2-3-2-3 pattern
+    function rebuildGrid(objects) {
+        // Find the container section
+        const section = document.querySelector('section.container.mx-auto.md\\:mt-10');
+        if (!section) return;
+        
+        // Remove all existing grids
+        const existingGrids = section.querySelectorAll('.grid.md\\:grid-cols-4');
+        existingGrids.forEach(grid => grid.remove());
+        
+        // If no objects, show message
+        if (objects.length === 0) {
+            const noResults = document.createElement('div');
+            noResults.className = 'text-center py-20';
+            noResults.innerHTML = '<p class="text-xl text-neutral-500">Объекты не найдены</p>';
+            section.appendChild(noResults);
+            return;
+        }
+        
+        let index = 0;
+        const totalObjects = objects.length;
+        
+        // Build grids following the 2-3-2-3 pattern
+        while (index < totalObjects) {
+            // Pattern 1: Two items (2 columns each)
+            if (index < totalObjects) {
+                const grid1 = document.createElement('div');
+                grid1.className = 'grid md:grid-cols-4 md:gap-x-6 gap-y-10 md:gap-y-0 mt-0 md:mt-14 mb-14 md:mb-20';
+                
+                for (let i = 0; i < 2 && index < totalObjects; i++, index++) {
+                    const obj = objects[index];
+                    const height = i === 0 ? 'md:h-[310px]' : 'md:h-[460px]';
+                    
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'md:col-span-2 flex flex-col group';
+                    wrapper.setAttribute('data-object-id', obj.id);
+                    wrapper.setAttribute('data-facades', obj.facades);
+                    wrapper.setAttribute('data-type', obj.type);
+                    wrapper.setAttribute('data-systems', obj.systems);
+                    wrapper.setAttribute('data-country', obj.country);
+                    
+                    // Get the inner content from original element and extract data
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = obj.html;
+                    const originalContent = tempDiv.firstElementChild;
+                    
+                    // Extract image, name, description, url from original
+                    const img = originalContent.querySelector('img');
+                    const imgSrc = img ? img.src : '';
+                    const imgAlt = img ? img.alt : '';
+                    
+                    const nameEl = originalContent.querySelector('h4');
+                    const name = nameEl ? nameEl.textContent : '';
+                    
+                    const descEl = originalContent.querySelector('.body1');
+                    const description = descEl ? descEl.textContent : '';
+                    
+                    const linkEl = originalContent.querySelector('a');
+                    const url = linkEl ? linkEl.href : '#';
+                    
+                    // For md:col-span-2 items, button is always on the right
+                    wrapper.innerHTML = `
+                        <div class="w-full aspect-[3/2] md:aspect-auto ${height} overflow-hidden rounded-4xl">
+                            <img src="${imgSrc}" alt="${imgAlt}" class="w-full h-full object-cover rounded-4xl" loading="lazy">
+                        </div>
+                        <div class="mt-4 md:mt-8">
+                            <div class="md:flex md:justify-between gap-3">
+                                <div class="flex flex-col gap-1">
+                                    <h4 class="mt-3 mb-4 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">${name}</h4>
+                                    <div class="body1 text-regular-primary">${description}</div>
+                                </div>
+                                <a href="${url}" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    grid1.appendChild(wrapper);
+                }
+                
+                section.appendChild(grid1);
+            }
+            
+            // Pattern 2: Three items (1-1-2 columns)
+            if (index < totalObjects) {
+                const grid2 = document.createElement('div');
+                grid2.className = 'grid md:grid-cols-4 md:gap-6 gap-y-10';
+                
+                for (let i = 0; i < 3 && index < totalObjects; i++, index++) {
+                    const obj = objects[index];
+                    const colSpan = i < 2 ? 'md:col-span-1' : 'md:col-span-2';
+                    const hasButtonRight = i === 2; // Only last item (md:col-span-2) has button right
+                    
+                    const wrapper = document.createElement('div');
+                    wrapper.className = `${colSpan} flex flex-col group`;
+                    wrapper.setAttribute('data-object-id', obj.id);
+                    wrapper.setAttribute('data-facades', obj.facades);
+                    wrapper.setAttribute('data-type', obj.type);
+                    wrapper.setAttribute('data-systems', obj.systems);
+                    wrapper.setAttribute('data-country', obj.country);
+                    
+                    // Get the inner content from original element and extract data
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = obj.html;
+                    const originalContent = tempDiv.firstElementChild;
+                    
+                    // Extract image, name, description, url from original
+                    const img = originalContent.querySelector('img');
+                    const imgSrc = img ? img.src : '';
+                    const imgAlt = img ? img.alt : '';
+                    
+                    const nameEl = originalContent.querySelector('h4');
+                    const name = nameEl ? nameEl.textContent : '';
+                    
+                    const descEl = originalContent.querySelector('.body1');
+                    const description = descEl ? descEl.textContent : '';
+                    
+                    const linkEl = originalContent.querySelector('a');
+                    const url = linkEl ? linkEl.href : '#';
+                    
+                    // Build HTML based on hasButtonRight
+                    if (hasButtonRight) {
+                        // Button on the right (for md:col-span-2)
+                        wrapper.innerHTML = `
+                            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                                <img src="${imgSrc}" alt="${imgAlt}" class="w-full h-full object-cover rounded-4xl" loading="lazy">
+                            </div>
+                            <div class="mt-4 md:mt-8">
+                                <div class="md:flex md:justify-between gap-3">
+                                    <div class="flex flex-col gap-1">
+                                        <h4 class="mt-3 mb-4 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">${name}</h4>
+                                        <div class="body1 text-regular-primary">${description}</div>
+                                    </div>
+                                    <a href="${url}" class="btn-primary btn-stroke mt-4 md:mt-0 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        // Button on the bottom (for md:col-span-1)
+                        wrapper.innerHTML = `
+                            <div class="w-full aspect-[3/2] md:aspect-auto md:h-[300px] overflow-hidden rounded-4xl">
+                                <img src="${imgSrc}" alt="${imgAlt}" class="w-full h-full object-cover rounded-4xl" loading="lazy">
+                            </div>
+                            <div class="mt-4 md:mt-8 flex flex-col gap-1">
+                                <h4 class="mt-3 mb-4 md:mt-0 group-hover:text-[#BD1A1A] transition-colors">${name}</h4>
+                                <div class="body1 text-regular-primary">${description}</div>
+                                <a href="${url}" class="btn-primary btn-stroke mt-4 btn-inline btn-sm">О ПРОЕКТЕ</a>
+                            </div>
+                        `;
+                    }
+                    
+                    grid2.appendChild(wrapper);
+                }
+                
+                section.appendChild(grid2);
+            }
+        }
+    }
+    
+    // Update active filters chips display
+    function updateActiveFiltersDisplay() {
+        if (!activeFiltersContainer) return;
+        
+        activeFiltersContainer.innerHTML = '';
+        
+        const allFilters = [
+            ...activeFilters.facades.map(f => ({type: 'facades', label: f, value: f})),
+            ...activeFilters.types.map(f => ({type: 'types', label: f, value: f})),
+            ...activeFilters.systems.map(f => ({type: 'systems', label: f, value: f}))
+        ];
+        
+        // Add country if not Russia
+        if (activeFilters.country !== 'russia') {
+            const countryNames = {
+                'belarus': 'Беларусь',
+                'kazakhstan': 'Казахстан',
+                'armenia': 'Армения'
+            };
+            allFilters.unshift({
+                type: 'country',
+                label: countryNames[activeFilters.country],
+                value: activeFilters.country
+            });
+        }
+        
+        if (allFilters.length === 0) {
+            activeFiltersContainer.classList.add('hidden');
+            return;
+        }
+        
+        activeFiltersContainer.classList.remove('hidden');
+        
+        // Add "Сбросить все" button
+        const clearAllBtn = document.createElement('button');
+        clearAllBtn.className = 'px-3 py-2 bg-accent text-white rounded-lg text-sm hover:bg-accent-dark transition-colors font-medium';
+        clearAllBtn.textContent = 'Сбросить все';
+        clearAllBtn.addEventListener('click', function() {
+            clearAllFilters();
+            applyFilters();
+        });
+        activeFiltersContainer.appendChild(clearAllBtn);
+        
+        // Add filter chips
+        allFilters.forEach(filter => {
+            const chip = document.createElement('div');
+            chip.className = 'flex items-center gap-2 px-3 py-2 bg-neutral-100 rounded-lg text-sm';
+            chip.innerHTML = `
+                <span>${filter.label}</span>
+                <button class="text-neutral-500 hover:text-accent transition-colors" data-filter-type="${filter.type}" data-filter-value="${filter.value}">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            `;
+            
+            const removeBtn = chip.querySelector('button');
+            removeBtn.addEventListener('click', function() {
+                removeFilter(this.dataset.filterType, this.dataset.filterValue);
+            });
+            
+            activeFiltersContainer.appendChild(chip);
+        });
+    }
+    
+    // Remove single filter
+    function removeFilter(type, value) {
+        if (type === 'country') {
+            activeFilters.country = 'russia';
+            // Reset country buttons
+            document.querySelectorAll('.objects-country-btn').forEach(btn => {
+                btn.classList.remove('bg-accent', 'text-white');
+                btn.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
+                if (btn.dataset.country === 'russia') {
+                    btn.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
+                    btn.classList.add('bg-accent', 'text-white', 'border-accent');
+                }
+            });
+        } else {
+            activeFilters[type] = activeFilters[type].filter(v => v !== value);
+            
+            // Uncheck the checkbox
+            const selector = type === 'facades' ? '.objects-facade-checkbox' :
+                           type === 'types' ? '.objects-type-checkbox' :
+                           '.objects-system-checkbox';
+            
+            document.querySelectorAll(selector).forEach(cb => {
+                if (cb.dataset.value === value) {
+                    cb.checked = false;
+                }
+            });
+        }
+        
+        applyFilters();
+    }
+    
+    // Clear all filters
+    function clearAllFilters() {
+        activeFilters.facades = [];
+        activeFilters.types = [];
+        activeFilters.systems = [];
+        activeFilters.country = 'russia';
+        
+        // Uncheck all checkboxes
+        document.querySelectorAll('.objects-type-checkbox, .objects-system-checkbox, .objects-facade-checkbox').forEach(cb => {
+            cb.checked = false;
+        });
+        
+        // Reset country to Russia
+        document.querySelectorAll('.objects-country-btn').forEach(btn => {
+            btn.classList.remove('bg-accent', 'text-white');
+            btn.classList.add('bg-white', 'text-neutral-700', 'border-neutral-300');
+            if (btn.dataset.country === 'russia') {
+                btn.classList.remove('bg-white', 'text-neutral-700', 'border-neutral-300');
+                btn.classList.add('bg-accent', 'text-white', 'border-accent');
+            }
+        });
+    }
+});
+</script>
+

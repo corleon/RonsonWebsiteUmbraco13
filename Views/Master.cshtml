@@ -60,151 +60,18 @@
     <link rel="manifest" href="/assets/favicons/site.webmanifest">
     <meta name="theme-color" content="#bd1a1a">
 
-    <!-- Google Fonts для переключателя шрифтов -->
+    <!-- Google Fonts - Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=Commissioner:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link href="/css/styles.css" rel="stylesheet">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="@Model.Url(mode: UrlMode.Absolute)">
-
-    <style>
-        /* Глобальные классы для шрифтов */
-        .font-inter { font-family: 'Inter', sans-serif !important; }
-        .font-manrope { font-family: 'Manrope', sans-serif !important; }
-        .font-golos { font-family: 'Golos Text', sans-serif !important; }
-        .font-ibm { font-family: 'IBM Plex Sans', sans-serif !important; }
-        .font-commissioner { font-family: 'Commissioner', sans-serif !important; }
-        .font-montserrat { font-family: 'Montserrat', sans-serif !important; }
-        .font-roboto { font-family: 'Roboto', sans-serif !important; }
-
-        .font-random {
-            font-family: 'Random Grotesque', sans-serif !important;
-        }
-        /* Стили для переключателя */
-        .font-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 12px;
-        }
-
-        .font-switcher-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            background: #f3f4f6;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .font-switcher-btn:hover {
-            background: #e5e7eb;
-            transform: scale(1.05);
-        }
-
-        .font-menu {
-            position: absolute;
-            top: 60px;
-            right: 0;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            padding: 8px;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .font-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .font-option {
-            padding: 12px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .font-option:hover {
-            background: #f3f4f6;
-        }
-
-        .font-option.active {
-            background: #bd1a1a;
-            color: white;
-        }
-
-        .font-badge {
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .font-option.active .font-badge {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
 </head>
-<body class="bg-background-primary text-neutral-900 min-h-screen flex flex-col overflow-x-hidden">
-
-    <!-- Глобальный переключатель шрифтов -->
-    <div class="font-switcher">
-        <button class="font-switcher-btn" id="fontSwitcherBtn" aria-label="Выбрать шрифт">
-            <span>Aa</span>
-        </button>
-
-        <div class="font-menu" id="fontMenu">
-            <div class="font-option font-inter" data-font="inter">
-                <span>Inter</span>
-            </div>
-            <div class="font-option font-manrope" data-font="manrope">
-                <span>Manrope</span>
-            </div>
-            <div class="font-option font-golos" data-font="golos">
-                <span>Golos Text</span>
-            </div>
-            <div class="font-option font-ibm" data-font="ibm">
-                <span>IBM Plex Sans</span>
-            </div>
-            <div class="font-option font-commissioner" data-font="commissioner">
-                <span>Commissioner</span>
-            </div>
-            <div class="font-option font-montserrat" data-font="montserrat">
-                <span>Montserrat</span>
-            </div>
-            <div class="font-option font-roboto" data-font="roboto">
-                <span>Roboto</span>
-            </div>
-            <div class="font-option font-random active" data-font="random">
-                <span>Random Grotesque</span>
-                <span class="font-badge">По умолчанию</span>
-            </div>
-        </div>
-    </div>
+<body class="bg-background-primary text-neutral-900 min-h-screen flex flex-col overflow-x-hidden font-manrope">
 
     @{
         var headerData = new ViewDataDictionary(ViewData);
@@ -371,62 +238,6 @@
             </div>
         </div>
     </footer>
-<!-- Font Switcher Script -->
-    <script>
-        (function() {
-            const fontSwitcherBtn = document.getElementById('fontSwitcherBtn');
-            const fontMenu = document.getElementById('fontMenu');
-            const fontOptions = document.querySelectorAll('.font-option');
-            const body = document.body;
-            
-            // Загрузка сохраненного шрифта из localStorage
-            const savedFont = localStorage.getItem('selectedFont') || 'random';
-            applyFont(savedFont);
-            
-            // Переключение меню
-            fontSwitcherBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                fontMenu.classList.toggle('active');
-            });
-            
-            // Закрытие меню при клике вне его
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.font-switcher')) {
-                    fontMenu.classList.remove('active');
-                }
-            });
-            
-            // Выбор шрифта
-            fontOptions.forEach(function(option) {
-                option.addEventListener('click', function() {
-                    const selectedFont = option.dataset.font;
-                    applyFont(selectedFont);
-                    localStorage.setItem('selectedFont', selectedFont);
-                    fontMenu.classList.remove('active');
-                });
-            });
-            
-            // Применение шрифта
-            function applyFont(fontName) {
-                // Удаляем все классы шрифтов
-                body.className = body.className.replace(/font-\w+/g, '').trim();
-                
-                // Добавляем выбранный шрифт
-                body.classList.add('font-' + fontName);
-                
-                // Обновляем активный элемент в меню
-                fontOptions.forEach(function(opt) {
-                    opt.classList.remove('active');
-                    const badge = opt.querySelector('.font-badge');
-                    if (badge) badge.remove();
-                    
-                    if (opt.dataset.font === fontName) {
-                        opt.classList.add('active');
-                    }
-                });
-            }
-        })();
-    </script>
 
     <script>
         (() => {

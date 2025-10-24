@@ -1,3 +1,8 @@
+/* Manrope font utility class */
+.font-manrope {
+    font-family: 'Manrope', sans-serif !important;
+}
+
 .hero-title {
     font-size: 48px;
     font-weight: 700;
@@ -24,93 +29,16 @@
     font-family: Montserrat,sans-serif
 }
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardBook.ttf) format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardMedium.ttf) format("truetype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardMediumItalic.ttf) format("truetype");
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardSemibold.ttf) format("truetype");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardSemiboldItalic.ttf) format("truetype");
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardBold.ttf) format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Standard;
-    src: url(../assets/fonts/RG-StandardBoldItalicqwer.ttf) format("truetype");
-    font-weight: 700;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Slim;
-    src: url(../assets/fonts/RG-SlimBlackItalic.ttf) format("truetype");
-    font-weight: 900;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Slim;
-    src: url(../assets/fonts/RG-SlimBook.ttf) format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Spacious;
-    src: url(../assets/fonts/RG-SpaciousBlackItalic.ttf) format("truetype");
-    font-weight: 900;
-    font-style: italic;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: Random Grotesque Spacious;
-    src: url(../assets/fonts/RG-SpaciousBook.ttf) format("truetype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
 
 *, :after, :before {
     --tw-border-spacing-x: 0;
@@ -464,7 +392,7 @@ img, video {
 
 @media (min-width:1024px) {
     .h1 {
-        font-size: 72px;
+        font-size: 71px;
         /*letter-spacing: 2px*/
     }
 }
@@ -3300,7 +3228,7 @@ html {
 }
 
 body {
-    font-family: Random Grotesque Standard,sans-serif;
+    font-family: Manrope,sans-serif;
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -3323,7 +3251,7 @@ h1 {
 
 @media (min-width:1024px) {
     h1 {
-        font-size: 72px;
+        font-size: 71px;
         /*letter-spacing: 2px*/
     }
 }
@@ -4160,7 +4088,7 @@ p {
 
     @media (min-width:1024px) {
         .sm\:h1 {
-            font-size: 72px;
+            font-size: 71px;
             letter-spacing: 2px
         }
     }
